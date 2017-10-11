@@ -39,3 +39,6 @@ Route::get('perfil', 'AdministracionController@perfil');
 Route::any('updatePerfil', 'AdministracionController@updatePerfil');
 Route::any('updatePassword', 'AdministracionController@updatePassword');
 Route::any('updateFoto', 'AdministracionController@updateFoto');
+
+//Rutas RESTFULL
+Route::resource('/dashboard', 'DashboardController');

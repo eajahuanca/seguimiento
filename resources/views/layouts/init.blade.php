@@ -167,7 +167,7 @@
                     <small>@yield('FormularioDescripcion')</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="{{ url('/home') }}"><i class="fa fa-home"></i> Principal</a></li>
+                    <li><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Principal</a></li>
                     <li class="active">@yield('FormularioActual')</li>
                 </ol>
             </section>
@@ -204,18 +204,18 @@
     </div>
     <!-- ./wrapper -->
     <!-- jQuery 2.2.3 -->
-    <script src="{{ asset('plugin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('plugins/lte/jQuery/jquery-2.2.3.min.js') }}"></script>
     <!-- Bootstrap 3.3.6 -->
-    <script src="{{ asset('plugin/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- SlimScroll 1.3.0 -->
-    <script src="{{ asset('plugin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('plugins/lte/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <!-- FastClick -->
-    <script src="{{ asset('plugin/plugins/fastclick/fastclick.js') }}"></script>
+    <script src="{{ asset('plugins/lte/fastclick/fastclick.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('plugin/dist/js/app.min.js') }}"></script>
+    <script src="{{ asset('plugins/dist/js/app.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('plugin/dist/js/demo.js') }}"></script>
-    <script src="{{ asset('plugin/toast/toastr.min.js') }}"></script>
+    <script src="{{ asset('plugins/dist/js/demo.js') }}"></script>
+    <script src="{{ asset('plugins/toast/toastr.min.js') }}"></script>
     <!-- Page script -->
     @yield('javascript')
 
