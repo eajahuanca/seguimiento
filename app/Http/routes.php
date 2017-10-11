@@ -42,3 +42,4 @@ Route::any('updateFoto', 'AdministracionController@updateFoto');
 
 //Rutas RESTFULL
 Route::resource('/dashboard', 'DashboardController');
+Route::resource('/entidad', 'EntidadController');

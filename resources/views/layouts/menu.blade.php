@@ -31,7 +31,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-gear"></i> <span>Aprobación de Prog. y Proy.</span>
+                    <i class="fa fa-gear"></i> <span>Aprob. de Prog. & Proy.</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -94,12 +94,12 @@
                 <ul class="treeview-menu">
                     <li>
                         <a href="{{ url('/entidad') }}">
-                            <i class="fa fa-bullseye"></i> <span>Entidades (UE)</span>
+                            <i class="fa fa-bullseye"></i> <span>Usuarios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/unidad') }}">
-                            <i class="fa fa-indent"></i> <span>Unidades</span>
+                        <a href="{{ url('/entidad') }}">
+                            <i class="fa fa-indent"></i> <span>Entidades</span>
                         </a>
                     </li>
                     <li>
