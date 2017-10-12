@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <i class="fa fa-bullseye"></i>
+                            <a data-toggle="modal" data-target="#modalEntidad"><i class="fa fa-search"></i></a>
                         </div>
                         {!! Form::text('param_entidad', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la entidad']) !!}
                     </div>
@@ -45,7 +45,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <i class="fa fa-bullseye"></i>
+                            <a data-toggle="modal" data-target="#modalUnidad"><i class="fa fa-search"></i></a>
                         </div>
                         {!! Form::text('param_unidad', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la unidad']) !!}
                     </div>
@@ -89,7 +89,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <i class="fa fa-bullseye"></i>
+                            <a onclick="entidadClick()"><i class="fa fa-search"></i></a>
                         </div>
                         {!! Form::text('param_ciudad', null, ['class' => 'form-control', 'placeholder' => 'Ciudad']) !!}
                     </div>
@@ -108,7 +108,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <i class="fa fa-bullseye"></i>
+                            <a onclick="entidadClick()"><i class="fa fa-search"></i></a>
                         </div>
                         {!! Form::text('param_provincia', null, ['class' => 'form-control', 'placeholder' => 'Provincia']) !!}
                     </div>
@@ -129,7 +129,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <i class="fa fa-bullseye"></i>
+                            <a onclick="entidadClick()"><i class="fa fa-search"></i></a>
                         </div>
                         {!! Form::text('param_municipio', null, ['class' => 'form-control', 'placeholder' => 'Municipio']) !!}
                     </div>

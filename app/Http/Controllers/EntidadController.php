@@ -25,7 +25,9 @@ class EntidadController extends Controller
     public function create()
     {
         try{
-            return view('admin.entidad.create');
+            $soloEntidad = Entidad::orderBy('param_entidad','DESC')->get();
+            return view('admin.entidad.create')
+                ->with('soloEntidad', $soloEntidad);
         }
         catch(\Exception $ex){
             return redirect()->route('entidad.index');
@@ -41,7 +43,7 @@ class EntidadController extends Controller
             $entidad->save();
             Session::put('estado','1');
             Session::put('title','Registro Exitoso');
-            Session::put('msg','Los datos de la Entidad <b>'.$entidad->param_entidad.'</b> se registraron de manera satisfactoria');
+            Session::put('msg','Los datos de la Entidad '.$entidad->param_entidad.' se registraron de manera satisfactoria');
         }catch(\Exception $ex){
             Session::put('estado','2');
             Session::put('title','Error en registro');
