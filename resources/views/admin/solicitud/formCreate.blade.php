@@ -1,59 +1,17 @@
-<div class="col-md-12">
-    <div class="form-group">
-		{!! Form::label('proy_hr', 'Hoja de Ruta', ['class' => 'col-md-12 col-sm-12']) !!}
-        <div class="col-md-12 col-sm-12">
-            <div class="input-group">
-                <div class="input-group-addon">
-					<i class="fa fa-bars"></i>
-                </div>
-                {!! Form::text('proy_hr', null, ['placeholder' => 'Ej. E/2017-0034', 'class' => 'form-control']) !!} 
-            </div>
-            <span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
-				<strong id="error1"></strong>
-            </span>
-        </div>
-    </div>
-	
+<div class="col-md-12 col-xs-12">
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('entidad_id', 'Entidad (UE)', ['class' => 'col-md-12 col-sm-12']) !!}
-				<div class="col-md-10 col-xs-12">
+				{!! Form::label('proy_codigo', 'Código del Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-server"></i>
+							<i class="fa fa-bars"></i>
 						</div>
-						{!! Form::select('entidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
+						{!! Form::text('proy_codigo', null, ['class' => 'form-control']) !!} 
 					</div>
-					<span id="msg-error2" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error2"></strong>
-					</span>
-				</div>
-				<div class="col-md-2 col-xs-12">
-					<span class="hint--top  hint--info" aria-label="Registrar Entidad (UE)">
-						<a id="btnEntidad" class="btn btn-primary col-xs-12"><i class="fa fa-plus"></i></a>
-					</span>
-				</div>		
-			</div>
-		</div>
-	
-		<div class="col-md-4 col-xs-12">
-			<div class="form-group">
-				{!! Form::label('unidad_id', 'Unidad Proponente', ['class' => 'col-md-12 col-sm-12']) !!}
-				<div class="col-md-10 col-xs-12">
-					<div class="input-group">
-						<div class="input-group-addon">
-							<i class="fa fa-server"></i>
-						</div>
-						{!! Form::select('unidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
-					</div>
-					<span id="msg-error3" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error3"></strong>
-					</span>
-				</div>
-				<div class="col-md-2 col-xs-12">
-					<span class="hint--top  hint--info" aria-label="Registrar Unidad Proponente">
-						<a id="btnUnidad" class="btn btn-primary col-xs-12"><i class="fa fa-plus"></i></a>
+					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error1"></strong>
 					</span>
 				</div>
 			</div>
@@ -61,11 +19,115 @@
 
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('proy_sigla', 'Sigla Entidad', ['class' => 'col-md-12 col-sm-12']) !!}
-				<div class="col-md-12 col-sm-12">
+				{!! Form::label('proy_tipo', 'Tipo de Solicitud', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-list"></i>
+							<i class="fa fa-server"></i>
+						</div>
+						{!! Form::select('proy_tipo', ['Invitación' => 'Invitación', 'Convocatoria' => 'Convocatoria'], null, ['class' => 'form-control select2']) !!}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-xs-12">
+			<div class="form-group">				
+				{!! Form::label('proy_hrsigec', 'Hoja de Ruta (SIGEC)', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-search"></i></a>
+						</div>
+						{!! Form::text('proy_hrsigec', null, ['class' => 'form-control', 'disabled' => 'true']) !!} 
+					</div>
+					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error1"></strong>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="form-group">
+				{!! Form::label('proy_nombre', 'Nombre del Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-bars"></i>
+						</div>
+						{!! Form::text('proy_nombre', null, ['placeholder' => 'Nombre del proyecto', 'class' => 'form-control']) !!} 
+					</div>
+					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error1"></strong>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="row">
+		<div class="col-md-6 col-xs-12">
+			<div class="form-group">
+				{!! Form::label('proy_objetivo', 'Objetivo del Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-bars"></i>
+						</div>
+						{!! Form::textarea('proy_objetivo', null, ['placeholder' => 'Objetivo del proyecto', 'class' => 'form-control', 'rows' => '4']) !!} 
+					</div>
+					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error1"></strong>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class="form-group">
+				{!! Form::label('proy_justificacion', 'Justificación del Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-bars"></i>
+						</div>
+						{!! Form::textarea('proy_justificacion', null, ['placeholder' => 'Justificación del proyecto', 'class' => 'form-control', 'rows' => '4']) !!} 
+					</div>
+					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error1"></strong>
+					</span>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="row">
+		<div class="col-md-4 col-xs-12">
+			<div class="form-group">
+				{!! Form::label('proy_entidad', 'Entidad (UE)', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
+						</div>
+						{!! Form::select('proy_entidad', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
+					</div>
+					<span id="msg-error2" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error2"></strong>
+					</span>
+				</div>	
+			</div>
+		</div>
+
+		<div class="col-md-4 col-xs-12">
+			<div class="form-group">
+				{!! Form::label('proy_sigla', 'Sigla Entidad', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-gg"></i>
 						</div>
 						{!! Form::text('proy_sigla', null, ['class' => 'form-control', 'id' => 'proy_sigla']) !!} 
 					</div>
@@ -75,18 +137,35 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="col-md-4 col-xs-12">
+			<div class="form-group">
+				{!! Form::label('proy_unidad', 'Unidad', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
+						</div>
+						{!! Form::select('proy_unidad', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
+					</div>
+					<span id="msg-error3" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error3"></strong>
+					</span>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('departamento_id', 'Departamento', ['class' => 'col-md-12 col-sm-12']) !!}
+				{!! Form::label('proy_depto', 'Departamento', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-th"></i>
 						</div>
-						{!! Form::select('departamento_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('proy_depto', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
 					<span id="msg-error5" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error5"></strong>
@@ -97,21 +176,16 @@
 	
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('provincia_id', 'Provincias', ['class' => 'col-md-12 col-sm-12']) !!}
-				<div class="col-md-10 col-xs-12">
+				{!! Form::label('proy_provincia', 'Provincia', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-th"></i>
+							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
 						</div>
-						{!! Form::select('provincia_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('proy_provincia', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
 					<span id="msg-error6" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error6"></strong>
-					</span>
-				</div>
-				<div class="col-md-2 col-xs-12">
-					<span class="hint--top  hint--info" aria-label="Registrar Provincia">
-						<a id="btnProvincia" class="btn btn-primary col-xs-12"><i class="fa fa-plus"></i></a>
 					</span>
 				</div>
 			</div>
@@ -119,21 +193,16 @@
 
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('municipio_id', 'Municipio(s)', ['class' => 'col-md-12 col-sm-12']) !!}
-				<div class="col-md-10 col-xs-12">
+				{!! Form::label('proy_municipio', 'Municipio(s)', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-th"></i>
+							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
 						</div>
-						{!! Form::select('municipio_id[]',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione', 'id' => 'municipio_id']) !!}
+						{!! Form::select('proy_municipio[]',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione', 'id' => 'proy_municipio']) !!}
 					</div>
 					<span id="msg-error7" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error7"></strong>
-					</span>
-				</div>
-				<div class="col-md-2 col-xs-12">
-					<span class="hint--top  hint--info" aria-label="Registrar Municipio">
-						<a id="btnMunicipio" class="btn btn-primary col-xs-12"><i class="fa fa-plus"></i></a>
 					</span>
 				</div>
 			</div>
@@ -143,13 +212,13 @@
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('proy_responsable', 'Responsable de Proyecto', ['class' => 'col-md-12 col-sm-12']) !!}
+				{!! Form::label('id_responsable', 'Responsable de Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-user"></i>
 						</div>
-						{!! Form::select('proy_responsable', $responsable, null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('id_responsable', $responsable, null, ['class' => 'form-control select2']) !!}
 					</div>
 				</div>
 			</div>
@@ -157,13 +226,13 @@
 	
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('proy_monto', 'Monto solicitado (Bs.)', ['class' => 'col-md-12 col-sm-12']) !!}
+				{!! Form::label('proy_montofona', 'Monto Fonabosque (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa"><b>Bs</b></i>
+							<i><b style="font-family:arial;">Bs</b></i>
 						</div>
-						{!! Form::text('proy_monto', null, ['class' => 'form-control']) !!} 
+						{!! Form::text('proy_montofona', null, ['class' => 'form-control']) !!} 
 					</div>
 					<span id="msg-error8" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error8"></strong>
@@ -174,11 +243,30 @@
 
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('proy_tiempo', 'Tiempo estimado (Años)', ['class' => 'col-md-12 col-sm-12']) !!}
-				<div class="col-md-12 col-sm-12">
+				{!! Form::label('proy_montosol', 'Monto Solicitante (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-clock-o"></i>
+							<i><b style="font-family:arial;">Bs</b></i>
+						</div>
+						{!! Form::text('proy_montosol', null, ['class' => 'form-control']) !!} 
+					</div>
+					<span id="msg-error8" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error8"></strong>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4 col-xs-12">
+			<div class="form-group">
+				{!! Form::label('proy_tiempo', 'Tiempo estimado (Años)', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
 						</div>
 						{!! Form::number('proy_tiempo', null, ['class' => 'form-control']) !!} 
 					</div>
@@ -188,13 +276,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('proy_estado', 'Estado del Proyecto', ['class' => 'col-md-12 col-sm-12']) !!}
-				<div class="col-md-8 col-xs-12">
+				{!! Form::label('proy_estado', 'Estado del Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-unlock"></i>
@@ -205,15 +291,15 @@
 			</div>
 		</div>
 
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('proy_archivo', 'Archivo Respaldo', ['class' => 'col-md-12 col-sm-12 text-right']) !!}
-				<div class="col-md-8 col-xs-12 pull-right">
+				{!! Form::label('proy_respaldo', 'Archivo Respaldo', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12 pull-right">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-file-pdf-o"></i>
 						</div>
-						{!! Form::file('proy_archivo', ['class' => 'form-control']) !!}
+						{!! Form::file('proy_respaldo', ['class' => 'form-control']) !!}
 					</div>
 					<span id="msg-error10" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error10"></strong>

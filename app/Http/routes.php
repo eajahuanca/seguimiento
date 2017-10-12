@@ -45,3 +45,4 @@ Route::resource('/dashboard', 'DashboardController');
 Route::resource('/entidad', 'EntidadController');
 
 Route::resource('/sigec','SigecController');
+Route::resource('/solicitud','SolicitudController');

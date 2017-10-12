@@ -9,80 +9,24 @@
     <link href="{{ asset('plugins/lte/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/lte/datatables/responsive/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/lte/datatables/responsive/responsive.bootstrap4.min.css') }}" rel="stylesheet">
-     <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('plugins/lte/iCheck/all.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/lte/select2/select2.min.css') }}">
 @endsection
 
 @section('ContenidoPagina')
 
     {!! Form::open(['id' => 'formProyectos', 'class' => 'form-horizontal', 'files' => true]) !!}
-        @include('admin.proyectoaevaluar.formCreate')
+        @include('admin.solicitud.formCreate')
         <div class="form-group">
             <center>
-                <span class="hint--top  hint--success" aria-label="Guardar los datos del Proyecto a Evaluar">
-                    {!! link_to('#','Guardar', ['id' => 'GrabarProyecto', 'class' => 'btn btn-success col-xs-12']) !!}
-                </span>
-                <span class="hint--top  hint--error" aria-label="Cancelar el registro">
-                    <button type="reset" class="btn btn-danger col-xs-12">Cancelar</button>
-                </span>
+                <span class="hint--top  hint--success" aria-label="Guardar los datos de la solicitud"><button type="buttom" class="btn btn-success" id='GrabarProyecto'><i class="fa fa-save"></i> Guardar</button></span>
+                <span class="hint--top  hint--error" aria-label="Cancelar la solicitud"><a href="{{ route('solicitud.index') }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Cancelar</a></span>
+                <span class="hint--top  hint--info" aria-label="Listar Solicitudes"><a href="{{ route('solicitud.index') }}" class="btn btn-primary"><i class="fa fa-list"></i> Listar Solicitudes</a></span>
             </center>
         </div>
     {!! Form::close() !!}
     <hr class="btn-primary">
-    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-        <thead>
-            <tr class="btn-primary">
-                <th style="text-align: center !important;">#</th>
-                <th style="text-align: center !important;">Acción</th>
-                <th style="text-align: center !important;">Estado</th>
-                <th style="text-align: center !important;">H.R.</th>
-                <th style="text-align: center !important;">Proyecto (Entidad)</th>
-                <th style="text-align: center !important;">Unidad Proponente</th>
-                <th style="text-align: center !important;">Lugar</th>
-                <th style="text-align: center !important;">Monto(Bs.)</th>
-                <th style="text-align: center !important;">Archivo</th>
-                <th style="text-align: center !important;">Tiempo Estimado</th>
-                <th style="text-align: center !important;">Responsable</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $contadorFilas = 1;?>
-            @foreach($proyecto as $item)
-            <tr id="{{ $item->id }}">
-                <td>{{ $contadorFilas++ }}</td>
-                <td align="left">
-					<div class="form-horizontal">
-                        <span class="hint--top  hint--info" aria-label="Modificar Datos del Proyecto"><a href="{{ route('aevaluar.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
-						@if($item->proy_estado)
-                        	<span class="hint--top  hint--error" aria-label="Devolver Proyecto a Entidad"><a href="{{ route('aevaluar.destroy', $item->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-reply-all"></i></a></span>
-						@endif
-                    </div>
-				</td>
-                <td align="center">
-                    @if($item->proy_estado)
-                        <span class="hint--top  hint--warning" aria-label="Proyecto en solicitud"><button class="btn btn-warning btn-xs">En Solicitud</button></span>
-                    @else
-                        <span class="hint--top  hint--error" aria-label="Proyecto Devuelto a la entidad"><button class="btn btn-danger btn-xs">Devuelto</button></span>
-                    @endif
-                </td>
-                <td align="center" valign="middle">{{ $item->proy_hr }}</td>
-				<td>{{ $item->entidad->ent_nombre }}</td>
-				<td style="width:50px !important;">{{ $item->eunidad->uni_nombre }}</td>
-                <td>{!! ($item->departamento->dep_nombre.'<br>'.$item->provincia->prov_nombre.'<br>'.$item->municipio_id) !!}</td>
-                <td align="right">{{ number_format($item->proy_monto, 2, ',', '.').' Bs.' }}</td>
-                <td>
-					@if($item->proy_archivo)
-						<span class="hint--top  hint--error" aria-label="Descargar Archivo"><a href="{{ asset($item->proy_archivo) }}" target="_blank   " class="fa fa-file-pdf-o"></a></span>
-					@else
-						{{ 'Sin Archivo' }}
-					@endif
-				</td>
-                <td align="right">{{ $item->proy_tiempo.' Años' }}</td>
-                <td align="justify">{{ $item->responsable->us_nombre.' '.$item->responsable->us_paterno.' '.$item->responsable->us_materno }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    
 @endsection
 
 @section('javascript')
@@ -102,6 +46,63 @@
             $('#example').DataTable();
         } );
     </script>
+    <script src="{{ asset('plugins/lte/iCheck/icheck.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass   : 'iradio_flat-green'
+            });
+        });
+    </script>
+    <!--Modal para Buscar Hoja de Ruta-->
+    <div class="modal fade" id="modalSigec" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Buscar Hoja de Ruta</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr class="btn-success">
+                                <th style="text-align: center !important;">Op</th>
+                                <th style="text-align: center !important;">HR</th>
+                                <th style="text-align: center !important;">Remitente</th>
+                                <th style="text-align: center !important;">Cite</th>
+                                <th style="text-align: center !important;">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($sigec as $itemSigec)
+                            <tr id="{{ $itemSigec->id }}">
+                                <td align="center">
+                                    <div class="form-horizontal">
+                                        <input type="radio" name="radioSigec" class="flat-red"/>
+                                    </div>
+                                </td>
+                                <td>{{ $itemSigec->nur }}</td>
+                                <td>{{ $itemSigec->nombre_remitente }}</td>
+                                <td>{{ $itemSigec->codigo }}</td>
+                                <td>{{ $itemSigec->fecha_creacion }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <!--Cargar Datos -->
     <script type="text/javascript">
         $(document).ready(function(){
@@ -200,7 +201,7 @@
                 //var dataString = $("#formProyectos").serialize();
                 var dataString = new FormData(document.getElementById("formProyectos"));// $("#formProyectos").serialize();
                 var token = $("input[name=_token]").val();
-                var route = "{{ route('aevaluar.store')}}";
+                var route = "{{ route('solicitud.store')}}";
                 $.ajax({
                     url: route,
                     headers: {'X-CSRF-TOKEN':token},

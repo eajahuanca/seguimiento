@@ -3,19 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
+use App\Solicitud;
+use App\Entidad;
+use App\User;
+use App\Sigec;
+use Carbon\Carbon;
+use DB;
+use Session;
 
 class SolicitudController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(){
+        Carbon::setLocale('es');
+    }
+
     public function index()
     {
-        //
+        $sigec = Sigec::select('nur','nombre_remitente','codigo','fecha_creacion')->where('nur','like','20%')->get();
+        $responsable = User::select(
+                       DB::raw('CONCAT(us_paterno," ",us_materno," ",us_nombre) as responsable'), 'id')
+                       ->where('us_estado', 1)
+                       ->orderBy('responsable','ASC')
+                       ->lists('responsable','id');
+        return view('admin.solicitud.index')
+            ->with('responsable',$responsable)
+            ->with('sigec', $sigec);
     }
 
     /**

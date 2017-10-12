@@ -47,6 +47,7 @@
             @endforeach
         </tbody>
     </table>
+    {{ date('m')-7 }}
 @endsection
 
 @section('javascript')
