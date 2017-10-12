@@ -46,6 +46,7 @@
                     </div>
                 </td>
                 <td>{{ $item->param_depto }}</td>
+                <td>{{ $item->param_ciudad }}</td>
                 <td>{{ $item->param_entidad }}</td>
                 <td>{{ $item->param_sigla }}</td>
                 <td>{{ $item->param_unidad }}</td>

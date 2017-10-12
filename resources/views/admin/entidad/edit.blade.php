@@ -3,7 +3,7 @@
 @section('FormularioTitulo','Entidades')
 @section('FormularioDescripcion','modificar datos de la entidad')
 @section('FormularioActual','Entidad')
-@section('FormularioDetalle','Modificar Entidad')
+@section('FormularioDetalle','Modificar datos de Entidad')
 
 @section('stylesheet')
 	<link rel="stylesheet" href="{{ asset('plugins/lte/select2/select2.min.css') }}">

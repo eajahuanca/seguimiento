@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
+use App\Http\Requests\EntidadRequest;
 use App\Entidad;
 use Carbon\Carbon;
+use Session;
 
 class EntidadController extends Controller
 {
@@ -22,12 +24,30 @@ class EntidadController extends Controller
 
     public function create()
     {
-        //
+        try{
+            return view('admin.entidad.create');
+        }
+        catch(\Exception $ex){
+            return redirect()->route('entidad.index');
+        }
     }
 
-    public function store(Request $request)
+    public function store(EntidadRequest $request)
     {
-        //
+        try{
+            $entidad = new Entidad($request->all());
+            $entidad->id_uregistra = Auth::user()->id;
+            $entidad->id_uactualiza = Auth::user()->id;
+            $entidad->save();
+            Session::put('estado','1');
+            Session::put('title','Registro Exitoso');
+            Session::put('msg','Los datos de la Entidad <b>'.$entidad->param_entidad.'</b> se registraron de manera satisfactoria');
+        }catch(\Exception $ex){
+            Session::put('estado','2');
+            Session::put('title','Error en registro');
+            Session::put('msg','Error: '.$ex->getMessage());
+        }
+        return redirect()->route('entidad.index');
     }
 
     public function show($id)
