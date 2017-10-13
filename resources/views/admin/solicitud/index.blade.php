@@ -49,7 +49,7 @@
         $(document).ready(function() {
             $("#example tr").click(function(){
                 var hruta = $(this).find('td');
-                $("#modalSigec").hide();
+                $("#modalSigec").modal('toggle');
                 $("#proy_hrsigec").val($(hruta[0]).html());
             });
 
