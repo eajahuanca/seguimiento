@@ -48,14 +48,13 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#example tr").click(function(){
-                $(this).css('background-color','black');
-                $(this).css('color','white');
-                var hruta = $("#example").childrens("td.tdhr").first().val();
-                alert(hruta);
+                var hruta = $(this).find('td');
+                $("#modalSigec").hide();
+                $("#proy_hrsigec").val($(hruta[0]).html());
             });
 
             $("#example tr").mouseenter(function(){
-                $(this).css('background-color','#369');
+                $(this).css('background-color','#27AE60');
                 $(this).css('color','white');
             });
 
