@@ -28,9 +28,11 @@ class SolicitudController extends Controller
                        ->where('us_estado', 1)
                        ->orderBy('responsable','ASC')
                        ->lists('responsable','id');
+        $entidad = Entidad::where('ent_estado', 1)->orderBy('ent_nombre','ASC')->lists('ent_nombre','ent_nombre');
         return view('admin.solicitud.index')
             ->with('responsable',$responsable)
-            ->with('sigec', $sigec);
+            ->with('sigec', $sigec)
+            ->with('entidad', $entidad);
     }
 
     /**

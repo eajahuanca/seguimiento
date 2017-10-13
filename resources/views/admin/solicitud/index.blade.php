@@ -9,7 +9,6 @@
     <link href="{{ asset('plugins/lte/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/lte/datatables/responsive/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/lte/datatables/responsive/responsive.bootstrap4.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('plugins/lte/iCheck/all.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/lte/select2/select2.min.css') }}">
 @endsection
 
@@ -46,61 +45,28 @@
             $('#example').DataTable();
         } );
     </script>
-    <script src="{{ asset('plugins/lte/iCheck/icheck.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass   : 'iradio_flat-green'
+            $("#example tr").click(function(){
+                $(this).css('background-color','black');
+                $(this).css('color','white');
+                var hruta = $("#example").childrens("td.tdhr").first().val();
+                alert(hruta);
+            });
+
+            $("#example tr").mouseenter(function(){
+                $(this).css('background-color','#369');
+                $(this).css('color','white');
+            });
+
+            $("#example tr").mouseleave(function(){
+                $(this).css('background-color','#F4F4F4');
+                $(this).css('color','#333');
             });
         });
+
     </script>
-    <!--Modal para Buscar Hoja de Ruta-->
-    <div class="modal fade" id="modalSigec" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Buscar Hoja de Ruta</h4>
-                </div>
-                <div class="modal-body">
-                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                        <thead>
-                            <tr class="btn-success">
-                                <th style="text-align: center !important;">Op</th>
-                                <th style="text-align: center !important;">HR</th>
-                                <th style="text-align: center !important;">Remitente</th>
-                                <th style="text-align: center !important;">Cite</th>
-                                <th style="text-align: center !important;">Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($sigec as $itemSigec)
-                            <tr id="{{ $itemSigec->id }}">
-                                <td align="center">
-                                    <div class="form-horizontal">
-                                        <input type="radio" name="radioSigec" class="flat-red"/>
-                                    </div>
-                                </td>
-                                <td>{{ $itemSigec->nur }}</td>
-                                <td>{{ $itemSigec->nombre_remitente }}</td>
-                                <td>{{ $itemSigec->codigo }}</td>
-                                <td>{{ $itemSigec->fecha_creacion }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
+    @include('admin.solicitud.modal');
 
 
     <!--Cargar Datos -->

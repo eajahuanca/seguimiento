@@ -20,7 +20,6 @@ class CreateTableSolicitudes extends Migration
             $table->string('proy_nombre');
             $table->text('proy_objetivo');
             $table->text('proy_justicacion');
-            $table->integer('id_entidad')->unsigned();
             $table->string('proy_entidad');
             $table->string('proy_sigla');
             $table->string('proy_unidad');
@@ -37,7 +36,6 @@ class CreateTableSolicitudes extends Migration
             $table->integer('id_uactualiza')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_entidad')->references('id')->on('entidades');
             $table->foreign('id_responsable')->references('id')->on('users');
             $table->foreign('id_uregistra')->references('id')->on('users');
             $table->foreign('id_uactualiza')->references('id')->on('users');

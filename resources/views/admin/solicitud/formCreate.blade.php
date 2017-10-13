@@ -102,7 +102,7 @@
 			</div>
 		</div>
     </div>
-	
+	º
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
@@ -110,13 +110,10 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
+							<a data-toggle="modal" data-target="#modalEntidad"><i class="fa fa-plus"></i></a>
 						</div>
-						{!! Form::select('proy_entidad', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('proy_entidad', $entidad, null, ['class' => 'form-control select2']) !!}
 					</div>
-					<span id="msg-error2" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error2"></strong>
-					</span>
 				</div>	
 			</div>
 		</div>
@@ -129,7 +126,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-gg"></i>
 						</div>
-						{!! Form::text('proy_sigla', null, ['class' => 'form-control', 'id' => 'proy_sigla']) !!} 
+						{!! Form::text('proy_sigla', null, ['class' => 'form-control', 'id' => 'proy_sigla', 'disabled' => 'true']) !!} 
 					</div>
 					<span id="msg-error4" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error4"></strong>
@@ -144,7 +141,7 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
+							<a data-toggle="modal" data-target="#modalUnidad"><i class="fa fa-plus"></i></a>
 						</div>
 						{!! Form::select('proy_unidad', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -180,7 +177,7 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
+							<a data-toggle="modal" data-target="#modalProvincia"><i class="fa fa-plus"></i></a>
 						</div>
 						{!! Form::select('proy_provincia', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -197,7 +194,7 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-plus"></i></a>
+							<a data-toggle="modal" data-target="#modalMunicipio"><i class="fa fa-plus"></i></a>
 						</div>
 						{!! Form::select('proy_municipio[]',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione', 'id' => 'proy_municipio']) !!}
 					</div>
