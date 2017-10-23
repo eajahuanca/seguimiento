@@ -24,14 +24,9 @@ class EntidadRequest extends Request
     public function rules()
     {
         return [
-            'param_entidad' => ['required'],
-            'param_sigla' => ['required'],
-            'param_unidad' => ['required'],
-            'param_depto' => ['required'],
-            'param_ciudad' => ['required'],
-            'param_provincia' => ['required'],
-            'param_municipio' => ['required'],
-            'param_estado' => ['required']
+            'ent_nombre' => 'required',
+            'ent_sigla' => 'required',
+            'ent_estado' => 'required'
         ];
     }
 }

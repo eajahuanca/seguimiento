@@ -46,3 +46,10 @@ Route::resource('/entidad', 'EntidadController');
 
 Route::resource('/sigec','SigecController');
 Route::resource('/solicitud','SolicitudController');
+Route::resource('/listar','SoliCiteListController');
+Route::resource('/provincia','ProvinciaController');
+Route::resource('/municipio','MuncipioController');
+Route::resource('/reglamento','ReglamentoController');
+Route::resource('/componente','ComponenteController');
+Route::resource('/area','AreaController');
+Route::resource('/cargo','CargoController');

@@ -14,31 +14,34 @@ class CreateTableSolicitudes extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('proy_codigo')->unique();
-            $table->string('proy_hrsigec');
-            $table->string('proy_tipo');
-            $table->string('proy_nombre');
-            $table->text('proy_objetivo');
-            $table->text('proy_justicacion');
-            $table->string('proy_entidad');
-            $table->string('proy_sigla');
-            $table->string('proy_unidad');
-            $table->string('proy_depto');
-            $table->string('proy_provincia');
-            $table->string('proy_municipio');
-            $table->integer('id_responsable')->unsigned();
-            $table->decimal('proy_montofona',18,2);
-            $table->decimal('proy_montosol',18,2);
-            $table->integer('proy_tiempo')->default(0);
-            $table->string('proy_respaldo');
-            $table->string('proy_estado');
-            $table->integer('id_uregistra')->unsigned();
-            $table->integer('id_uactualiza')->unsigned();
+            $table->string('sol_codigo')->unique();
+            $table->string('sol_hrsigec');
+            $table->string('sol_tipo');
+            $table->string('sol_nombre');
+            $table->text('sol_objetivo');
+            $table->text('sol_justicacion');
+            $table->integer('identidad')->unsigned();
+            $table->string('sol_sigla');
+            $table->integer('iddepto')->unsigned();
+            $table->integer('idprovincia')->unsigned();
+            $table->string('sol_municipio');
+            $table->integer('idresponsable')->unsigned();
+            $table->decimal('sol_montofona',18,2);
+            $table->decimal('sol_montosol',18,2);
+            $table->decimal('sol_montootro',18,2);
+            $table->integer('sol_tiempo')->default(0);
+            $table->integer('idreglamento')->unsigned();
+            $table->string('sol_respaldo');
+            $table->string('sol_ftecnica');
+            $table->enum('sol_estado', ['DEVUELTO','TRANSCRIPCION','APROBADO']);
+            $table->text('sol_componente');
+            $table->integer('iduregistra')->unsigned();
+            $table->integer('iduactualiza')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_responsable')->references('id')->on('users');
-            $table->foreign('id_uregistra')->references('id')->on('users');
-            $table->foreign('id_uactualiza')->references('id')->on('users');
+            $table->foreign('idresponsable')->references('id')->on('users');
+            $table->foreign('iduregistra')->references('id')->on('users');
+            $table->foreign('iduactualiza')->references('id')->on('users');
         });
     }
 

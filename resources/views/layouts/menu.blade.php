@@ -38,7 +38,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{ url('/solicitud') }}">
+                        <a href="{{ url('/listar') }}">
                             <i class="fa fa-gg-circle"></i> <span>Solicitud</span>
                         </a>
                     </li>

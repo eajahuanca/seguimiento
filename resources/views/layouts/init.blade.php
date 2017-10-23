@@ -184,7 +184,9 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+                        @include('flash::message')
                         @yield('ContenidoPagina')
+                        
                     </div>
                 </div>
             </section>
@@ -215,6 +217,9 @@
     <script src="{{ asset('plugins/dist/js/app.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('plugins/dist/js/demo.js') }}"></script>
+    <script>
+        $('#flash-overlay-modal').modal();
+    </script>
     <script src="{{ asset('plugins/toast/toastr.min.js') }}"></script>
     <!-- Page script -->
     @yield('javascript')

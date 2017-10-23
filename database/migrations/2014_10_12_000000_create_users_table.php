@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->integer('id_profesion')->unsigned();
             $table->integer('id_cargo')->unsigned();
+            $table->integer('id_area')->unsigned();
+            $table->string('us_depto');
             $table->string('us_foto');
             $table->string('us_cuenta')->unique();
             $table->string('password');

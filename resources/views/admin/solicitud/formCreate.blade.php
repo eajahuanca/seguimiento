@@ -8,7 +8,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-bars"></i>
 						</div>
-						{!! Form::text('proy_codigo', null, ['class' => 'form-control']) !!} 
+						{!! Form::text('proy_codigo', Session::get('cite'), ['class' => 'form-control', 'disabled' => 'true']) !!} 
 					</div>
 					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error1"></strong>
@@ -162,7 +162,8 @@
 						<div class="input-group-addon">
 							<i class="fa fa-th"></i>
 						</div>
-						{!! Form::select('proy_depto', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('proy_depto', ['La Paz' => 'La Paz','Oruro' => 'Oruro','Potosi' => 'Potosi',
+											'Tarija' => 'Tarija','Santa Cruz' => 'Santa Cruz','Beni' => 'Beni','Cochabamba' => 'Cochabamba','Pando' => 'Pando','Chuquisaca' => 'Chuquisaca'], null, ['class' => 'form-control select2']) !!}
 					</div>
 					<span id="msg-error5" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error5"></strong>

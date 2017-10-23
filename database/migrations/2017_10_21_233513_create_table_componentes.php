@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnidadesTable extends Migration
+class CreateTableComponentes extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class CreateUnidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('unidades', function (Blueprint $table) {
+        Schema::create('componentes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_entidad')->unsigned();
-            $table->string('uni_nombre');
-            $table->boolean('uni_estado')->default(true);
+            $table->string('com_nombre')->unique();
+            $table->string('com_descripcion');
+            $table->boolean('com_estado')->default();
             $table->timestamps();
-
-            $table->foreign('id_entidad')->references('id')->on('entidades');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateUnidadesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('unidades');
+        Schema::drop('componentes');
     }
 }

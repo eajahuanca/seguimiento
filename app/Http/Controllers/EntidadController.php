@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Requests\EntidadRequest;
 use App\Entidad;
@@ -12,8 +11,15 @@ use Session;
 
 class EntidadController extends Controller
 {
+    private $title;
+    private $msg;
+    private $estado;
+
     public function __construct(){
         Carbon::setlocale('es');
+        $this->estado = "";
+        $this->title = "";
+        $this->msg = "";
     }
     public function index()
     {
@@ -25,9 +31,7 @@ class EntidadController extends Controller
     public function create()
     {
         try{
-            $soloEntidad = Entidad::orderBy('param_entidad','DESC')->get();
-            return view('admin.entidad.create')
-                ->with('soloEntidad', $soloEntidad);
+            return view('admin.entidad.create');
         }
         catch(\Exception $ex){
             return redirect()->route('entidad.index');
@@ -38,32 +42,45 @@ class EntidadController extends Controller
     {
         try{
             $entidad = new Entidad($request->all());
-            $entidad->id_uregistra = Auth::user()->id;
-            $entidad->id_uactualiza = Auth::user()->id;
             $entidad->save();
-            Session::put('estado','1');
-            Session::put('title','Registro Exitoso');
-            Session::put('msg','Los datos de la Entidad '.$entidad->param_entidad.' se registraron de manera satisfactoria');
+            $this->estado = "1";
+            $this->title = 'Registro de Entidad';
+            $this->msg = 'Los datos de la Entidad '.$entidad->ent_nombre.' se registraron de manera satisfactoria';
         }catch(\Exception $ex){
-            Session::put('estado','2');
-            Session::put('title','Error en registro');
-            Session::put('msg','Error: '.$ex->getMessage());
+            $this->estado = "2";
+            $this->title = 'Error en Registro';
+            $this->msg = 'Ocurrio el siguiente error : '.$ex->getMessage();
         }
+        Session::put('estado', $this->estado);
+        Session::put('title', $this->title);
+        Session::put('msg', $this->msg);
         return redirect()->route('entidad.index');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
     {
-        //
+        $entidad = Entidad::find($id);
+        return view('admin.entidad.edit')
+            ->with('entidad', $entidad);
     }
 
-    public function update(Request $request, $id)
+    public function update(EntidadRequest $request, $id)
     {
-        //
+        try{
+            $entidad = Entidad::find($id);
+            $entidad->fill($request->all());
+            $entidad->update();
+            $this->estado = "1";
+            $this->title = 'Actualización de Entidad';
+            $this->msg = 'Se realizo la actualización de manera satisfactoria.';
+        }catch(\Exception $ex){
+            $this->estado = "2";
+            $this->title = 'Error en Actualización';
+            $this->msg = 'Ocurrio el siguiente error: '.$ex->getMessage();
+        }
+        Session::put('estado', $this->estado);
+        Session::put('title', $this->title);
+        Session::put('msg', $this->msg);
+        return redirect()->route('entidad.index');
     }
 }
