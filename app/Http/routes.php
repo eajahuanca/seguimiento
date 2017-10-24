@@ -53,3 +53,4 @@ Route::resource('/reglamento','ReglamentoController');
 Route::resource('/componente','ComponenteController');
 Route::resource('/area','AreaController');
 Route::resource('/cargo','CargoController');
+Route::resource('/evaluacion','EvaluacionController');

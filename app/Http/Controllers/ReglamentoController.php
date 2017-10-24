@@ -21,6 +21,7 @@ class ReglamentoController extends Controller
         $this->title = "";
         $this->msg = "";
     }
+    
     public function index()
     {
         $reglamento = Reglamento::orderBy('created_at','DESC')->get();

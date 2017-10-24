@@ -9,7 +9,7 @@ class Entidad extends Model
     protected $table = 'entidades';
     protected $fillable = ['id','ent_nombre','ent_sigla','ent_estado','created_at','updated_at'];
 
-    public function entidad(){
-        return $this->hasMany('App\Entidad');
+    public function solicitud(){
+        return $this->hasMany('App\Solicitud');
     }
 }

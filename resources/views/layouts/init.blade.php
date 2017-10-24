@@ -200,7 +200,7 @@
             <strong>Copyright &copy; 2017 | Fonabosque - Manager</strong>
         </footer>
 
-        @include('layouts.config')
+        {{--@include('layouts.config')--}}
         <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>

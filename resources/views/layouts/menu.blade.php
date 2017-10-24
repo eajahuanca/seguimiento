@@ -44,7 +44,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('/evaluacion') }}">
                             <i class="fa fa-gg-circle"></i> <span>Evaluación de Solicitud</span>
                         </a>
                     </li>
