@@ -28,6 +28,15 @@ class EntidadController extends Controller
             ->with('entidad', $entidad);
     }
 
+    public function getSigla(Request $request)
+    {
+        if($request->ajax())
+        {
+            $rpta = Entidad::where('ent_estado',1)->where('id','=',$request->entidadID)->select('id','ent_sigla')->get();
+            return response()->json($rpta);
+        }
+    }
+
     public function create()
     {
         try{

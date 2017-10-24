@@ -54,6 +54,31 @@ return [
             'visibility' => 'public',
         ],
 
+        'usuarios' => [
+            'driver' => 'local',
+            'root' => public_path('storage/usuarios'),
+        ],
+
+        'reglamentos' => [
+            'driver' => 'local',
+            'root' => public_path('storage/reglamentos'),
+        ],
+
+        'archivos' => [
+            'driver' => 'local',
+            'root' => public_path('storage/archivos'),
+        ],
+
+        'fichatecnicas' => [
+            'driver' => 'local',
+            'root' => public_path('storage/fichatecnica'),
+        ],
+
+        'respaldos' => [
+            'driver' => 'local',
+            'root' => public_path('storage/respaldos'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

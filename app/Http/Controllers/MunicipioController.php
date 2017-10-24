@@ -29,6 +29,17 @@ class MunicipioController extends Controller
             ->with('municipio', $municipio);
     }
 
+    public function getMunicipios(Request $request)
+    {
+        if($request->ajax())
+        {
+            $rpta = Municipio::select('id','mun_nombre')->where('mun_estado',1)->where('provincia_id','=', $request->provinciaID)->orderBy('mun_nombre','ASC')->get();
+            return response()->json($rpta);
+        }
+        else
+            return null;
+    }
+
     public function create()
     {
         try{

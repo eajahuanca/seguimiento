@@ -6,7 +6,6 @@
 @section('FormularioDetalle','Solicitud')
 
 @section('stylesheet')
-    <link href="{{ asset('plugins/lte/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/lte/datatables/responsive/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/lte/datatables/responsive/responsive.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('plugins/lte/select2/select2.min.css') }}">
@@ -14,17 +13,15 @@
 
 @section('ContenidoPagina')
 
-    {!! Form::open(['id' => 'formProyectos', 'class' => 'form-horizontal', 'files' => true]) !!}
+    {!! Form::open(['id' => 'formSolicitud', 'class' => 'form-horizontal', 'files' => true]) !!}
         @include('admin.solicitud.formCreate')
         <div class="form-group">
             <center>
                 <span class="hint--top  hint--success" aria-label="Guardar los datos de la solicitud"><button type="buttom" class="btn btn-success" id='GrabarProyecto'><i class="fa fa-save"></i> Guardar</button></span>
-                <span class="hint--top  hint--error" aria-label="Cancelar la solicitud"><a href="{{ route('solicitud.index') }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Cancelar</a></span>
-                <span class="hint--top  hint--info" aria-label="Listar Solicitudes"><a href="{{ route('solicitud.index') }}" class="btn btn-primary"><i class="fa fa-list"></i> Listar Solicitudes</a></span>
+                <span class="hint--top  hint--success" aria-label="Guardar los datos y Solicitar Aprobación"><button type="buttom" class="btn btn-success" id='GrabarProyectoA'><i class="fa fa-save"></i> Guardar y Solicitar Aprobación</button></span>
             </center>
         </div>
     {!! Form::close() !!}
-    <hr class="btn-primary">
     
 @endsection
 
@@ -50,7 +47,7 @@
             $("#example tr").click(function(){
                 var hruta = $(this).find('td');
                 $("#modalSigec").modal('toggle');
-                $("#proy_hrsigec").val($(hruta[0]).html());
+                $("#sol_hrsigec").val($(hruta[0]).html());
             });
 
             $("#example tr").mouseenter(function(){
@@ -64,106 +61,76 @@
             });
         });
     </script>
-    @include('admin.solicitud.modal');
+    @include('admin.solicitud.modal')
 
     <!--Cargar Datos -->
     <script type="text/javascript">
         $(document).ready(function(){
-            $("select[name=proy_unidad]").empty();
-            $("select[name=proy_unidad]").append("<option value='' disabled selected style='display:none;'>Seleccione Unidad</option>");
-            $("select[name=proy_provincia]").empty();
-            $("select[name=proy_provincia]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
-            $("#proy_municipio").empty();
-            $("#proy_municipio").append("<option value='' disabled selected style='display:none;'></option>");
-            //Entidades
-            /*$.ajax({
-                url: "{{ url('/getEntidad') }}",
-                type: "get",
-                datatype: "json",
-                success: function(rpta){
-                    $("select[name=entidad_id]").empty();
-                    $("select[name=entidad_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Entidad</option>");
-                    $.each(rpta, function(index, value){
-                        $("select[name=entidad_id]").append("<option value='" + value['id'] + "'>" + value['ent_nombre'] + "</option>");
-                    });
-                }
-            });
-            //Departamentos
-            $.ajax({
-                url: "{{ url('/getDepartamento') }}",
-                type: "get",
-                datatype: "json",
-                success: function(rpta){
-                    $("select[name=departamento_id]").empty();
-                    $("select[name=departamento_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Departamento</option>");
-                    $.each(rpta, function(index, value){
-                        $("select[name=departamento_id]").append("<option value='" + value['id'] + "'>" + value['dep_nombre'] + "</option>");
-                    });
-                }
-            });*/
-            //Unidad Proponente
-            $("select[name=proy_entidad]").change(function(){
-                var entidadID = $("select[name=proy_entidad]").val();
+            $("select[name=idprovincia]").empty();
+            $("select[name=idprovincia]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
+            $("#sol_municipio").empty();
+            $("#sol_municipio").append("<option value='' disabled selected style='display:none;'></option>");
+            
+            //Entidad y Sigla
+            $("select[name=identidad]").change(function(){
+                var entidadID = $("select[name=identidad]").val();
                 $.ajax({
-                    url: "{{ url('/getUnidad', '"+ entidadID +"') }}",
+                    url: "{{ url('/getSigla', '"+ entidadID +"') }}",
                     type: "get",
                     datatype: "json",
                     data: {"entidadID" : entidadID},
                     success: function(rpta){
-                        $("select[name=proy_unidad]").empty();
-                        $("select[name=proy_unidad]").append("<option value='' disabled selected style='display:none;'>Seleccione Unidad</option>");
                         $.each(rpta, function(index, value){
-                            $("select[name=proy_unidad]").append("<option value='" + value['id'] + "'>" + value['uni_nombre'] + "</option>");
-                            $("#proy_sigla").val(value['ent_sigla']);
+                            $("#sol_sigla").val(value['ent_sigla']);
                         });
                     }
                 });
             });
 
-            //Provincia hasta aqui se trabajo 
-            $("select[name=departamento_id]").change(function(){
-                var departamentoID = $("select[name=departamento_id]").val();
+            //Provincia
+            $("select[name=iddepto]").change(function(){
+                var departamentoID = $("select[name=iddepto]").val();
                 $.ajax({
                     url: "{{ url('/getProvincia', '"+ departamentoID +"') }}",
                     type: "get",
                     datatype: "json",
                     data: {"departamentoID" : departamentoID},
                     success: function(rpta){
-                        $("select[name=provincia_id]").empty();
-                        $("select[name=provincia_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
+                        $("select[name=idprovincia]").empty();
+                        $("select[name=idprovincia]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
                         $.each(rpta, function(index, value){
-                            $("select[name=provincia_id]").append("<option value='" + value['id'] + "'>" + value['prov_nombre'] + "</option>");
+                            $("select[name=idprovincia]").append("<option value='" + value['id'] + "'>" + value['pro_nombre'] + "</option>");
                         });
                     }
                 });
             });
+            
             //Municipio
-            $("select[name=provincia_id]").change(function(){
-                var provinciaID = $("select[name=provincia_id]").val();
+            $("select[name=idprovincia]").change(function(){
+                var provinciaID = $("select[name=idprovincia]").val();
                 $.ajax({
                     url: "{{ url('/getMunicipio', '"+ provinciaID +"') }}",
                     type: "get",
                     datatype: "json",
                     data: {"provinciaID" : provinciaID},
                     success: function(rpta){
-                        $("select[id=municipio_id]").empty();
-                        $("select[id=municipio_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Municipio</option>");
-
+                        $("select[id=sol_municipio]").empty();
                         $.each(rpta, function(index, value){
-                            $("select[id=municipio_id]").append("<option value='" + value['mun_nombre'] + "'>" + value['mun_nombre'] + "</option>");
+                            $("select[id=sol_municipio]").append("<option value='" + value['mun_nombre'] + "'>" + value['mun_nombre'] + "</option>");
                         });
                     }
                 });
             });
         });
     </script>
+
     <!--Validacion y Envio de Datos-->
     <script type="text/javascript">
         $(document).ready(function(){
             $("#GrabarProyecto").click(function(event){
                 event.preventDefault();
                 //var dataString = $("#formProyectos").serialize();
-                var dataString = new FormData(document.getElementById("formProyectos"));// $("#formProyectos").serialize();
+                var dataString = new FormData(document.getElementById("formSolicitud"));// $("#formProyectos").serialize();
                 var token = $("input[name=_token]").val();
                 var route = "{{ route('solicitud.store')}}";
                 $.ajax({
@@ -179,6 +146,7 @@
                         if(data.success == 'true')
                         {
                             location.reload();
+                            //lanzar mensaje de correcto
                         }
                         else
                         {
@@ -188,62 +156,92 @@
                     },
                     error:function(data){
                         toastr["error"]("Existen campos del formulario que no cumplen las condiciones.", "Error en el Formulario");
-                        if(data.responseJSON.proy_hr)
-                        { $("#error1").html(data.responseJSON.proy_hr); }
+                        if(data.responseJSON.sol_hrsigec)
+                        { $("#error1").html(data.responseJSON.sol_hrsigec); }
                         else
                         { $("#error1").html(""); }
                         $("#msg-error1").fadeIn();
 
-                        if(data.responseJSON.entidad_id)
-                        { $("#error2").html(data.responseJSON.entidad_id); }
-                        else
-                        { $("#error2").html(""); }
-                        $("#msg-error2").fadeIn();
-
-                        if(data.responseJSON.unidad_id)
-                        { $("#error3").html(data.responseJSON.unidad_id); }
-                        else
-                        { $("#error3").html(""); }
-                        $("#msg-error3").fadeIn();
-
-                        if(data.responseJSON.proy_sigla)
-                        { $("#error4").html(data.responseJSON.proy_sigla); }
+                        if(data.responseJSON.sol_nombre)
+                        { $("#error4").html(data.responseJSON.sol_nombre); }
                         else
                         { $("#error4").html(""); }
                         $("#msg-error4").fadeIn();
 
-                        if(data.responseJSON.departamento_id)
-                        { $("#error5").html(data.responseJSON.departamento_id); }
+                        if(data.responseJSON.sol_objetivo)
+                        { $("#error4").html(data.responseJSON.sol_objetivo); }
                         else
-                        { $("#error5").html(""); }
-                        $("#msg-error5").fadeIn();
+                        { $("#error4").html(""); }
+                        $("#msg-error4").fadeIn();
 
-                        if(data.responseJSON.provincia_id)
-                        { $("#error6").html(data.responseJSON.provincia_id); }
+                        if(data.responseJSON.sol_justicacion)
+                        { $("#error4").html(data.responseJSON.sol_justicacion); }
+                        else
+                        { $("#error4").html(""); }
+                        $("#msg-error4").fadeIn();
+
+                        if(data.responseJSON.identidad)
+                        { $("#error2").html(data.responseJSON.identidad); }
+                        else
+                        { $("#error2").html(""); }
+                        $("#msg-error2").fadeIn();
+
+                        if(data.responseJSON.sol_sigla)
+                        { $("#error4").html(data.responseJSON.sol_sigla); }
+                        else
+                        { $("#error4").html(""); }
+                        $("#msg-error4").fadeIn();
+
+                        if(data.responseJSON.idprovincia)
+                        { $("#error6").html(data.responseJSON.idprovincia); }
                         else
                         { $("#error6").html(""); }
                         $("#msg-error6").fadeIn();
 
-                        if(data.responseJSON.municipio_id)
-                        { $("#error7").html(data.responseJSON.municipio_id); }
+                        if(data.responseJSON.sol_municipio)
+                        { $("#error7").html(data.responseJSON.sol_municipio); }
                         else
                         { $("#error7").html(""); }
                         $("#msg-error7").fadeIn();
 
-                        if(data.responseJSON.proy_monto)
-                        { $("#error8").html(data.responseJSON.proy_monto); }
+                        if(data.responseJSON.sol_montofona)
+                        { $("#error8").html(data.responseJSON.sol_montofona); }
                         else
                         { $("#error8").html(""); }
                         $("#msg-error8").fadeIn();
 
-                        if(data.responseJSON.proy_tiempo)
-                        { $("#error9").html(data.responseJSON.proy_tiempo); }
+                        if(data.responseJSON.sol_montosol)
+                        { $("#error8").html(data.responseJSON.sol_montosol); }
+                        else
+                        { $("#error8").html(""); }
+                        $("#msg-error8").fadeIn();
+
+                        if(data.responseJSON.sol_montootro)
+                        { $("#error8").html(data.responseJSON.sol_montootro); }
+                        else
+                        { $("#error8").html(""); }
+                        $("#msg-error8").fadeIn();
+
+                        if(data.responseJSON.sol_tiempo)
+                        { $("#error9").html(data.responseJSON.sol_tiempo); }
                         else
                         { $("#error9").html(""); }
                         $("#msg-error9").fadeIn();
 
-                        if(data.responseJSON.proy_archivo)
-                        { $("#error10").html(data.responseJSON.proy_archivo); }
+                        if(data.responseJSON.sol_respaldo)
+                        { $("#error10").html(data.responseJSON.sol_respaldo); }
+                        else
+                        { $("#error10").html(""); }
+                        $("#msg-error10").fadeIn();
+
+                        if(data.responseJSON.sol_ftecnica)
+                        { $("#error10").html(data.responseJSON.sol_ftecnica); }
+                        else
+                        { $("#error10").html(""); }
+                        $("#msg-error10").fadeIn();
+
+                        if(data.responseJSON.sol_componente)
+                        { $("#error10").html(data.responseJSON.sol_componente); }
                         else
                         { $("#error10").html(""); }
                         $("#msg-error10").fadeIn();

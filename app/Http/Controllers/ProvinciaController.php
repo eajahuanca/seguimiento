@@ -29,6 +29,15 @@ class ProvinciaController extends Controller
             ->with('provincia', $provincia);
     }
 
+    public function getProvincias(Request $request)
+    {
+        if($request->ajax())
+        {
+            $rpta = Provincia::select('id','pro_nombre')->where('pro_estado',1)->where('iddepto','=', $request->departamentoID)->orderBy('pro_nombre','ASC')->get();
+            return response()->json($rpta);
+        }
+    }
+
     public function create()
     {
         try{

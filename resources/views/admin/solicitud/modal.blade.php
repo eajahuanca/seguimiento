@@ -201,3 +201,40 @@
         </div>
     </div>
 </div>
+
+<!--Modal para registrar Nuevo Componente-->
+<div class="modal fade" id="modalComponente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Componente</h4>
+            </div>
+            <div class="modal-body">
+            
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('com_nombre', 'Nombre del Componente', ['class' => 'col-md-12 col-xs-12']) !!}
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bars"></i>
+                                    </div>
+                                    {!! Form::text('com_nombre', null, ['class' => 'form-control']) !!} 
+                                </div>
+                                <span id="msg-error8" class="help-block" style="display:none; color:red" role="alert">
+                                    <strong id="error8"></strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

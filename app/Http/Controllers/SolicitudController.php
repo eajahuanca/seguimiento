@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\SolicitudRequest;
 use App\Solicitud;
+use App\Departamento;
+use App\Reglamento;
+use App\Componente;
 use App\Entidad;
 use App\User;
 use App\Sigec;
@@ -28,12 +31,18 @@ class SolicitudController extends Controller
                         DB::raw('CONCAT(us_paterno," ",us_materno," ",us_nombre) as responsable'), 'id')
                         ->where('us_estado', 1)
                         ->orderBy('responsable','ASC')
-                        ->lists('responsable','id');
+                        ->pluck('responsable','id');
             $entidad = Entidad::where('ent_estado', 1)->orderBy('ent_nombre','ASC')->lists('ent_nombre','ent_nombre');
+            $departamento = Departamento::lists('dep_descripcion','id');
+            $reglamento = Reglamento::lists('reg_nombre','id');
+            $componente = Componente::lists('com_nombre','com_nombre');
             return view('admin.solicitud.registro')
                 ->with('responsable',$responsable)
                 ->with('sigec', $sigec)
-                ->with('entidad', $entidad);
+                ->with('entidad', $entidad)
+                ->with('departamento', $departamento)
+                ->with('reglamento', $reglamento)
+                ->with('componente', $componente);
         }else{
             flash('No existe un CITE generado, haga click en nueva Solicitud')->error();
             return redirect()->route('listar.index');
@@ -48,13 +57,14 @@ class SolicitudController extends Controller
             {
                 $solicitud = new Solicitud($request->all());
                 $stringMunicipios = "";
-                for($position = 0; $position < count($request->input('proy_municipio')); $position++)
+                for($position = 0; $position < count($request->input('sol_municipio')); $position++)
                 {
-                    $stringMunicipios.= $request->input('proy_municipio')[$position].",";
+                    $stringMunicipios.= $request->input('sol_municipio')[$position].",";
                 }
-                $solicitud->proy_municipio = $stringMunicipios;
-                $solicitud->id_uregistra = Auth::user()->id;
-                $solicitud->id_uactualiza = Auth::user()->id;
+                $solicitud->sol_municipio = $stringMunicipios;
+                $solicitud->iduregistra = Auth::user()->id;
+                $solicitud->iduactualiza = Auth::user()->id;
+                $solicitud->sol_estado = 'TRANSCRIPCION';
                 $solicitud->save();
                 Session::put('active', '1');
                 return response()->json(['success' => 'true']);
@@ -70,47 +80,17 @@ class SolicitudController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

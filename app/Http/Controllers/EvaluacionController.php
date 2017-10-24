@@ -25,14 +25,20 @@ class EvaluacionController extends Controller
     }
 
     public function index(){
+        if(Auth::user()->us_tipo == 'ADMINISTRADOR DEL SISTEMA'){
+            return redirect()->route('dashboard.index');
+        }
+        if(Auth::user()->us_tipo == 'TECNICO PLANIFICACION'){
+            $evaluacion = Solicitud::get();
+        }
         if(Auth::user()->us_tipo == 'JEFE PLANIFICACION'){
             $evaluacion = Solicitud::where('sol_estado','=','POR APROBAR')->get();
         }
         if(Auth::user()->us_tipo == 'ADMINISTRACION FINANCIERA'){
-            $evaluacion = Solicitud::where('sol_estado','=','')->get();
+            $evaluacion = Solicitud::where('sol_estado','=','APROBADO')->get();
         }
         if(Auth::user()->us_tipo == 'ASESOR LEGAL'){
-            $evaluacion = Solicitud::where('sol_estado','=','')->get();
+            $evaluacion = Solicitud::where('sol_estado','=','FINANZAS')->get();
         }
         return view('admin.evaluacion.index')
             ->with('evaluacion', $evaluacion);

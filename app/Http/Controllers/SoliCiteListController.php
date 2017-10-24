@@ -24,7 +24,7 @@ class SoliCiteListController extends Controller
 
     public function store(Request $request){
         try{
-            $cite = Cite::where('cit_descripcion','=',Auth::user()->us_departamento)->get();
+            $cite = Cite::where('cit_descripcion','=',Auth::user()->us_depto)->get();
             $nuevoCite = $cite[0]['cit_correlativo'] + 1;
             $updateCite = Cite::find($cite[0]['id']);
             $updateCite->cit_correlativo = $nuevoCite;
