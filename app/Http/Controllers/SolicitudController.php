@@ -32,7 +32,7 @@ class SolicitudController extends Controller
                         ->where('us_estado', 1)
                         ->orderBy('responsable','ASC')
                         ->pluck('responsable','id');
-            $entidad = Entidad::where('ent_estado', 1)->orderBy('ent_nombre','ASC')->lists('ent_nombre','ent_nombre');
+            $entidad = Entidad::where('ent_estado', 1)->orderBy('ent_nombre','ASC')->lists('ent_nombre','id');
             $departamento = Departamento::lists('dep_descripcion','id');
             $reglamento = Reglamento::lists('reg_nombre','id');
             $componente = Componente::lists('com_nombre','com_nombre');
@@ -61,7 +61,13 @@ class SolicitudController extends Controller
                 {
                     $stringMunicipios.= $request->input('sol_municipio')[$position].",";
                 }
+                $stringComponentes = "";
+                for($position = 0; $position < count($request->input('sol_componente')); $position++)
+                {
+                    $stringComponentes.= $request->input('sol_componente')[$position].",";
+                }
                 $solicitud->sol_municipio = $stringMunicipios;
+                $solicitud->sol_componente = $stringComponentes;
                 $solicitud->iduregistra = Auth::user()->id;
                 $solicitud->iduactualiza = Auth::user()->id;
                 $solicitud->sol_estado = 'TRANSCRIPCION';

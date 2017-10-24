@@ -17,8 +17,8 @@
         @include('admin.solicitud.formCreate')
         <div class="form-group">
             <center>
-                <span class="hint--top  hint--success" aria-label="Guardar los datos de la solicitud"><button type="buttom" class="btn btn-success" id='GrabarProyecto'><i class="fa fa-save"></i> Guardar</button></span>
-                <span class="hint--top  hint--success" aria-label="Guardar los datos y Solicitar Aprobación"><button type="buttom" class="btn btn-success" id='GrabarProyectoA'><i class="fa fa-save"></i> Guardar y Solicitar Aprobación</button></span>
+                <span class="hint--top  hint--success" aria-label="Guardar los datos de la solicitud"><button type="buttom" class="btn btn-success" id='GrabarSolicitud'><i class="fa fa-save"></i> Guardar</button></span>
+                <span class="hint--top  hint--success" aria-label="Guardar los datos y Solicitar Aprobación"><button type="buttom" class="btn btn-success" id='GrabarSolicitudA'><i class="fa fa-save"></i> Guardar y Solicitar Aprobación</button></span>
             </center>
         </div>
     {!! Form::close() !!}
@@ -74,51 +74,33 @@
             //Entidad y Sigla
             $("select[name=identidad]").change(function(){
                 var entidadID = $("select[name=identidad]").val();
-                $.ajax({
-                    url: "{{ url('/getSigla', '"+ entidadID +"') }}",
-                    type: "get",
-                    datatype: "json",
-                    data: {"entidadID" : entidadID},
-                    success: function(rpta){
-                        $.each(rpta, function(index, value){
-                            $("#sol_sigla").val(value['ent_sigla']);
-                        });
-                    }
+                $.get("/getSigla/" + entidadID, function(rpta){
+                    $.each(rpta, function(index, value){
+                        $("#sol_sigla").val(value['ent_sigla']);
+                    });
                 });
             });
 
             //Provincia
             $("select[name=iddepto]").change(function(){
                 var departamentoID = $("select[name=iddepto]").val();
-                $.ajax({
-                    url: "{{ url('/getProvincia', '"+ departamentoID +"') }}",
-                    type: "get",
-                    datatype: "json",
-                    data: {"departamentoID" : departamentoID},
-                    success: function(rpta){
-                        $("select[name=idprovincia]").empty();
-                        $("select[name=idprovincia]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
-                        $.each(rpta, function(index, value){
-                            $("select[name=idprovincia]").append("<option value='" + value['id'] + "'>" + value['pro_nombre'] + "</option>");
-                        });
-                    }
+                $.get("getProvincia/" + departamentoID, function(rpta){
+                    $("select[name=idprovincia]").empty();
+                    $("select[name=idprovincia]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
+                    $.each(rpta, function(index, value){
+                        $("select[name=idprovincia]").append("<option value='" + value['id'] + "'>" + value['pro_nombre'] + "</option>");
+                    });
                 });
             });
             
             //Municipio
             $("select[name=idprovincia]").change(function(){
                 var provinciaID = $("select[name=idprovincia]").val();
-                $.ajax({
-                    url: "{{ url('/getMunicipio', '"+ provinciaID +"') }}",
-                    type: "get",
-                    datatype: "json",
-                    data: {"provinciaID" : provinciaID},
-                    success: function(rpta){
-                        $("select[id=sol_municipio]").empty();
-                        $.each(rpta, function(index, value){
-                            $("select[id=sol_municipio]").append("<option value='" + value['mun_nombre'] + "'>" + value['mun_nombre'] + "</option>");
-                        });
-                    }
+                $.get("getMunicipio/" + provinciaID, function(rpta){
+                    $("select[id=sol_municipio]").empty();
+                    $.each(rpta, function(index, value){
+                        $("select[id=sol_municipio]").append("<option value='" + value['mun_nombre'] + "'>" + value['mun_nombre'] + "</option>");
+                    });
                 });
             });
         });
@@ -127,7 +109,7 @@
     <!--Validacion y Envio de Datos-->
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#GrabarProyecto").click(function(event){
+            $("#GrabarSolicitud").click(function(event){
                 event.preventDefault();
                 //var dataString = $("#formProyectos").serialize();
                 var dataString = new FormData(document.getElementById("formSolicitud"));// $("#formProyectos").serialize();
@@ -156,6 +138,12 @@
                     },
                     error:function(data){
                         toastr["error"]("Existen campos del formulario que no cumplen las condiciones.", "Error en el Formulario");
+                        if(data.responseJSON.sol_codigo)
+                        { $("#error16").html(data.responseJSON.sol_codigo); }
+                        else
+                        { $("#error16").html(""); }
+                        $("#msg-error16").fadeIn();
+                        
                         if(data.responseJSON.sol_hrsigec)
                         { $("#error1").html(data.responseJSON.sol_hrsigec); }
                         else
@@ -163,16 +151,16 @@
                         $("#msg-error1").fadeIn();
 
                         if(data.responseJSON.sol_nombre)
-                        { $("#error4").html(data.responseJSON.sol_nombre); }
+                        { $("#error2").html(data.responseJSON.sol_nombre); }
                         else
-                        { $("#error4").html(""); }
-                        $("#msg-error4").fadeIn();
+                        { $("#error2").html(""); }
+                        $("#msg-error2").fadeIn();
 
                         if(data.responseJSON.sol_objetivo)
-                        { $("#error4").html(data.responseJSON.sol_objetivo); }
+                        { $("#error3").html(data.responseJSON.sol_objetivo); }
                         else
-                        { $("#error4").html(""); }
-                        $("#msg-error4").fadeIn();
+                        { $("#error3").html(""); }
+                        $("#msg-error3").fadeIn();
 
                         if(data.responseJSON.sol_justicacion)
                         { $("#error4").html(data.responseJSON.sol_justicacion); }
@@ -181,70 +169,70 @@
                         $("#msg-error4").fadeIn();
 
                         if(data.responseJSON.identidad)
-                        { $("#error2").html(data.responseJSON.identidad); }
+                        { $("#error5").html(data.responseJSON.identidad); }
                         else
-                        { $("#error2").html(""); }
-                        $("#msg-error2").fadeIn();
+                        { $("#error5").html(""); }
+                        $("#msg-error5").fadeIn();
 
                         if(data.responseJSON.sol_sigla)
-                        { $("#error4").html(data.responseJSON.sol_sigla); }
-                        else
-                        { $("#error4").html(""); }
-                        $("#msg-error4").fadeIn();
-
-                        if(data.responseJSON.idprovincia)
-                        { $("#error6").html(data.responseJSON.idprovincia); }
+                        { $("#error6").html(data.responseJSON.sol_sigla); }
                         else
                         { $("#error6").html(""); }
                         $("#msg-error6").fadeIn();
 
-                        if(data.responseJSON.sol_municipio)
-                        { $("#error7").html(data.responseJSON.sol_municipio); }
+                        if(data.responseJSON.idprovincia)
+                        { $("#error7").html(data.responseJSON.idprovincia); }
                         else
                         { $("#error7").html(""); }
                         $("#msg-error7").fadeIn();
 
+                        if(data.responseJSON.sol_municipio)
+                        { $("#error8").html(data.responseJSON.sol_municipio); }
+                        else
+                        { $("#error8").html(""); }
+                        $("#msg-error8").fadeIn();
+
                         if(data.responseJSON.sol_montofona)
-                        { $("#error8").html(data.responseJSON.sol_montofona); }
-                        else
-                        { $("#error8").html(""); }
-                        $("#msg-error8").fadeIn();
-
-                        if(data.responseJSON.sol_montosol)
-                        { $("#error8").html(data.responseJSON.sol_montosol); }
-                        else
-                        { $("#error8").html(""); }
-                        $("#msg-error8").fadeIn();
-
-                        if(data.responseJSON.sol_montootro)
-                        { $("#error8").html(data.responseJSON.sol_montootro); }
-                        else
-                        { $("#error8").html(""); }
-                        $("#msg-error8").fadeIn();
-
-                        if(data.responseJSON.sol_tiempo)
-                        { $("#error9").html(data.responseJSON.sol_tiempo); }
+                        { $("#error9").html(data.responseJSON.sol_montofona); }
                         else
                         { $("#error9").html(""); }
                         $("#msg-error9").fadeIn();
 
-                        if(data.responseJSON.sol_respaldo)
-                        { $("#error10").html(data.responseJSON.sol_respaldo); }
+                        if(data.responseJSON.sol_montosol)
+                        { $("#error10").html(data.responseJSON.sol_montosol); }
                         else
                         { $("#error10").html(""); }
                         $("#msg-error10").fadeIn();
+
+                        if(data.responseJSON.sol_montootro)
+                        { $("#error11").html(data.responseJSON.sol_montootro); }
+                        else
+                        { $("#error11").html(""); }
+                        $("#msg-error11").fadeIn();
+
+                        if(data.responseJSON.sol_tiempo)
+                        { $("#error12").html(data.responseJSON.sol_tiempo); }
+                        else
+                        { $("#error12").html(""); }
+                        $("#msg-error12").fadeIn();
+
+                        if(data.responseJSON.sol_respaldo)
+                        { $("#error13").html(data.responseJSON.sol_respaldo); }
+                        else
+                        { $("#error13").html(""); }
+                        $("#msg-error13").fadeIn();
 
                         if(data.responseJSON.sol_ftecnica)
-                        { $("#error10").html(data.responseJSON.sol_ftecnica); }
+                        { $("#error14").html(data.responseJSON.sol_ftecnica); }
                         else
-                        { $("#error10").html(""); }
-                        $("#msg-error10").fadeIn();
+                        { $("#error14").html(""); }
+                        $("#msg-error14").fadeIn();
 
                         if(data.responseJSON.sol_componente)
-                        { $("#error10").html(data.responseJSON.sol_componente); }
+                        { $("#error15").html(data.responseJSON.sol_componente); }
                         else
-                        { $("#error10").html(""); }
-                        $("#msg-error10").fadeIn();
+                        { $("#error15").html(""); }
+                        $("#msg-error15").fadeIn();
                     }
                 });
             });

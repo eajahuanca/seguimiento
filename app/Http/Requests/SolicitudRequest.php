@@ -40,8 +40,8 @@ class SolicitudRequest extends Request
             'sol_montosol' => 'required',
             'sol_montootro' => 'required',
             'sol_tiempo' => 'required',
-            'sol_respaldo' => 'required',
-            'sol_ftecnica' => 'required',
+            //'sol_respaldo' => 'required',
+            //'sol_ftecnica' => 'required',
             'idreglamento' => 'required',
             'sol_componente' => 'required',
         ];

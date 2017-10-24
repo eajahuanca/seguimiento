@@ -8,10 +8,10 @@
 						<div class="input-group-addon">
 							<i class="fa fa-bars"></i>
 						</div>
-						{!! Form::text('sol_codigo', Session::get('cite'), ['class' => 'form-control', 'disabled' => 'true']) !!} 
+						{!! Form::text('sol_codigo', Session::get('cite'), ['class' => 'form-control']) !!} 
 					</div>
-					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error1"></strong>
+					<span id="msg-error16" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error16"></strong>
 					</span>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 						<div class="input-group-addon">
 							<a data-toggle="modal" data-target="#modalSigec"><i class="fa fa-search"></i></a>
 						</div>
-						{!! Form::text('sol_hrsigec', null, ['class' => 'form-control', 'disabled' => 'true']) !!} 
+						{!! Form::text('sol_hrsigec', null, ['class' => 'form-control']) !!} 
 					</div>
 					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error1"></strong>
@@ -60,8 +60,8 @@
 						</div>
 						{!! Form::text('sol_nombre', null, ['placeholder' => 'Nombre del proyecto', 'class' => 'form-control']) !!} 
 					</div>
-					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error1"></strong>
+					<span id="msg-error2" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error2"></strong>
 					</span>
 				</div>
 			</div>
@@ -79,8 +79,8 @@
 						</div>
 						{!! Form::textarea('sol_objetivo', null, ['placeholder' => 'Objetivo del proyecto', 'class' => 'form-control', 'rows' => '4']) !!} 
 					</div>
-					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error1"></strong>
+					<span id="msg-error3" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error3"></strong>
 					</span>
 				</div>
 			</div>
@@ -95,8 +95,8 @@
 						</div>
 						{!! Form::textarea('sol_justicacion', null, ['placeholder' => 'Justificación del proyecto', 'class' => 'form-control', 'rows' => '4']) !!} 
 					</div>
-					<span id="msg-error1" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error1"></strong>
+					<span id="msg-error4" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error4"></strong>
 					</span>
 				</div>
 			</div>
@@ -126,10 +126,10 @@
 						<div class="input-group-addon">
 							<i class="fa fa-gg"></i>
 						</div>
-						{!! Form::text('sol_sigla', null, ['class' => 'form-control', 'id' => 'sol_sigla', 'disabled' => 'true']) !!} 
+						{!! Form::text('sol_sigla', null, ['class' => 'form-control', 'id' => 'sol_sigla']) !!} 
 					</div>
-					<span id="msg-error4" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error4"></strong>
+					<span id="msg-error6" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error6"></strong>
 					</span>
 				</div>
 			</div>
@@ -153,17 +153,14 @@
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('sol_depto', 'Departamento', ['class' => 'col-md-12 col-xs-12']) !!}
+				{!! Form::label('iddepto', 'Departamento', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-th"></i>
 						</div>
-						{!! Form::select('sol_depto', $departamento , null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('iddepto', $departamento , null, ['class' => 'form-control select2']) !!}
 					</div>
-					<span id="msg-error5" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error5"></strong>
-					</span>
 				</div>
 			</div>
 		</div>
@@ -178,8 +175,8 @@
 						</div>
 						{!! Form::select('idprovincia', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
-					<span id="msg-error6" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error6"></strong>
+					<span id="msg-error7" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error7"></strong>
 					</span>
 				</div>
 			</div>
@@ -195,8 +192,8 @@
 						</div>
 						{!! Form::select('sol_municipio[]',[], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => '', 'id' => 'sol_municipio']) !!}
 					</div>
-					<span id="msg-error7" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error7"></strong>
+					<span id="msg-error8" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error8"></strong>
 					</span>
 				</div>
 			</div>
@@ -214,8 +211,8 @@
 						</div>
 						{!! Form::text('sol_montofona', null, ['class' => 'form-control']) !!} 
 					</div>
-					<span id="msg-error8" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error8"></strong>
+					<span id="msg-error9" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error9"></strong>
 					</span>
 				</div>
 			</div>
@@ -231,8 +228,8 @@
 						</div>
 						{!! Form::text('sol_montosol', null, ['class' => 'form-control']) !!} 
 					</div>
-					<span id="msg-error8" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error8"></strong>
+					<span id="msg-error10" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error10"></strong>
 					</span>
 				</div>
 			</div>
@@ -248,8 +245,8 @@
 						</div>
 						{!! Form::text('sol_montootro', null, ['class' => 'form-control']) !!} 
 					</div>
-					<span id="msg-error8" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error8"></strong>
+					<span id="msg-error11" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error11"></strong>
 					</span>
 				</div>
 			</div>
@@ -267,8 +264,8 @@
 						</div>
 						{!! Form::number('sol_tiempo', null, ['class' => 'form-control']) !!} 
 					</div>
-					<span id="msg-error9" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error9"></strong>
+					<span id="msg-error12" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error12"></strong>
 					</span>
 				</div>
 			</div>
@@ -284,9 +281,6 @@
 						</div>
 						{!! Form::select('idreglamento',$reglamento, null, ['class' => 'form-control select2']) !!}
 					</div>
-					<span id="msg-error7" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error7"></strong>
-					</span>
 				</div>
 			</div>
 		</div>
@@ -301,8 +295,8 @@
 						</div>
 						{!! Form::file('sol_respaldo', ['class' => 'form-control']) !!}
 					</div>
-					<span id="msg-error10" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error10"></strong>
+					<span id="msg-error13" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error13"></strong>
 					</span>
 				</div>
 			</div>
@@ -320,8 +314,8 @@
 						</div>
 						{!! Form::select('sol_componente[]', $componente, null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => '', 'id' => 'sol_componente']) !!}
 					</div>
-					<span id="msg-error7" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error7"></strong>
+					<span id="msg-error15" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error15"></strong>
 					</span>
 				</div>
 			</div>
@@ -339,8 +333,8 @@
 						</div>
 						{!! Form::file('sol_ftecnica', ['class' => 'form-control']) !!}
 					</div>
-					<span id="msg-error10" class="help-block" style="display:none; color:red" role="alert">
-						<strong id="error10"></strong>
+					<span id="msg-error14" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error14"></strong>
 					</span>
 				</div>
 			</div>

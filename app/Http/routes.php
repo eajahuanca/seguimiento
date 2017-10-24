@@ -56,6 +56,6 @@ Route::resource('/cargo','CargoController');
 Route::resource('/evaluacion','EvaluacionController');
 
 //Rutas AJAX
-Route::get('/getMunicipio/{$id}','MunicipioController@getMunicipios');
-Route::get('/getProvincia/{$id}','ProvinciaController@getProvincias');
-Route::get('/getSigla/{$id}','EntidadController@getSigla');
+Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
+Route::get('getProvincia/{departamentoID}','ProvinciaController@getProvincias');
+Route::get('getSigla/{entidadID}','EntidadController@getSiglas');
