@@ -40,22 +40,24 @@ Route::any('updatePerfil', 'AdministracionController@updatePerfil');
 Route::any('updatePassword', 'AdministracionController@updatePassword');
 Route::any('updateFoto', 'AdministracionController@updateFoto');
 
-//Rutas RESTFULL
-Route::resource('/dashboard', 'DashboardController');
-Route::resource('/entidad', 'EntidadController');
+Route::group(['middleware' => 'auth'], function(){
+    //Rutas RESTFULL
+    Route::resource('/dashboard', 'DashboardController');
+    Route::resource('/entidad', 'EntidadController');
 
-Route::resource('/sigec','SigecController');
-Route::resource('/solicitud','SolicitudController');
-Route::resource('/listar','SoliCiteListController');
-Route::resource('/provincia','ProvinciaController');
-Route::resource('/municipio','MuncipioController');
-Route::resource('/reglamento','ReglamentoController');
-Route::resource('/componente','ComponenteController');
-Route::resource('/area','AreaController');
-Route::resource('/cargo','CargoController');
-Route::resource('/evaluacion','EvaluacionController');
+    Route::resource('/sigec','SigecController');
+    Route::resource('/solicitud','SolicitudController');
+    Route::resource('/listar','SoliCiteListController');
+    Route::resource('/provincia','ProvinciaController');
+    Route::resource('/municipio','MuncipioController');
+    Route::resource('/reglamento','ReglamentoController');
+    Route::resource('/componente','ComponenteController');
+    Route::resource('/area','AreaController');
+    Route::resource('/cargo','CargoController');
+    Route::resource('/evaluacion','EvaluacionController');
 
-//Rutas AJAX
-Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
-Route::get('getProvincia/{departamentoID}','ProvinciaController@getProvincias');
-Route::get('getSigla/{entidadID}','EntidadController@getSiglas');
+    //Rutas AJAX
+    Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
+    Route::get('getProvincia/{departamentoID}','ProvinciaController@getProvincias');
+    Route::get('getSigla/{entidadID}','EntidadController@getSiglas');
+});

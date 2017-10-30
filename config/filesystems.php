@@ -61,22 +61,22 @@ return [
 
         'reglamentos' => [
             'driver' => 'local',
-            'root' => public_path('storage/reglamentos'),
+            'root' => public_path('storage/reglamento'),
         ],
 
         'archivos' => [
             'driver' => 'local',
-            'root' => public_path('storage/archivos'),
+            'root' => public_path('storage/archivo'),
         ],
 
-        'fichatecnicas' => [
+        'ftecnica' => [
             'driver' => 'local',
-            'root' => public_path('storage/fichatecnica'),
+            'root' => public_path('storage/ftecnica'),
         ],
 
-        'respaldos' => [
+        'respaldo' => [
             'driver' => 'local',
-            'root' => public_path('storage/respaldos'),
+            'root' => public_path('storage/respaldo'),
         ],
 
         's3' => [

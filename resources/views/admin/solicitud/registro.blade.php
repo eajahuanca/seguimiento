@@ -127,7 +127,7 @@
                     success: function(data){
                         if(data.success == 'true')
                         {
-                            location.reload();
+                            window.location.href="{{ url('/listar') }}";
                             //lanzar mensaje de correcto
                         }
                         else
@@ -241,7 +241,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             @if(Session::get('active'))
-                toastr["success"]("Registro de Proyecto a Evaluar", "Se realizo el registro de manera satisfactoria.");
+                toastr["success"]("Se realizo el registro de la solicitud de manera correcta.","Registro Correcto");
                 {{ Session::forget('active') }}
             @endif
         });

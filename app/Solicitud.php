@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use File;
+use Storage;
+use Carbon\Carbon;
 
 class Solicitud extends Model
 {
@@ -12,7 +15,7 @@ class Solicitud extends Model
                         'sol_tipo',
                         'sol_nombre',
                         'sol_objetivo',
-                        'sol_justificacion',
+                        'sol_justicacion',
                         'identidad',
                         'sol_sigla',
                         'iddepto',
@@ -59,5 +62,23 @@ class Solicitud extends Model
 
     public function userActualiza(){
         return $this->belongsTo('App\User','iduactualiza','id');
+    }
+
+    public function setSolRespaldoAttribute($archivo){
+        $nuevoNombre = Carbon::now()->year.Carbon::now()->month.Carbon::now()->day
+                        . "-" .
+                        Carbon::now()->hour.Carbon::now()->minute.Carbon::now()->second.".".
+                        $archivo->getClientOriginalExtension();
+                        $this->attributes['sol_respaldo'] = 'storage/respaldo/'.$nuevoNombre;
+        $storage = Storage::disk('respaldo')->put($nuevoNombre, \File::get($archivo));
+    }
+
+    public function setSolFtecnicaAttribute($archivo){
+        $nuevoNombre = Carbon::now()->year.Carbon::now()->month.Carbon::now()->day
+                        . "-" .
+                        Carbon::now()->hour.Carbon::now()->minute.Carbon::now()->second.".".
+                        $archivo->getClientOriginalExtension();
+                        $this->attributes['sol_ftecnica'] = 'storage/ftecnica/'.$nuevoNombre;
+        $storage = Storage::disk('ftecnica')->put($nuevoNombre, \File::get($archivo));
     }
 }

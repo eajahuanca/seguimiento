@@ -312,7 +312,7 @@
 						<div class="input-group-addon">
 							<a data-toggle="modal" data-target="#modalComponente"><i class="fa fa-plus"></i></a>
 						</div>
-						{!! Form::select('sol_componente[]', $componente, null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => '', 'id' => 'sol_componente']) !!}
+						{!! Form::select('sol_componente[]', $componente, [], ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => '', 'id' => 'sol_componente']) !!}
 					</div>
 					<span id="msg-error15" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error15"></strong>

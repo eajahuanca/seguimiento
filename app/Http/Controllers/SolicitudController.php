@@ -16,6 +16,8 @@ use App\Sigec;
 use Carbon\Carbon;
 use DB;
 use Session;
+//use File;
+use Storage;
 
 class SolicitudController extends Controller
 {
@@ -56,6 +58,8 @@ class SolicitudController extends Controller
             try
             {
                 $solicitud = new Solicitud($request->all());
+         
+                
                 $stringMunicipios = "";
                 for($position = 0; $position < count($request->input('sol_municipio')); $position++)
                 {
