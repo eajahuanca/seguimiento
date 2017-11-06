@@ -98,11 +98,11 @@ class EvaluacionController extends Controller
                     'iduenvia' => Auth::user()->id,
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
-                Session::put('estado','');
+                Session::put('estado','1');
                 Session::put('title','Solicitud Derivada con Archivo');
                 Session::put('msg','Se cargo de manera correcta el archivo y fue derivado a otra instancia la solicitud');
         }catch(\Exception $ex){
-            Session::put('estado','');
+            Session::put('estado','2');
             Session::put('title','Solicitud Derivada con Archivo');
             Session::put('msg','Ocurrio un error: '.$ex->getMessage());
         }
