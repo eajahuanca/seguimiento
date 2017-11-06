@@ -70,7 +70,7 @@
             </li>
 
             <li>
-                <a href=".">
+                <a href="{{ url('/seguimiento') }}">
                     <i class="fa fa-bars"></i> <span>Seguimiento de Proyectos</span>
                 </a>
             </li>

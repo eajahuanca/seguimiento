@@ -80,7 +80,7 @@ class ConvenioController extends Controller
                 ]);
             Session::put('estado','1');
             Session::put('title','Solicitud Derivada con Archivo');
-            Session::put('msg','Se cargo de manera correcta el archivo y fue derivado a otra instancia la solicitud');
+            Session::put('msg','Se cargo de manera correcta el archivo y culminó la etapa de la aprobación');
         }catch(\Exception $ex){
             Session::put('estado','2');
             Session::put('title','Solicitud Derivada con Archivo');

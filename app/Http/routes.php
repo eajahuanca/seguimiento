@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/listar','SoliCiteListController');
     Route::resource('/evaluacion','EvaluacionController');
     Route::resource('/convenio','ConvenioController');
+    Route::resource('/seguimiento','SeguimientoController');
 
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
