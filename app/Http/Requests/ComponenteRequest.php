@@ -23,10 +23,19 @@ class ComponenteRequest extends Request
      */
     public function rules()
     {
+        $com = $this->route('componente');
         return [
-            'com_nombre' => 'required',
+            'com_nombre' => 'required|min:5|unique:componentes,com_nombre,'.$com.',id',
             'com_descripcion' => 'required',
-            'com_estado' => 'required'
+            'com_estado' => 'required',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'com_nombre' => 'Nombre del Componente',
+            'com_descripcion' => 'Descripción',
+            'com_estado' => 'Estado',
         ];
     }
 }

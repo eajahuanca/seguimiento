@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class AreaRequest extends Request
+class ReglamentoUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,19 @@ class AreaRequest extends Request
      */
     public function rules()
     {
-        $ar = $this->route('area');
+        $reg = $this->route('reglamento');
         return [
-            'ar_nombre' => 'required|min:5|unique:areas,ar_nombre,'.$ar.',id',
-            'ar_estado' => 'required',
+            'reg_nombre' => 'required|min:10|unique:reglamentos,reg_nombre,'.$reg.',id',
+            'reg_descripcion' => 'required|min:20',
+            'reg_archivo' => 'mimes:pdf',
         ];
     }
 
     public function attributes(){
         return [
-            'ar_nombre' => 'Nombre de Area',
-            'ar_estado' => 'Estado',
+            'reg_nombre' => 'Nombre del reglamento',
+            'reg_descripcion' => 'Descripcion',
+            'reg_archivo' => 'Archivo',
         ];
     }
 }

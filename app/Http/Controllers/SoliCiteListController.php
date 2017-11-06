@@ -17,7 +17,7 @@ class SoliCiteListController extends Controller
     }
 
     public function index(){
-        $solicitud = Solicitud::orderBy('created_at','DESC')->get();
+        $solicitud = Solicitud::whereIn('sol_estado', ['POR APROBAR','VERIFICACION','DEVUELTO'])->orderBy('id','DESC')->orderBy('created_at','DESC')->get();
         return view('admin.solicitud.index')
                 ->with('solicitud', $solicitud);
     }

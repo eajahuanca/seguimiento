@@ -203,7 +203,7 @@
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('sol_montofona', 'Monto Fonabosque (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
+				{!! Form::label('sol_montofona', 'Importe Fonabosque (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
@@ -220,7 +220,7 @@
 
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('sol_montosol', 'Monto Solicitante (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
+				{!! Form::label('sol_montosol', 'Importe Solicitante (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
@@ -237,7 +237,7 @@
 
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('sol_montootro', 'Monto Otro (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
+				{!! Form::label('sol_montootro', 'Otro Importe (Bs.)', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
@@ -339,5 +339,6 @@
 				</div>
 			</div>
 		</div>
+		<input type="hidden" name="tipo" id="tipo" value="0"/>
 	</div>
 </div>

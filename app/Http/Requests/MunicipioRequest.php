@@ -25,8 +25,16 @@ class MunicipioRequest extends Request
     {
         return [
             'idprovincia' => 'required',
-            'mun_nombre' => 'required',
-            'mun_estado' => 'requires'
+            'mun_nombre' => 'required|min:5',
+            'mun_estado' => 'required',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'idprovincia' => 'Provincia',
+            'mun_nombre' => 'Nombre de Municipio',
+            'mun_estado' => 'Estado',
         ];
     }
 }

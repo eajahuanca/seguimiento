@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use DB;
 use Session;
 
-class EvaluacionController extends Controller
+class ConvenioController extends Controller
 {
     private $title;
     private $msg;
@@ -30,24 +30,12 @@ class EvaluacionController extends Controller
         if(Auth::user()->us_tipo == 'ADMINISTRADOR DEL SISTEMA'){
             return redirect()->route('dashboard.index');
         }
-        if(Auth::user()->us_tipo == 'TECNICO PLANIFICACION'){
-            $detalle = "Solicitudes para aprobación por planificación";
-            $evaluacion = Solicitud::whereIn('sol_estado',['APROBADO'])->get();
-        }
-        if(Auth::user()->us_tipo == 'JEFE PLANIFICACION'){
-            $detalle = "Solicitudes para aprobación por el Jefe de Planificación";
-            $evaluacion = Solicitud::where('sol_estado','=','POR APROBAR')->get();
-        }
-        if(Auth::user()->us_tipo == 'ADMINISTRACION FINANCIERA'){
-            $detalle = "Solicitudes para aprobación por la Administración Financiera";
-            $evaluacion = Solicitud::where('sol_estado','=','APROBADO')->get();
-        }
         if(Auth::user()->us_tipo == 'ASESOR LEGAL'){
-            $detalle = "Solicitudes para aprobación por el Asesor Legal";
-            $evaluacion = Solicitud::where('sol_estado','=','FINANZAS')->get();
+            $detalle = "Solicitudes para aprobación por el Asesor Legal para Firma";
+            $evaluacion = Solicitud::where('sol_estado','=','LEGAL')->get();
         }
 
-        return view('admin.evaluacion.index')
+        return view('admin.convenio.index')
             ->with('evaluacion', $evaluacion)
             ->with('detalle', $detalle);
     }
@@ -66,20 +54,12 @@ class EvaluacionController extends Controller
             $archivo->idurecibe = Auth::user()->id;
             $archivo->iduenvia = Auth::user()->id;
             $archivo->ar_estadoenvia = '';
-            if(Auth::user()->us_tipo == "JEFE PLANIFICACION"){
-                $archivo->ar_estadorecibe = "APROBADO";
-                $estadoActual = "APROBADO";
-                $estadoAnterior = "POR APROBAR";
-            }
-            if(Auth::user()->us_tipo == "ADMINISTRACION FINANCIERA"){
-                $archivo->ar_estadorecibe = "FINANZAS";
-                $estadoActual = "FINANZAS";                
-                $estadoAnterior = "APROBADO";
-            }
+
             if(Auth::user()->us_tipo == "ASESOR LEGAL"){
-                $archivo->ar_estadorecibe = "LEGAL";
-                $estadoActual = "LEGAL";
-                $estadoAnterior = "FINANZAS";
+                $archivo->ar_estadorecibe = "FIRMADO";
+                $archivo->ar_estadoenvia = "FIRMADO";
+                $estadoActual = "FIRMADO";
+                $estadoAnterior = "LEGAL";
             }
             $archivo->save();
 
@@ -98,22 +78,22 @@ class EvaluacionController extends Controller
                     'iduenvia' => Auth::user()->id,
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
-                Session::put('estado','');
-                Session::put('title','Solicitud Derivada con Archivo');
-                Session::put('msg','Se cargo de manera correcta el archivo y fue derivado a otra instancia la solicitud');
+            Session::put('estado','');
+            Session::put('title','Solicitud Derivada con Archivo');
+            Session::put('msg','Se cargo de manera correcta el archivo y fue derivado a otra instancia la solicitud');
         }catch(\Exception $ex){
             Session::put('estado','');
             Session::put('title','Solicitud Derivada con Archivo');
             Session::put('msg','Ocurrio un error: '.$ex->getMessage());
         }
-        return redirect()->route('evaluacion.index');
+        return redirect()->route('convenio.index');
     }
 
     public function show($id){
         $id = decrypt($id);
         $archivo = Archivo::where('idsolicitud','=',$id)->orderBy('id','ASC')->orderBy('created_at','ASC')->get();
         $solicitud = Solicitud::find($id);
-        return view('admin.evaluacion.line')
+        return view('admin.convenio.line')
             ->with('solicitud', $solicitud)
             ->with('archivo', $archivo);
     }
@@ -122,7 +102,7 @@ class EvaluacionController extends Controller
     {
         $id = decrypt($id);
         $solicitud = Solicitud::find($id);
-        return view('admin.evaluacion.create')
+        return view('admin.convenio.create')
             ->with('idsolicitud', $solicitud->id)
             ->with('idcodigo',$solicitud->sol_codigo);
     }

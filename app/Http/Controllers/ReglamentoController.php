@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\ReglamentoRequest;
+use App\Http\Requests\ReglamentoUpdateRequest;
 use App\Reglamento;
 use Carbon\Carbon;
 use Session;
@@ -16,7 +17,7 @@ class ReglamentoController extends Controller
     private $estado;
 
     public function __construct(){
-        Carbon::setlocale('es');
+        Carbon::setLocale('es');
         $this->estado = "";
         $this->title = "";
         $this->msg = "";
@@ -65,7 +66,7 @@ class ReglamentoController extends Controller
             ->with('reglamento', $reglamento);
     }
 
-    public function update(ReglamentoRequest $request, $id)
+    public function update(ReglamentoUpdateRequest $request, $id)
     {
         try{
             $reglamento = Reglamento::find($id);

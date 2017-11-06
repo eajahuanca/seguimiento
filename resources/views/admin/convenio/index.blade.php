@@ -31,9 +31,9 @@
             <tr>
                 <td class="text-center">{{ $cont++ }}</td>
                 <td class="text-center">
-                    <span class="hint--top  hint--warning" aria-label="Ver Proyecto"><a href="{{ route('evaluacion.show', encrypt($item->id)) }}" class="btn btn-warning"><i class="fa fa-eye"></i></a></span>
+                    <span class="hint--top  hint--warning" aria-label="Ver Proyecto"><a href="{{ route('convenio.show', encrypt($item->id)) }}" class="btn btn-warning"><i class="fa fa-eye"></i></a></span>
                     <span class="hint--top  hint--error" aria-label="Rechazar"><a class="btn btn-danger" data-toggle="modal" data-target="#modalRechazar" id="rechazar"><i class="fa fa-reply"></i></a></span>
-                    <span class="hint--top  hint--info" aria-label="Aprobar"><a href="{{ route('evaluacion.edit', encrypt($item->id)) }}" class="btn btn-primary"><i class="fa fa-check"></i></a></span>
+                    <span class="hint--top  hint--info" aria-label="Aprobar"><a href="{{ route('convenio.edit', encrypt($item->id)) }}" class="btn btn-primary"><i class="fa fa-check"></i></a></span>
                 </td>
                 <td>{{ $item->sol_codigo }}</td>
                 <td>{{ $item->sol_nombre }}</td>

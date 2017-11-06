@@ -33,7 +33,7 @@ class ProvinciaController extends Controller
     {
         if($request->ajax())
         {
-                $rpta = Provincia::select('id','pro_nombre')->where('pro_estado',1)->where('iddepto','=', $departamentoID)->orderBy('pro_nombre','ASC')->get();
+            $rpta = Provincia::select('id','pro_nombre')->where('pro_estado',1)->where('iddepto','=', $departamentoID)->orderBy('pro_nombre','ASC')->get();
             return response()->json($rpta);
         }
     }
@@ -71,7 +71,7 @@ class ProvinciaController extends Controller
 
     public function edit($id)
     {
-        $departamento = Departamento::lists('dep_descripcion','id')->where('dep_estado','=','1');
+        $departamento = Departamento::where('dep_estado','=','1')->lists('dep_descripcion','id');
         $provincia = Provincia::find($id);
         return view('admin.provincia.edit')
             ->with('provincia', $provincia)

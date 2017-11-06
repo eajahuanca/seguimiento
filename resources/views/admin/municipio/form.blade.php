@@ -1,13 +1,13 @@
 <div class="col-md-12">
 
-	<div class="form-group {{ $errors->has('provincia_id')?' has-error':'' }}">
-        {!! Form::label('provincia_id', 'Seleccione la Provincia', ['class' => 'col-md-12']) !!}
+	<div class="form-group {{ $errors->has('idprovincia')?' has-error':'' }}">
+        {!! Form::label('idprovincia', 'Seleccione la Provincia', ['class' => 'col-md-12']) !!}
         <div class="col-md-4">
             <div class="input-group">
                 <div class="input-group-addon">
                     <i class="fa fa-object-ungroup"></i>
                 </div>
-                {!! Form::select('provincia_id', $provincia, null, ['class' => 'form-control select2']) !!}
+                {!! Form::select('idprovincia', $provincia, null, ['class' => 'form-control select2']) !!}
             </div>
         </div>
     </div>
@@ -38,6 +38,11 @@
                 </div>
                 {!! Form::select('mun_estado', [true => 'Habilitado', false => 'Bloqueado'], null, ['class' => 'form-control select2']) !!}
             </div>
+            @if($errors->has('mun_estado'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('mun_estado') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
 

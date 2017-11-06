@@ -1,9 +1,9 @@
 @extends('layouts.init')
 
-@section('FormularioTitulo','Entidad')
-@section('FormularioDescripcion','en este formulario se pueden observar todas las entidades')
-@section('FormularioActual','Entidades')
-@section('FormularioDetalle','Entidades')
+@section('FormularioTitulo','Reglamentos - Guías')
+@section('FormularioDescripcion','en este formulario se pueden observar todas guias y/o reglamentos')
+@section('FormularioActual','Reglamentos')
+@section('FormularioDetalle','Reglamentos - Guías')
 
 @section('stylesheet')
     <link href="{{ asset('plugins/lte/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
@@ -15,7 +15,7 @@
 
     <div class="clearfix">
         <div class="pull-left">
-            <span class="hint--top  hint--success" aria-label="Registrar nueva Entidad"><a  href="{{ route('entidad.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva Entidad</a></span>
+            <span class="hint--top  hint--success" aria-label="Registrar nuevo reglamento"><a  href="{{ route('reglamento.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo Reglamento</a></span>
         </div>
         <div class="pull-right tableTools-container"></div>
     </div>
@@ -25,37 +25,34 @@
         <thead>
             <tr>
                 <th width="20px">#</th>
-                <th>Nombre de la Entidad</th>
-                <th>Sigla</th>
-                <th>Estado</th>
-                <th>
-                    <i class="ace-icon fa fa-calendar bigger-110"></i>
-                    Fecha de Registro
-                </th>
-                <th>
-                    <i class="ace-icon fa fa-calendar bigger-110"></i>
-                    Fecha de Actualización
-                </th>
                 <th>Acción</th>
+                <th>Archivo</th>
+                <th>Nombre del Reglamento</th>
+                <th>Descripcion del Reglamento</th>
+                <th>
+                    <i class="ace-icon fa fa-calendar bigger-110"></i>
+                    Fecha de Registro/Actualización
+                </th>
+                <th>Estado</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($entidad as $item)
+            @foreach($reglamento as $item)
             <tr>
                 <td>{{ $cont++ }}</td>
-                <td>{{ $item->ent_nombre }}</td>
-                <td>{{ $item->ent_sigla }}</td>
                 <td>
-                    @if($item->ent_estado)
-                        <span class="hint--top  hint--warning" aria-label="Entidad Habilitado"><button class="btn btn-warning btn-xs">Activo</button></span>
-                    @else
-                        <span class="hint--top  hint--error" aria-label="Entidad Bloqueado"><button class="btn btn-danger btn-xs">Bloqueado</button></span>
-                    @endif
+                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('reglamento.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
                 </td>
-                <td>{{ $item->created_at }}</td>
-                <td>{{ $item->updated_at }}</td>
+                <td><a href="{{ asset($item->reg_archivo) }}" target="_blank"><img src="{{ asset('plugins/login/img/pdfico.png') }}" width="26px" height="30px"/></a></td>
+                <td>{{ $item->reg_nombre }}</td>
+                <td>{{ $item->reg_descripcion }}</td> 
+                <td>{{ $item->created_at.' / '.$item->updated_at }}</td>
                 <td>
-                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('entidad.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
+                    @if($item->reg_estado)
+                        <span class="hint--top  hint--warning" aria-label="Reglamento Habilitado"><button class="btn btn-warning btn-xs">Activo</button></span>
+                    @else
+                        <span class="hint--top  hint--error" aria-label="Reglamento Bloqueado"><button class="btn btn-danger btn-xs">Bloqueado</button></span>
+                    @endif
                 </td>
             </tr>
             @endforeach

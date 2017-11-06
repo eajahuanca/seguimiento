@@ -23,9 +23,17 @@ class CargoRequest extends Request
      */
     public function rules()
     {
+        $car = $this->route('cargo');
         return [
-            'car_nombre' => 'required',
-            'car_estado' => 'required'
+            'car_nombre' => 'required|min:5|unique:cargos,car_nombre,'.$car.',id',
+            'car_estado' => 'required',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'car_nombre' => 'Nombre del cargo',
+            'car_estado' => 'Estado',
         ];
     }
 }

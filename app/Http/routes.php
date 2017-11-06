@@ -43,21 +43,26 @@ Route::any('updateFoto', 'AdministracionController@updateFoto');
 Route::group(['middleware' => 'auth'], function(){
     //Rutas RESTFULL
     Route::resource('/dashboard', 'DashboardController');
-    Route::resource('/entidad', 'EntidadController');
-
-    Route::resource('/sigec','SigecController');
+    Route::group(['middleware' => 'admin'], function(){
+        Route::resource('/entidad', 'EntidadController');
+        Route::resource('/provincia','ProvinciaController');
+        Route::resource('/municipio','MunicipioController');
+        Route::resource('/reglamento','ReglamentoController');
+        Route::resource('/componente','ComponenteController');
+        Route::resource('/area','AreaController');
+        Route::resource('/cargo','CargoController');
+    });
+    
+    //Route::resource('/sigec','SigecController');
     Route::resource('/solicitud','SolicitudController');
     Route::resource('/listar','SoliCiteListController');
-    Route::resource('/provincia','ProvinciaController');
-    Route::resource('/municipio','MuncipioController');
-    Route::resource('/reglamento','ReglamentoController');
-    Route::resource('/componente','ComponenteController');
-    Route::resource('/area','AreaController');
-    Route::resource('/cargo','CargoController');
     Route::resource('/evaluacion','EvaluacionController');
+    Route::resource('/convenio','ConvenioController');
 
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
     Route::get('getProvincia/{departamentoID}','ProvinciaController@getProvincias');
     Route::get('getSigla/{entidadID}','EntidadController@getSiglas');
+    Route::get('getAutoriza/{solicitudID}','SolicitudController@getUpdateEstado');
+    Route::post('/postEstado', 'SolicitudController@postUpdateEstado');
 });

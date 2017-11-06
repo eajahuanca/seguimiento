@@ -43,7 +43,7 @@ class MunicipioController extends Controller
     public function create()
     {
         try{
-            $provincia = Provincia::lists('pro_nombre','id')->where('pro_estado','=','1');
+            $provincia = Provincia::where('pro_estado','=','1')->lists('pro_nombre','id');
             return view('admin.municipio.create')
                 ->with('provincia', $provincia);
         }

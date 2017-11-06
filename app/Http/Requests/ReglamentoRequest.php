@@ -23,10 +23,19 @@ class ReglamentoRequest extends Request
      */
     public function rules()
     {
+        $reg = $this->route('reglamento');
         return [
-            'reg_nombre' => 'required',
-            'reg_descripcion' => 'required',
-            'reg_archivo' => 'reg_estado'
+            'reg_nombre' => 'required|min:10|unique:reglamentos,reg_nombre,'.$reg.',reg_nombre',
+            'reg_descripcion' => 'required|min:20',
+            'reg_archivo' => 'required|mimes:pdf',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'reg_nombre' => 'Nombre del reglamento',
+            'reg_descripcion' => 'Descripcion',
+            'reg_archivo' => 'Archivo',
         ];
     }
 }

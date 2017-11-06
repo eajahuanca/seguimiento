@@ -64,21 +64,29 @@ class Solicitud extends Model
         return $this->belongsTo('App\User','iduactualiza','id');
     }
 
+    public function archivos(){
+        return $this->hasMany('App\Archivo');
+    }
+    
     public function setSolRespaldoAttribute($archivo){
-        $nuevoNombre = Carbon::now()->year.Carbon::now()->month.Carbon::now()->day
+        if($archivo){
+            $nuevoNombre = Carbon::now()->year.Carbon::now()->month.Carbon::now()->day
                         . "-" .
                         Carbon::now()->hour.Carbon::now()->minute.Carbon::now()->second.".".
                         $archivo->getClientOriginalExtension();
                         $this->attributes['sol_respaldo'] = 'storage/respaldo/'.$nuevoNombre;
-        $storage = Storage::disk('respaldo')->put($nuevoNombre, \File::get($archivo));
+            $storage = Storage::disk('respaldo')->put($nuevoNombre, \File::get($archivo));
+        }
     }
 
     public function setSolFtecnicaAttribute($archivo){
-        $nuevoNombre = Carbon::now()->year.Carbon::now()->month.Carbon::now()->day
+        if($archivo){
+            $nuevoNombre = Carbon::now()->year.Carbon::now()->month.Carbon::now()->day
                         . "-" .
                         Carbon::now()->hour.Carbon::now()->minute.Carbon::now()->second.".".
                         $archivo->getClientOriginalExtension();
                         $this->attributes['sol_ftecnica'] = 'storage/ftecnica/'.$nuevoNombre;
-        $storage = Storage::disk('ftecnica')->put($nuevoNombre, \File::get($archivo));
+            $storage = Storage::disk('ftecnica')->put($nuevoNombre, \File::get($archivo));
+        }
     }
 }

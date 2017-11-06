@@ -25,8 +25,16 @@ class ProvinciaRequest extends Request
     {
         return [
             'iddepto' => 'required',
-            'pro_nombre' => 'required',
-            'pro_estado' => 'required'
+            'pro_nombre' => 'required|min:5',
+            'pro_estado' => 'required',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'iddepto' => 'Departamento',
+            'pro_nombre' => 'Nombre de la provincia',
+            'pro_estado' => 'Estado',
         ];
     }
 }

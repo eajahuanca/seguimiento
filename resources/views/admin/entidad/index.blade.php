@@ -24,6 +24,7 @@
         <thead>
             <tr>
                 <th width="20px">#</th>
+                <th>Acción</th>
                 <th>Nombre de la Entidad</th>
                 <th>Sigla</th>
                 <th>Estado</th>
@@ -35,13 +36,15 @@
                     <i class="ace-icon fa fa-calendar bigger-110"></i>
                     Fecha de Actualización
                 </th>
-                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
             @foreach($entidad as $item)
             <tr>
                 <td>{{ $cont++ }}</td>
+                <td>
+                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('entidad.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
+                </td>
                 <td>{{ $item->ent_nombre }}</td>
                 <td>{{ $item->ent_sigla }}</td>
                 <td>
@@ -53,9 +56,6 @@
                 </td>
                 <td>{{ $item->created_at }}</td>
                 <td>{{ $item->updated_at }}</td>
-                <td>
-                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('entidad.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
-                </td>
             </tr>
             @endforeach
         </tbody>

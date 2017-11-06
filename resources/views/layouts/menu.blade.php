@@ -29,7 +29,7 @@
                 </a>
             </li>
 
-            <li class="treeview">
+            <li class="treeview active">
                 <a href="#">
                     <i class="fa fa-gear"></i> <span>Aprob. de Prog. & Proy.</span>
                     <span class="pull-right-container">
@@ -37,53 +37,59 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    @if(Auth::user()->us_tipo == "TECNICO PLANIFICACION")
                     <li>
                         <a href="{{ url('/listar') }}">
                             <i class="fa fa-gg-circle"></i> <span>Solicitud</span>
                         </a>
                     </li>
-
+                    @endif
+                    
+                    @if(Auth::user()->us_tipo == "TECNICO PLANIFICACION" || Auth::user()->us_tipo == "JEFE PLANIFICACION" || Auth::user()->us_tipo == "ADMINISTRACION FINANCIERA")
                     <li>
                         <a href="{{ url('/evaluacion') }}">
                             <i class="fa fa-gg-circle"></i> <span>Evaluación de Solicitud</span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(Auth::user()->us_tipo == "ASESOR LEGAL")
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('/evaluacion') }}">
                             <i class="fa fa-gg-circle"></i> <span>Aprobación del Comite</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('/convenio') }}">
                             <i class="fa fa-gg-circle"></i> <span>Firma de Convenio</span>
                         </a>
-                    </li>        
+                    </li>
+                    @endif
                 </ul>
             </li>
 
             <li>
-                <a href="{{ url('/entidad') }}">
+                <a href=".">
                     <i class="fa fa-bars"></i> <span>Seguimiento de Proyectos</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url('/unidad') }}">
+                <a href=".">
                     <i class="fa fa-indent"></i> <span>Monitoreo de Proyectos</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url('/provincia') }}">
+                <a href=".">
                     <i class="fa fa-object-ungroup"></i> <span>Cierre de Proyectos</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url('/municipio') }}">
+                <a href=".">
                     <i class="fa fa-paper-plane-o"></i> <span>Auditoria de Proyectos</span>
                 </a>
             </li>
-
+            @if(Auth::user()->us_tipo == "ADMINISTRADOR DEL SISTEMA")
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-gear"></i> <span>Parametrizaciones</span>
@@ -93,27 +99,38 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{ url('/entidad') }}">
-                            <i class="fa fa-bullseye"></i> <span>Usuarios</span>
+                        <a href=".">
+                            <i class="fa fa-user"></i> <span>Usuarios</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/entidad') }}">
-                            <i class="fa fa-indent"></i> <span>Entidades</span>
+                            <i class="fa fa-bars"></i> <span>Entidades</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/provincia') }}">
-                            <i class="fa fa-object-ungroup"></i> <span>Provincias</span>
+                            <i class="fa fa-bars"></i> <span>Provincias</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/municipio') }}">
-                            <i class="fa fa-paper-plane-o"></i> <span>Municipios</span>
+                            <i class="fa fa-bars"></i> <span>Municipios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/reglamento') }}">
+                            <i class="fa fa-bars"></i> <span>Reglamentos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/componente') }}">
+                            <i class="fa fa-bars"></i> <span>Componentes</span>
                         </a>
                     </li>
                 </ul>
             </li>
+            @endif
         </ul>
     </section>
     <!-- /.sidebar -->

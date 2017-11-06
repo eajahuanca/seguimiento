@@ -20,6 +20,7 @@
             </div>
         </div>
     </div>
+    <?php $contadorFilas = 1; ?>
     <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
          <thead>
             <tr class="btn-primary">
@@ -32,17 +33,16 @@
                 <th style="text-align: center !important;">Actualizado</th>
             </tr>
         </thead>
-        <tbody>
-            <?php $contadorFilas = 1;?>
+        <tbody>        
             @foreach($municipio as $item)
-            <tr id="{{ $item->id }}">
+            <tr>
                 <td>{{ $contadorFilas++ }}</td>
                 <td align="center">
                     <div class="form-horizontal">
                         <span class="hint--top  hint--info" aria-label="Actualizar"><a href="{{ route('municipio.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
                     </div>
                 </td>
-                <td>{{ $item->provincia->prov_nombre }}</td>
+                <td>{{ $item->provincias->pro_nombre }}</td>
                 <td>{{ $item->mun_nombre }}</td>
                 <td align="center">
                     @if($item->mun_estado)
@@ -51,8 +51,8 @@
                         <span class="hint--top  hint--error" aria-label="Municipio Bloqueado"><button class="btn btn-danger btn-xs">Bloqueado</button></span>
                     @endif
                 </td>
-                <td align="center">{!! $item->userRegistra->us_nombre.' '.$item->userRegistra->us_paterno.' '.$item->userRegistra->us_materno.'<br>'.$item->created_at->diffForHumans() !!}</td>
-                <td align="center">{!! $item->userActualiza->us_nombre.' '.$item->userActualiza->us_paterno.' '.$item->userActualiza->us_materno.'<br>'.$item->updated_at->diffForHumans() !!}</td>
+                <td align="center">{!! $item->created_at->diffForHumans() !!}</td>
+                <td align="center">{!! $item->updated_at->diffForHumans() !!}</td>
             </tr>
             @endforeach
         </tbody>
@@ -73,10 +73,10 @@
     <script type="text/javascript">
         $(document).ready(function(){
             @if(Session::get('estado')=="1")
-                toastr["success"]("{{ Session::get('title') }}", "{{ Session::get('msg') }}");
+                toastr["success"]("{{ Session::get('msg') }}", "{{ Session::get('title') }}");
             @endif
             @if(Session::get('estado')=="2")
-                toastr["error"]("{{ Session::get('title') }}", "{{ Session::get('msg') }}");
+                toastr["error"]("{{ Session::get('msg') }}", "{{ Session::get('title') }}");
             @endif
             @if(Session::get('estado'))
                 {{ Session::forget('estado') }}

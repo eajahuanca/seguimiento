@@ -109,10 +109,19 @@
     <!--Validacion y Envio de Datos-->
     <script type="text/javascript">
         $(document).ready(function(){
+            $("#GrabarSolicitudA").click(function(event){
+                event.preventDefault();
+                $('input[name="tipo"]').val('1');
+                sendForm();
+            });
             $("#GrabarSolicitud").click(function(event){
                 event.preventDefault();
-                //var dataString = $("#formProyectos").serialize();
-                var dataString = new FormData(document.getElementById("formSolicitud"));// $("#formProyectos").serialize();
+                $('input[name="tipo"]').val('0');
+                sendForm();
+            });
+
+            function sendForm(){
+                var dataString = new FormData(document.getElementById("formSolicitud"));
                 var token = $("input[name=_token]").val();
                 var route = "{{ route('solicitud.store')}}";
                 $.ajax({
@@ -235,7 +244,7 @@
                         $("#msg-error15").fadeIn();
                     }
                 });
-            });
+            }
         });
     </script>
     <script type="text/javascript">

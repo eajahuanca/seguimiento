@@ -21,4 +21,8 @@ class User extends Authenticatable
     public function userRegistra(){
         return $this->hasMany('App\Solicitud');
     }
+
+    public function municipio(){
+        return $this->hasMany('App\Municipio');
+    }
 }

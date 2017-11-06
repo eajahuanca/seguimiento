@@ -24,10 +24,15 @@ class ArchivoRequest extends Request
     public function rules()
     {
         return [
-            'ar_archivo' => 'required',
-            'ar_detalle' => 'required',
-            'idsolicitud' => 'required',
-            'idcodigo' => 'required'
+            'ar_archivo' => 'required|mimes:pdf',
+            'ar_detalle' => 'required|min:20',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'ar_archivo' => 'Archivo',
+            'ar_detalle' => 'Descripción',
         ];
     }
 }

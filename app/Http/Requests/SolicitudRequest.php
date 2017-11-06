@@ -42,7 +42,7 @@ class SolicitudRequest extends Request
             'sol_montootro' => ['required','regex:/^[0-9]+(\.[0-9]{1,2})?$/'],
             'sol_tiempo' => ['required','regex:/^[1-9]+/'],
             'sol_respaldo' => 'required|mimes:pdf',
-            //'sol_ftecnica' => 'required|mimes:pdf',
+            'sol_ftecnica' => 'required|mimes:pdf',
             'idreglamento' => 'required|exists:reglamentos,id',
             'sol_componente' => 'required',
         ];

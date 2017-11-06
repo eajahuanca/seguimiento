@@ -24,6 +24,7 @@
         <thead>
             <tr>
                 <th width="20px">#</th>
+                <th>Acción</th>
                 <th>Nombre del Componente</th>
                 <th>Descripción</th>
                 <th>Estado</th>
@@ -35,13 +36,15 @@
                     <i class="ace-icon fa fa-calendar bigger-110"></i>
                     Fecha de Actualización
                 </th>
-                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
             @foreach($componente as $item)
             <tr>
                 <td>{{ $cont++ }}</td>
+                <td>
+                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('componente.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
+                </td>
                 <td>{{ $item->com_nombre }}</td>
                 <td>{{ $item->com_descripcion }}</td>
                 <td>
@@ -53,9 +56,6 @@
                 </td>
                 <td>{{ $item->created_at }}</td>
                 <td>{{ $item->updated_at }}</td>
-                <td>
-                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('componente.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
-                </td>
             </tr>
             @endforeach
         </tbody>

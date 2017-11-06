@@ -59,12 +59,12 @@ return [
             'root' => public_path('storage/usuarios'),
         ],
 
-        'reglamentos' => [
+        'reglamento' => [
             'driver' => 'local',
             'root' => public_path('storage/reglamento'),
         ],
 
-        'archivos' => [
+        'archivo' => [
             'driver' => 'local',
             'root' => public_path('storage/archivo'),
         ],

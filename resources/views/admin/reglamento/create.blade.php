@@ -1,9 +1,9 @@
 @extends('layouts.init')
 
-@section('FormularioTitulo','Entidades')
-@section('FormularioDescripcion','registrar nueva entidad')
-@section('FormularioActual','Entidad')
-@section('FormularioDetalle','Registrar nueva Entidad')
+@section('FormularioTitulo','Reglamentos - Guías')
+@section('FormularioDescripcion','registrar nuevo reglamento y/o guía')
+@section('FormularioActual','Reglamentos')
+@section('FormularioDetalle','Registrar nuevo reglamento')
 
 @section('stylesheet')
 	<link rel="stylesheet" href="{{ asset('plugins/lte/select2/select2.min.css') }}">
@@ -11,13 +11,13 @@
 
 @section('ContenidoPagina')
 
-    {!! Form::open(['route' => 'entidad.store', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
-        @include('admin.entidad.form')
+    {!! Form::open(['route' => 'reglamento.store', 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true]) !!}
+        @include('admin.reglamento.form')
 
         <div class="form-group">
             <center>
                 <span class="hint--top  hint--success" aria-label="Guardar los datos"><button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button></span>
-                <span class="hint--top  hint--error" aria-label="Cancelar el registro"><a href="{{ route('entidad.index') }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Cancelar</a></span>
+                <span class="hint--top  hint--error" aria-label="Cancelar el registro"><a href="{{ route('reglamento.index') }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Cancelar</a></span>
             </center>
         </div>
     {!! Form::close() !!}

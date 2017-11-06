@@ -1,9 +1,9 @@
 @extends('layouts.init')
 
-@section('FormularioTitulo','Entidades')
-@section('FormularioDescripcion','modificar datos de la entidad')
-@section('FormularioActual','Entidad')
-@section('FormularioDetalle','Modificar datos de Entidad')
+@section('FormularioTitulo','Reglamentos - Guías')
+@section('FormularioDescripcion','modificar datos reglamento')
+@section('FormularioActual','Reglamentos')
+@section('FormularioDetalle','Modificar datos del reglamento')
 
 @section('stylesheet')
 	<link rel="stylesheet" href="{{ asset('plugins/lte/select2/select2.min.css') }}">
@@ -11,12 +11,12 @@
 
 @section('ContenidoPagina')
 
-    {!! Form::model($entidad,['route' => ['entidad.update',$entidad->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
-        @include('admin.entidad.form')
+    {!! Form::model($reglamento,['route' => ['reglamento.update',$reglamento->id], 'method' => 'PUT', 'class' => 'form-horizontal', 'files' => true]) !!}
+        @include('admin.reglamento.form')
         <div class="form-group">
             <center>
                 <span class="hint--top  hint--success" aria-label="Actualizar los datos"><button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Actualizar</button></span>
-                <span class="hint--top  hint--error" aria-label="Cancelar el registro"><a href="{{ route('entidad.index') }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Cancelar</a></span>
+                <span class="hint--top  hint--error" aria-label="Cancelar el registro"><a href="{{ route('reglamento.index') }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Cancelar</a></span>
             </center>
         </div>
     {!! Form::close() !!}

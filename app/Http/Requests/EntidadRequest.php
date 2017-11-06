@@ -23,10 +23,19 @@ class EntidadRequest extends Request
      */
     public function rules()
     {
+        $ent = $this->route('entidad');
         return [
-            'ent_nombre' => 'required',
-            'ent_sigla' => 'required',
-            'ent_estado' => 'required'
+            'ent_nombre' => 'required|min:10|unique:entidades,ent_nombre,'.$ent.',id',
+            'ent_sigla' => 'required|min:3',
+            'ent_estado' => 'required',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'ent_nombre' => 'Nombre de entidad',
+            'ent_sigla' => 'Sigla',
+            'ent_estado' => 'Estado',
         ];
     }
 }

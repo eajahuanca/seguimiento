@@ -24,6 +24,7 @@
         <thead>
             <tr>
                 <th width="20px">#</th>
+                <th>Acción</th>
                 <th>Nombre del Area</th>
                 <th>Estado</th>
                 <th>
@@ -35,13 +36,15 @@
                     <i class="ace-icon fa fa-calendar bigger-110"></i>
                     Fecha de Actualización
                 </th>
-                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
             @foreach($area as $item)
             <tr>
                 <td>{{ $cont++ }}</td>
+                <td>
+                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('area.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
+                </td>
                 <td>{{ $item->ar_nombre }}</td>
                 <td>
                     @if($item->ar_estado)
@@ -53,9 +56,6 @@
                 <td>{{ $item->created_at }}</td>
                 <td></td>
                 <td>{{ $item->updated_at }}</td>
-                <td>
-                    <span class="hint--top  hint--info" aria-label="Editar"><a href="{{ route('area.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
-                </td>
             </tr>
             @endforeach
         </tbody>
