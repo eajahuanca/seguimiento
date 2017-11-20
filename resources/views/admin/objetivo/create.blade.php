@@ -94,7 +94,8 @@
                                 <td>{{ $cont++ }}</td>
                                 <td>
                                     <span class="hint--top  hint--warning" aria-label="Cargar Acciones"><a href="{{ route('accion.edit', encrypt($item->id)) }}" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a></span>
-                                    <span class="hint--top  hint--info" aria-label="Ver Acciones"><a data-toggle="modal" data-target="#modalAcciones" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></span>
+                                    <span class="hint--top  hint--success" aria-label="Cargar Coordenadas"><a href="{{ route('coordenada.edit', encrypt($item->id)) }}" class="btn btn-success btn-xs"><i class="fa fa-map-marker"></i></a></span>
+                                    <span class="hint--top  hint--info" aria-label="Ver Acciones"><a data-toggle="modal" data-target="#modalAcciones" class="btn btn-primary btn-xs" id="verAcciones" onclik="verAcciones(this)" data-value="{{ $item->id }}"><i class="fa fa-eye"></i></a></span>
                                 </td>
                                 <td>{!! $item->esp_objetivo !!}</td>
                                 <td>{!! $item->esp_meta !!}</td>
@@ -154,6 +155,18 @@
             @endif
         });
     </script>
+    <script type="text/javascript">
+        $(function(){
+            $("#verAcciones").on('click',function(){
+                var objetivoID = $("#verAcciones").attr("data-value");
+                $.get("/getAccion/" + objetivoID, function(rpta){
+                    $.each(rpta, function(index, value){
+                        $("#accionesListar").html("<tr><td>"+value['acc_descripcion']+"</td><td>"+value['acc_desde']+"</td><td>"+value['acc_hasta']+"</td></tr>");
+                    });
+                });
+            });
+        });
+    </script>
     <!--Modal Para ver las ACCIONES de un Objetivo-->
     <div class="modal fade" id="modalAcciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -163,7 +176,21 @@
                     <h4 class="modal-title" id="myModalLabel">Acciones del Objetivo Específico</h4>
                 </div>
                 <div class="modal-body">
-                hola
+                    <table id="accionesListar" border="1" cellspadding="4">
+                        <tr>
+                            <th align="center">
+                                ACCIONES
+                            </th>
+                            <th align="center">
+                                DESDE
+                            </th>
+                            <th align="center">
+                                HASTA
+                            </th>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">Cerrar</a>

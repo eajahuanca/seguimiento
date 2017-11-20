@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/pcomite','EvaluacionController@comitePlanificacion');
     Route::resource('/objetivo','ObjetivosEspecificosController');
     Route::resource('/accion','AccionesController');
+    Route::resource('/coordenada','CoordenadaController');
 
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
@@ -70,4 +71,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('getSigla/{entidadID}','EntidadController@getSiglas');
     Route::get('getAutoriza/{solicitudID}','SolicitudController@getUpdateEstado');
     Route::post('/postEstado', 'SolicitudController@postUpdateEstado');
+    Route::get('getAccion/{objetivoID}','AccionesController@getAccion');
 });

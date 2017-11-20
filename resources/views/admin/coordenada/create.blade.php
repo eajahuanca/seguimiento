@@ -1,21 +1,18 @@
 @extends('layouts.init')
 
-@section('FormularioTitulo','Acciones')
-@section('FormularioDescripcion','registrar nueva acción')
-@section('FormularioActual','Acciones')
-@section('FormularioDetalle','Registrar nueva Acción')
+@section('FormularioTitulo','Coordenadas')
+@section('FormularioDescripcion','registrar nueva coordenada')
+@section('FormularioActual','Coordenadas')
+@section('FormularioDetalle','Registrar nueva Coordenada')
 
 @section('stylesheet')
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="{{ asset('plugins/lte/daterangepicker/daterangepicker.css') }}">
-    <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="{{ asset('plugins/lte/datepicker/datepicker3.css') }}">
 @endsection
+
 @section('ContenidoPagina')
 
-    {!! Form::open(['route' => 'accion.store', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['route' => 'coordenada.store', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
         
-        @include('admin.accion.form')
+        @include('admin.coordenada.form')
                 
         <div class="form-group">
             <center>
@@ -27,13 +24,6 @@
 @endsection
 
 @section('javascript')
-    <script src="{{ asset('plugins/editor/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('plugins/editor/ckeditor/config.js') }}"></script>
-    <script>
-        $(function () {
-            CKEDITOR.replace('acc_descripcion');
-        });
-    </script>
     <script type="text/javascript">
         $(document).ready(function(){
             @if(Session::get('estado')=="1")
@@ -55,14 +45,4 @@
         });
     </script>
 
-    <!-- date-range-picker -->
-    <script src="{{ asset('plugins/lte/daterangepicker/moment.min.js') }}"></script>
-    <script src="{{ asset('plugins/lte/daterangepicker/daterangepicker.js') }}"></script>
-    <!-- bootstrap datepicker -->
-    <script src="{{ asset('plugins/lte/datepicker/bootstrap-datepicker.js"></script>
-    <script>
-        $(function () {
-            $('#reservation').daterangepicker();
-        });
-    </script>
 @endsection

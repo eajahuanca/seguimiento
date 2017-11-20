@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\support\facades\Auth;
 
 use App\Http\Requests;
-use App\Http\Requests\AccionesRequest;
+use App\Http\Requests\CoordenadaRequest;
 use App\OEspecifico;
-use App\Accion;
+use App\Coordenada;
 use Carbon\Carbon;
 use Session;
 
-class AccionesController extends Controller
+class CoordenadaController extends Controller
 {
     private $title;
     private $msg;
@@ -29,27 +29,24 @@ class AccionesController extends Controller
         try{
             $id = decrypt($id);
             $objetivo = OEspecifico::find($id);
-            return view('admin.accion.create')->with('objetivo',$objetivo);
+            return view('admin.coordenada.create')->with('objetivo',$objetivo);
         }catch(\Exception $ex){
             flash('error', "Ocurrió el siguiente error: ".$ex->getMessage());
             return Redirect::back();
         }
     }
 
-    public function store(AccionesRequest $request){
+    public function store(CoordenadaRequest $request){
         try{
-            $accion = new Accion($request->all());
-            $fechaArray = explode(' - ',$request->acc_desde);
-            $fechaDesde = explode('/',$fechaArray[0]);
-            $fechaHasta = explode('/',$fechaArray[1]);
-            $accion->acc_desde = $fechaDesde[2].'-'.$fechaDesde[0].'-'.$fechaDesde[1];
-            $accion->acc_hasta = $fechaHasta[2].'-'.$fechaHasta[0].'-'.$fechaHasta[1];
-            $accion->iduregistra = Auth::user()->id;
-            $accion->iduactualiza = Auth::user()->id;
-            $accion->save();
+            $coordenada = new Coordenada($request->all());
+            $coordenada->coor_x_map = '-16.'.$request->coor_x_origin;
+            $coordenada->coor_y_map = '-68.'.$request->coor_y_origin;
+            $coordenada->iduregistra = Auth::user()->id;
+            $coordenada->iduactualiza = Auth::user()->id;
+            $coordenada->save();
             $this->estado = "1";
-            $this->title = "Registro de Acciones";
-            $this->msg = "Los datos de la acción, se registraron de manera correcta";
+            $this->title = "Registro de Coordenadas";
+            $this->msg = "Los datos de la Coordenada, se registraron de manera correcta";
         }catch(\Exception $ex){
             $this->estado = "2";
             $this->title = "Error en registro";
@@ -61,10 +58,10 @@ class AccionesController extends Controller
         return redirect()->route('objetivo.edit',encrypt($request->idsolicitud));
     }
 
-    public function getAccion(Request $request, $idObjetivo){
+    public function getCoordenada(Request $request, $idObjetivo){
         if($request->ajax())
         {
-            $rpta = Accion::select('acc_descripcion','acc_desde','acc_hasta')->where('acc_estado',1)->where('idobjetivo','=', $idObjetivo)->orderBy('created_at','ASC')->get();
+            $rpta = Coordenada::select('coor_x_map','coor_y_map')->where('coor_estado',1)->where('idobjetivo','=', $idObjetivo)->orderBy('created_at','ASC')->get();
             return response()->json($rpta);
         }
         else
