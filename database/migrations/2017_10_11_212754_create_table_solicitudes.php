@@ -26,9 +26,9 @@ class CreateTableSolicitudes extends Migration
             $table->integer('idprovincia')->unsigned();
             $table->string('sol_municipio');
             $table->integer('idresponsable')->unsigned();
-            $table->decimal('sol_montofona',18,2);
-            $table->decimal('sol_montosol',18,2);
-            $table->decimal('sol_montootro',18,2);
+            $table->decimal('sol_montofona',18,2)->default(0,00);
+            $table->decimal('sol_montosol',18,2)->default(0,00);
+            $table->decimal('sol_montootro',18,2)->default(0,00);
             $table->integer('sol_tiempo')->default(0);
             $table->integer('idreglamento')->unsigned();
             $table->string('sol_respaldo');

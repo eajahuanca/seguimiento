@@ -55,10 +55,14 @@ Route::group(['middleware' => 'auth'], function(){
     
     //Route::resource('/sigec','SigecController');
     Route::resource('/solicitud','SolicitudController');
+    Route::post('/borrador','SolicitudController@storeBorrador');
     Route::resource('/listar','SoliCiteListController');
     Route::resource('/evaluacion','EvaluacionController');
     Route::resource('/convenio','ConvenioController');
     Route::resource('/seguimiento','SeguimientoController');
+    Route::get('/pcomite','EvaluacionController@comitePlanificacion');
+    Route::resource('/objetivo','ObjetivosEspecificosController');
+    Route::resource('/accion','AccionesController');
 
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');

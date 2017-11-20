@@ -16,7 +16,7 @@
         <thead>
             <tr class="btn-success">
                 <th style="text-align: center !important;">#</th>
-                <th style="text-align: center !important;">Opción</th>
+                <th style="text-align: center !important;">Acción</th>
                 <th style="text-align: center !important;">Código</th>
                 <th style="text-align: center !important;">Proyecto</th>
                 <th style="text-align: center !important;">Entidad (UE)</th>
@@ -30,7 +30,7 @@
                 <td class="text-center">{{ $cont++ }}</td>
                 <td class="text-center">
                     <span class="hint--top  hint--warning" aria-label="Ver Proyecto"><a href="{{ route('seguimiento.show', encrypt($item->id)) }}" class="btn btn-warning"><i class="fa fa-eye"></i></a></span>
-                    <span class="hint--top  hint--info" aria-label="Cargar datos de seguimiento"><a href="." class="btn btn-primary"><i class="fa fa-check"></i></a></span>
+                    <span class="hint--top  hint--info" aria-label="Cargar información complementaria del proyecto"><a href="{{ route('objetivo.edit', encrypt($item->id)) }}" class="btn btn-primary"><i class="fa fa-check"></i></a></span>
                 </td>
                 <td>{{ $item->sol_codigo }}</td>
                 <td>{{ $item->sol_nombre }}</td>

@@ -30,17 +30,17 @@ class EvaluacionController extends Controller
         if(Auth::user()->us_tipo == 'ADMINISTRADOR DEL SISTEMA'){
             return redirect()->route('dashboard.index');
         }
-        if(Auth::user()->us_tipo == 'TECNICO PLANIFICACION'){
+        /*if(Auth::user()->us_tipo == 'TECNICO PLANIFICACION'){
             $detalle = "Solicitudes para aprobación por planificación";
             $evaluacion = Solicitud::whereIn('sol_estado',['APROBADO'])->get();
-        }
+        }*/
         if(Auth::user()->us_tipo == 'JEFE PLANIFICACION'){
             $detalle = "Solicitudes para aprobación por el Jefe de Planificación";
             $evaluacion = Solicitud::where('sol_estado','=','POR APROBAR')->get();
         }
         if(Auth::user()->us_tipo == 'ADMINISTRACION FINANCIERA'){
             $detalle = "Solicitudes para aprobación por la Administración Financiera";
-            $evaluacion = Solicitud::where('sol_estado','=','APROBADO')->get();
+            $evaluacion = Solicitud::where('sol_estado','=','COMITE P')->get();
         }
         if(Auth::user()->us_tipo == 'ASESOR LEGAL'){
             $detalle = "Solicitudes para aprobación por el Asesor Legal";
@@ -52,13 +52,26 @@ class EvaluacionController extends Controller
             ->with('detalle', $detalle);
     }
 
+    public function comitePlanificacion(){
+        try{
+            if(Auth::user()->us_tipo == 'JEFE PLANIFICACION'){
+                $detalle = "Solicitudes para aprobación por Comite de Planificación";
+                $evaluacion = Solicitud::whereIn('sol_estado',['APROBADO'])->get();
+            }
+        }catch(\Exception $ex){
+
+        }
+        return view('admin.evaluacion.index')
+        ->with('evaluacion', $evaluacion)
+        ->with('detalle', $detalle);
+    }
+
     public function create()
     {
         //
     }
 
-    public function store(ArchivoRequest $request)
-    {
+    public function store(ArchivoRequest $request){
         try{
             $estadoAnterior = "";
             $estadoActual = "";
@@ -70,6 +83,11 @@ class EvaluacionController extends Controller
                 $archivo->ar_estadorecibe = "APROBADO";
                 $estadoActual = "APROBADO";
                 $estadoAnterior = "POR APROBAR";
+            }
+            if(Auth::user()->us_tipo == "JEFE PLANIFICACION"){
+                $archivo->ar_estadorecibe = "COMITE P";
+                $estadoActual = "COMITE P";
+                $estadoAnterior = "APROBADO";
             }
             if(Auth::user()->us_tipo == "ADMINISTRACION FINANCIERA"){
                 $archivo->ar_estadorecibe = "FINANZAS";
@@ -118,8 +136,7 @@ class EvaluacionController extends Controller
             ->with('archivo', $archivo);
     }
 
-    public function edit($id)
-    {
+    public function edit($id){
         $id = decrypt($id);
         $solicitud = Solicitud::find($id);
         return view('admin.evaluacion.create')

@@ -106,14 +106,4 @@ class ConvenioController extends Controller
             ->with('idsolicitud', $solicitud->id)
             ->with('idcodigo',$solicitud->sol_codigo);
     }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

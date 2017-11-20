@@ -17,8 +17,8 @@
         @include('admin.solicitud.formCreate')
         <div class="form-group">
             <center>
-                <span class="hint--top  hint--success" aria-label="Guardar los datos de la solicitud"><button type="buttom" class="btn btn-success" id='GrabarSolicitud'><i class="fa fa-save"></i> Guardar</button></span>
-                <span class="hint--top  hint--success" aria-label="Guardar los datos y Solicitar Aprobación"><button type="buttom" class="btn btn-success" id='GrabarSolicitudA'><i class="fa fa-save"></i> Guardar y Solicitar Aprobación</button></span>
+                <span class="hint--top  hint--success" aria-label="Guardar como borrador"><button type="buttom" class="btn btn-success" id='GrabarBorrador'><i class="fa fa-save"></i> Guardar Borrador</button></span>
+                <span class="hint--top  hint--success" aria-label="Guardar los datos y Solicitar Aprobación"><button type="buttom" class="btn btn-success" id='GrabarSolicitud'><i class="fa fa-save"></i> Guardar y Solicitar Aprobación</button></span>
             </center>
         </div>
     {!! Form::close() !!}
@@ -109,21 +109,25 @@
     <!--Validacion y Envio de Datos-->
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#GrabarSolicitudA").click(function(event){
-                event.preventDefault();
-                $('input[name="tipo"]').val('1');
-                sendForm();
-            });
             $("#GrabarSolicitud").click(function(event){
                 event.preventDefault();
+                $('input[name="tipo"]').val('1');
+                sendForm(1);
+            });
+            $("#GrabarBorrador").click(function(event){
+                event.preventDefault();
                 $('input[name="tipo"]').val('0');
-                sendForm();
+                sendForm(0);
             });
 
-            function sendForm(){
+            function sendForm(frm){
                 var dataString = new FormData(document.getElementById("formSolicitud"));
                 var token = $("input[name=_token]").val();
-                var route = "{{ route('solicitud.store')}}";
+                var route;
+                if(frm == 1)
+                    route = "{{ route('solicitud.store')}}";
+                else
+                    route = "{{ url('/borrador') }}";
                 $.ajax({
                     url: route,
                     headers: {'X-CSRF-TOKEN':token},

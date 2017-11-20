@@ -30,7 +30,7 @@ class SeguimientoController extends Controller
         if(Auth::user()->us_tipo == 'ADMINISTRADOR DEL SISTEMA'){
             return redirect()->route('dashboard.index');
         }
-        if(Auth::user()->us_tipo == 'TECNICO PLANIFICACION' || Auth::user()->us_tipo == 'JEFE PLANIFICACION'){
+        if(Auth::user()->us_tipo == 'TECNICO PLANIFICACION'){
             $detalle = "";
             $seguimiento = Solicitud::whereIn('sol_estado',['FIRMADO'])->get();
         }

@@ -44,6 +44,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Registrar Nueva Entidad</h4>
             </div>
+            {!! Form::open(['name' => 'formNuevaEntidad']) !!}
             <div class="modal-body">
             
                 <div class="row">
@@ -84,9 +85,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-success btnGuardarEntidad">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

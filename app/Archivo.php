@@ -32,11 +32,8 @@ class Archivo extends Model
             $archivo->getClientOriginalExtension();
             $this->attributes['ar_archivo'] = 'storage/archivo/'.$nuevoNombre;
             $storage = Storage::disk('archivo')->put($nuevoNombre, \File::get($archivo));
-            $this->setArRevisadoAttribute($archivo);
+            $this->attributes['ar_revisado'] = ''.$archivo->getClientOriginalName();
+            //$this->setArRevisadoAttribute($archivo);
         }
-    }
-
-    public function setArRevisadoAttribute($archivo){
-        $this->attributes['ar_revisado'] = ''.$archivo->getClientOriginalName();
     }
 }

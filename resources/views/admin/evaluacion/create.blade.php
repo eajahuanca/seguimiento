@@ -17,7 +17,7 @@
         <div class="form-group">
             <center>
                 <span class="hint--top  hint--success" aria-label="Guardar el archivo"><button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button></span>
-                <span class="hint--top  hint--error" aria-label="Cancelar la carga del archivo"><a href="{{ route('evaluacion.index') }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Cancelar</a></span>
+                <span class="hint--top  hint--error" aria-label="Cancelar la carga del archivo"><a class="btn btn-danger" id="btnRegresar"><i class="fa fa-reply-all"></i> Cancelar</a></span>
             </center>
         </div>
     {!! Form::close() !!}
@@ -29,6 +29,9 @@
             @if(count($errors)>0)
                 toastr["error"]("Validación de Campos", "Verifique los campos.");
             @endif
+        });
+        $('#btnRegresar').click(function(){
+            history.back();
         });
     </script>
 @endsection

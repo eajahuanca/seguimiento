@@ -45,12 +45,19 @@
                     </li>
                     @endif
                     
-                    @if(Auth::user()->us_tipo == "TECNICO PLANIFICACION" || Auth::user()->us_tipo == "JEFE PLANIFICACION" || Auth::user()->us_tipo == "ADMINISTRACION FINANCIERA")
+                    @if(Auth::user()->us_tipo == "JEFE PLANIFICACION" || Auth::user()->us_tipo == "ADMINISTRACION FINANCIERA")
                     <li>
                         <a href="{{ url('/evaluacion') }}">
                             <i class="fa fa-gg-circle"></i> <span>Evaluación de Solicitud</span>
                         </a>
                     </li>
+                    @if(Auth::user()->us_tipo == "JEFE PLANIFICACION")
+                    <li>
+                        <a href="{{ url('/pcomite') }}">
+                            <i class="fa fa-gg-circle"></i> <span>Comite de Planificación</span>
+                        </a>
+                    </li>
+                    @endif
                     @endif
 
                     @if(Auth::user()->us_tipo == "ASESOR LEGAL")
@@ -69,11 +76,14 @@
                 </ul>
             </li>
 
+            @if(Auth::user()->us_tipo == "TECNICO PLANIFICACION")
             <li>
                 <a href="{{ url('/seguimiento') }}">
                     <i class="fa fa-bars"></i> <span>Seguimiento de Proyectos</span>
                 </a>
             </li>
+            @endif
+
             <li>
                 <a href=".">
                     <i class="fa fa-indent"></i> <span>Monitoreo de Proyectos</span>

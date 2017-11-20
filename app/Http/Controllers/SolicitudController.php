@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SolicitudRequest;
+use App\Http\Requests\SolicitudBorradorRequest;
 use App\Solicitud;
 use App\Departamento;
 use App\Reglamento;
@@ -52,7 +53,9 @@ class SolicitudController extends Controller
     public function store(SolicitudRequest $request){
         if($request->ajax()){
             try{
-                $solicitud = new Solicitud($request->all());      
+                DB::beginTransaction();
+                $solicitud = new Solicitud($request->all());
+                $codigo = $solicitud->sol_codigo;
                 $stringMunicipios = "";
                 for($position = 0; $position < count($request->input('sol_municipio')); $position++)
                 {
@@ -67,11 +70,72 @@ class SolicitudController extends Controller
                 $solicitud->sol_componente = $stringComponentes;
                 $solicitud->iduregistra = Auth::user()->id;
                 $solicitud->iduactualiza = Auth::user()->id;
-                if($request->input('tipo')=='0')
-                    $solicitud->sol_estado = 'VERIFICACION';
                 if($request->input('tipo')=='1')
                     $solicitud->sol_estado = 'POR APROBAR';
                 $solicitud->save();
+
+                $id = $solicitud->id;
+                $archivo = new Archivo();
+                $archivo->idsolicitud = $id;
+                $archivo->idcodigo = $codigo;
+                $archivo->ar_estadorecibe = 'POR APROBAR';
+                $archivo->ar_estadoenvia = '-';
+                $archivo->ar_archivo = '';
+                $archivo->ar_detalle = '-';
+                $archivo->ar_revisado = '-';
+                $archivo->idurecibe = Auth::user()->id;
+                $archivo->iduenvia = Auth::user()->id;
+                $archivo->save();
+                DB::commit();
+                Session::put('active', '1');
+                return response()->json(['success' => 'true']);
+
+            }
+            catch(\Exception $ex)
+            {
+                DB::rollback();
+                $valor = $ex->getMessage();
+                return response()->json(['success' => $valor]);
+            }
+        }else{
+            flash('No existe un CITE generado, haga click en nueva Solicitud')->error();
+            return redirect()->route('listar.index');
+        }
+    }
+
+    public function storeBorrador(SolicitudBorradorRequest $request){
+        if($request->ajax()){
+            try{
+                $solicitud = new Solicitud($request->all());
+
+                $stringMunicipios = "";
+                if($request->input('sol_municipio')!=''){
+                    for($position = 0; $position < count($request->input('sol_municipio')); $position++)
+                    {
+                        $stringMunicipios.= $request->input('sol_municipio')[$position].",";
+                    }
+                }
+
+                $stringComponentes = "";
+                if($request->input('sol_componente')){
+                    for($position = 0; $position < count($request->input('sol_componente')); $position++)
+                    {
+                        $stringComponentes.= $request->input('sol_componente')[$position].",";
+                    }
+                }
+                
+                if($request->input('iddepto') == '')
+                    $solicitud->iddepto = 1;
+                if($request->input('idprovincia') == '')
+                    $solicitud->idprovincia = 1;
+                $solicitud->sol_municipio = $stringMunicipios;
+                $solicitud->sol_componente = $stringComponentes;
+                $solicitud->iduregistra = Auth::user()->id;
+                $solicitud->iduactualiza = Auth::user()->id;
+                if($request->input('tipo')=='0')
+                    $solicitud->sol_estado = 'VERIFICACION';
+                $solicitud->save();
+
                 Session::put('active', '1');
                 return response()->json(['success' => 'true']);
             }
@@ -120,19 +184,6 @@ class SolicitudController extends Controller
             return response()->json(['success' => 'true']);
         }
         return response()->json(['success' => 'error']);
-    }
-    public function storeArchivo($idSolicitud, $codigo){
-        $archivo = new Archivo($idsolicitud);
-        $archivo->idsolicitud = $idSolicitud;
-        $archivo->idcodigo = $codigo;
-        $archivo->ar_estadorecibe = 'POR APROBAR';
-        $archivo->ar_estadoenvia = '-';
-        $archivo->ar_archivo = '';
-        $archivo->ar_detalle = '-';
-        $archivo->ar_revisado = '-';
-        $archivo->idurecibe = Auth::user()->id;
-        $archivo->iduenvia = Auth::user()->id;
-        $archivo->save();
     }
 
     public function show($id)

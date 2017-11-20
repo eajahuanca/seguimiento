@@ -37,7 +37,6 @@
                 <td class="text-center">
                     @if($item->sol_estado=='VERIFICACION')
                         <span class="hint--top  hint--warning" aria-label="Actualizar Solicitud"><a class="btn btn-warning"><i class="fa fa-edit"></i></a></span>
-                        <span class="hint--top  hint--success" aria-label="Solicitar Aprobación"><a class="btn btn-success" data-toggle="modal" data-target="#modalAprobacion" onclick="aprobacion({{ $item->id }})"><i class="fa fa-thumbs-o-up"></i></a></span>       
                     @endif
                     @if($item->sol_estado=='DEVUELTO')
                         <span class="hint--top  hint--error" aria-label="La Solicitud Fue Devuelta"><button class="btn btn-danger">Sin Acción</button></span>

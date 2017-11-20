@@ -12,7 +12,7 @@
 @section('ContenidoPagina')
 
     {!! Form::open(['route' => 'convenio.store', 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true]) !!}
-        @include('admin.convenio.form')
+        @include('admin.seguimiento.form')
 
         <div class="form-group">
             <center>

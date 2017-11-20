@@ -245,12 +245,14 @@
                                     <div class="row">
                                         @if(count($archivo)>0)
                                         @foreach($archivo as $itemAr)
-                                        <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                                            <a href="{{ asset($itemAr->ar_archivo) }}" target="_blank">
-                                                <img class="margin" src="{{ asset('plugins/login/img/pdf.png') }}" width="90px" height="100px"/>
-                                                <h4>{{ $itemAr->ar_revisado }}</h4>
-                                            </a>
-                                        </div>
+                                            @if($itemAr->ar_archivo!='' && $itemAr->ar_revisado != '-')
+                                            <div class="col-md-4 col-sm-6 col-xs-12 text-center">
+                                                <a href="{{ asset($itemAr->ar_archivo) }}" target="_blank">
+                                                    <img class="margin" src="{{ asset('plugins/login/img/pdf.png') }}" width="90px" height="100px"/>
+                                                    <h4>{{ $itemAr->ar_revisado }}</h4>
+                                                </a>
+                                            </div>
+                                            @endif
                                         @endforeach
                                         @else
                                             <div class="col-md-6 col-sm-6 col-xs-12 text-center">
