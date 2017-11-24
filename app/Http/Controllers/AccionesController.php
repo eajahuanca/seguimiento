@@ -65,7 +65,7 @@ class AccionesController extends Controller
         if($request->ajax())
         {
             $rpta = Accion::select('acc_descripcion','acc_desde','acc_hasta')->where('acc_estado',1)->where('idobjetivo','=', $idObjetivo)->orderBy('created_at','ASC')->get();
-            return response()->json($rpta);
+            return view('admin.objetivo.veraccion', array('rpta' => $rpta));
         }
         else
             return null;

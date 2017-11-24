@@ -90,12 +90,13 @@
                         </thead>
                         <tbody>
                             @foreach($objetivo as $item)
-                            <tr>
+                            <tr id="{{ $item->id }}">
                                 <td>{{ $cont++ }}</td>
                                 <td>
                                     <span class="hint--top  hint--warning" aria-label="Cargar Acciones"><a href="{{ route('accion.edit', encrypt($item->id)) }}" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a></span>
                                     <span class="hint--top  hint--success" aria-label="Cargar Coordenadas"><a href="{{ route('coordenada.edit', encrypt($item->id)) }}" class="btn btn-success btn-xs"><i class="fa fa-map-marker"></i></a></span>
-                                    <span class="hint--top  hint--info" aria-label="Ver Acciones"><a data-toggle="modal" data-target="#modalAcciones" class="btn btn-primary btn-xs" id="verAcciones" onclik="verAcciones(this)" data-value="{{ $item->id }}"><i class="fa fa-eye"></i></a></span>
+                                    <span class="hint--top  hint--info" aria-label="Ver Acciones"><a role="button" class="btn btn-primary btn-xs verAcciones" id="verAcciones"><i class="fa fa-eye"></i></a></span>
+                                    <span class="hint--top  hint--info" aria-label="Ver Coordenadas"><a data-toggle="modal" data-target="#modalCoordernadas" class="btn btn-primary btn-xs" id="verAcciones"><i class="fa fa-eye"></i></a></span>
                                 </td>
                                 <td>{!! $item->esp_objetivo !!}</td>
                                 <td>{!! $item->esp_meta !!}</td>
@@ -156,13 +157,18 @@
         });
     </script>
     <script type="text/javascript">
-        $(function(){
-            $("#verAcciones").on('click',function(){
-                var objetivoID = $("#verAcciones").attr("data-value");
-                $.get("/getAccion/" + objetivoID, function(rpta){
-                    $.each(rpta, function(index, value){
-                        $("#accionesListar").html("<tr><td>"+value['acc_descripcion']+"</td><td>"+value['acc_desde']+"</td><td>"+value['acc_hasta']+"</td></tr>");
-                    });
+        $(document).ready(function(){
+            _modalAccion = $('#modalAcciones');
+            $('.verAcciones').unbind().bind('click',function(e){
+                e.preventDefault();
+                _fila = $(this).closest('tr');
+                id = _fila.attr('id');
+                $.ajax({
+                    url:"{{ url('/getAccion') }}" + "/" + id,
+                    success: function(response){
+                        _modalAccion.find('.modal-body').html(response);
+                        _modalAccion.modal('show');
+                    }
                 });
             });
         });
@@ -176,21 +182,6 @@
                     <h4 class="modal-title" id="myModalLabel">Acciones del Objetivo Específico</h4>
                 </div>
                 <div class="modal-body">
-                    <table id="accionesListar" border="1" cellspadding="4">
-                        <tr>
-                            <th align="center">
-                                ACCIONES
-                            </th>
-                            <th align="center">
-                                DESDE
-                            </th>
-                            <th align="center">
-                                HASTA
-                            </th>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </table>
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
