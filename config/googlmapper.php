@@ -256,6 +256,7 @@ return [
         |
         */
         'icon' => '//googlemaps.github.io/js-marker-clusterer/images/m',
+        //'icon' => ''.public_path().'/plugins/login/img/m2.png',
 
         /*
         |--------------------------------------------------------------------------
