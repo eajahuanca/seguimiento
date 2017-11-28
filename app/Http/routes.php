@@ -72,4 +72,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('getAutoriza/{solicitudID}','SolicitudController@getUpdateEstado');
     Route::post('/postEstado', 'SolicitudController@postUpdateEstado');
     Route::get('getAccion/{objetivoID}','AccionesController@getAccion');
+    Route::get('getMapa/{objetivoID}','MapaController@getMapa');
 });

@@ -93,10 +93,10 @@
                             <tr id="{{ $item->id }}">
                                 <td>{{ $cont++ }}</td>
                                 <td>
-                                    <span class="hint--top  hint--warning" aria-label="Cargar Acciones"><a href="{{ route('accion.edit', encrypt($item->id)) }}" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a></span>
+                                    <span class="hint--top  hint--warning" aria-label="Cargar Acciones"><a href="{{ route('accion.edit', encrypt($item->id)) }}" class="btn btn-warning btn-xs"><i class="fa fa-sign-in"></i></a></span>
                                     <span class="hint--top  hint--success" aria-label="Cargar Coordenadas"><a href="{{ route('coordenada.edit', encrypt($item->id)) }}" class="btn btn-success btn-xs"><i class="fa fa-map-marker"></i></a></span>
                                     <span class="hint--top  hint--info" aria-label="Ver Acciones"><a role="button" class="btn btn-primary btn-xs verAcciones" id="verAcciones"><i class="fa fa-eye"></i></a></span>
-                                    <span class="hint--top  hint--info" aria-label="Ver Coordenadas"><a data-toggle="modal" data-target="#modalCoordernadas" class="btn btn-primary btn-xs" id="verAcciones"><i class="fa fa-eye"></i></a></span>
+                                    <span class="hint--top  hint--success" aria-label="Ver Mapa"><a href="{{ url('/getMapa',encrypt($item->id)) }}" target="popup" onClick="window.open(this.href, this.target, 'toolbar=0 , location=0 , status=0 , menubar=0 , scrollbars=0 , resizable=1 ,left=150pt,top=150pt,width=600px,height=400px'); return false;" role="button" class="btn btn-success btn-xs verMapa" id="verMapa"><i class="fa fa-eye"></i></a></span>
                                 </td>
                                 <td>{!! $item->esp_objetivo !!}</td>
                                 <td>{!! $item->esp_meta !!}</td>
