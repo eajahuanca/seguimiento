@@ -65,6 +65,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/accion','AccionesController');
     Route::resource('/coordenada','CoordenadaController');
 
+    Route::resource('/documento','DocumentoController');
+    Route::get('formdoc/{id}/{position}','DocumentoController@formdoc');
+    Route::resource('/cronograma','CronogramaController');
+
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
     Route::get('getProvincia/{departamentoID}','ProvinciaController@getProvincias');

@@ -79,6 +79,11 @@ return [
             'root' => public_path('storage/respaldo'),
         ],
 
+        'documento' => [
+            'driver' => 'local',
+            'root' => public_path('storage/documento'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

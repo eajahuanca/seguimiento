@@ -29,7 +29,7 @@ class ObjetivosEspecificosController extends Controller
         try{
             $id = decrypt($id);
             $solicitud = Solicitud::find($id);
-            $objetivo = OEspecifico::orderBy('created_at','ASC')->get();
+            $objetivo = OEspecifico::orderBy('created_at','ASC')->where('idsolicitud','=',$solicitud->id)->get();
             return view('admin.objetivo.create')->with('solicitud',$solicitud)->with('objetivo',$objetivo);
         }catch(\Exception $ex){
             flash('error', "Ocurrió el siguiente error: ".$ex->getMessage());
