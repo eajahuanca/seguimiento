@@ -32,6 +32,8 @@
                     <span class="hint--top  hint--warning" aria-label="Ver Proyecto"><a href="{{ route('seguimiento.show', encrypt($item->id)) }}" class="btn btn-warning"><i class="fa fa-eye"></i></a></span>
                     <span class="hint--top  hint--info" aria-label="Cargar información complementaria del proyecto"><a href="{{ route('objetivo.edit', encrypt($item->id)) }}" class="btn btn-primary"><i class="fa fa-check"></i></a></span>
                     <span class="hint--top  hint--info" aria-label="Cargar documentación previa"><a href="{{ route('documento.show', encrypt($item->id)) }}" class="btn btn-primary"><i class="fa fa-sign-out"></i></a></span>
+                    <span class="hint--top  hint--info" aria-label="Cargar Cronograma Financiero"><a href="{{ route('cronograma.show', encrypt($item->id)) }}" class="btn btn-primary"><i class="fa "><b>Bs</b></i></a></span>
+                    <span class="hint--top  hint--info" aria-label="Solicitar Primer Desembolso"><a href="{{ route('desembolso1.show', encrypt($item->id)) }}" class="btn btn-primary"><i class="fa "><b>Bs</b></i></a></span>
 
                 </td>
                 <td>{{ $item->sol_codigo }}</td>
