@@ -38,6 +38,10 @@ class Desembolso1Controller extends Controller
             $this->estado = "1";
             $this->title = "Registro de Desembolso";
             $this->msg = "Se cargo el archivo de solicitud del primer desembolso de manera correcta";
+
+            $solicitud = Solicitud::find($desembolso->idsolicitud);
+            $solicitud->sol_estado = 'SOLICITUD PRIMER DESEMBOLSO';
+            $solicitud->update();
         }catch(\Exception $ex){
             $this->estado = "2";
             $this->title = "Error en registro";

@@ -85,6 +85,18 @@
             @endif
 
             <li>
+                <a href="{{ url('/autorizacion') }}">
+                    <i class="fa fa-bars"></i> <span>Autorización de Desembolso</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url('/presupuesto') }}">
+                    <i class="fa "><b>Bs</b></i> <span>Techo Presupuestario</span>
+                </a>
+            </li>
+
+            <li>
                 <a href=".">
                     <i class="fa fa-indent"></i> <span>Monitoreo de Proyectos</span>
                 </a>
