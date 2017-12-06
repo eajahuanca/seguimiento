@@ -57,10 +57,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/documento','DocumentoController');
     Route::get('formdoc/{id}/{position}','DocumentoController@formdoc');
     Route::resource('/cronograma','CronogramaController');
-    Route::resource('/meta', 'MetaController');
+    //Route::resource('/meta', 'MetaController');
     Route::resource('/desembolso1', 'Desembolso1Controller');
     Route::resource('/autorizacion', 'AutorizacionDesembolsoController');
     Route::resource('/presupuesto', 'PresupuestoController');
+
+    //Formularios - Seguimiento
+    Route::resource('/formulario', 'FormularioUnoController');
+    Route::resource('/reporte', 'FormularioUnoController@reporte');
 
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');
