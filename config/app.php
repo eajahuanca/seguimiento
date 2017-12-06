@@ -162,6 +162,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -212,7 +213,8 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
