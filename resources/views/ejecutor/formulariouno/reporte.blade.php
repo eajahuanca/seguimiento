@@ -1,25 +1,53 @@
+<!DOCTYPE html>
 <html>
+    <title>Formulario de Seguimiento</title>
     <head>
         <style type="text/css">
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
             table.tableizer-table {
                 font-size: 12px;
-                border: 1px solid #CCC;
-                font-family: Arial, Helvetica, sans-serif;
+                border: 1px solid #000000;
             }
             .tableizer-table td {
                 padding: 4px;
                 margin: 3px;
-                border: 1px solid #CCC;
+                border: 1px solid #000000;
             }
             .tableizer-table th {
                 background-color: #104E8B;
                 color: #FFF;
                 font-weight: bold;
             }
+            .TableBorder{
+                border: 1px solid #000000;
+                border-collapse: collapse;
+            }
+            .TableEspaciosTitulo{
+                margin-bottom:2em;
+                margin-top:-1em;
+            }
+            .TableEspacios{
+                margin-bottom:2em;
+                margin-top:-2em;
+            }
         </style>
     </head>
 <body>
-    <table class="tableizer-table">
+    <table width="100%">
+        <tr>
+            <td align="left" width="50%"><img src="{{ asset('plugins/login/img/bolivia.jpg') }}" width="95px" height="80px"/></td>
+            <td align="right" width="50%"><img src="{{ asset('plugins/login/img/logo.jpg') }}" width="200px" height="50px"/></td>
+        </tr>
+    </table>
+    <div class="TableEspaciosTitulo">
+        <center><h3>Planilla de Reporte Mensual Componente 1</h3></center>
+    </div>
+    <div class="TableEspacios">
+    <b>Componente 1:</b> Infraestructura y equipamiento para la producción de plantines (vivero) construida
+    </div>
+    <table class="tableizer-table TableBorder">
         <thead>
             <tr class="tableizer-firstrow">
                 <th colspan="2">No DE COMPONENTE:</th>
@@ -108,6 +136,9 @@
                 <td>0%</td>
             </tr>
         </tbody>
-    </table>
+    </table><br><br>
+    <div class="TableEspacios">
+        Observaciones :
+    </div>
 </body>
 </html>

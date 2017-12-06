@@ -57,5 +57,5 @@ class FormularioUnoController extends Controller
     {
         $arrayMes = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
         return $arrayMes[(int)(date('m')) - 1];
-    }
+    }   
 }
