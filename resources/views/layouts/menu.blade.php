@@ -90,7 +90,7 @@
                 </a>
             </li>
 
-            <li class="treeview">
+            <!--<li class="treeview">
                 <a href="#">
                     <i class="fa fa-gear"></i> <span>Formulario de Seguimiento</span>
                     <span class="pull-right-container">
@@ -104,6 +104,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>-->
+
+            <li>
+                <a href="{{ url('/formulario') }}">
+                    <i class="fa fa-bars"></i> <span>Seguimiento Ejecutor</span>
+                </a>
             </li>
 
             <li>

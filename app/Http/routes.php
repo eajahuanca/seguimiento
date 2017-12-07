@@ -64,7 +64,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     //Formularios - Seguimiento
     Route::resource('/formulario', 'FormularioUnoController');
-    Route::resource('/reporte', 'FormularioUnoController@reporte');
+    Route::resource('/reportOne', 'FormularioUnoController@reportOne');
+    Route::resource('/reportTwo', 'FormularioUnoController@reportTwo');
+    Route::resource('/reportThree', 'FormularioUnoController@reportThree');
+    Route::resource('/reportFour', 'FormularioUnoController@reportFour');
 
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');

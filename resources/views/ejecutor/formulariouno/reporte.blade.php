@@ -31,7 +31,7 @@
                 margin-bottom:2em;
                 margin-top:-2em;
             }
-            .nota{
+            .nota,.impresion{
                 font-style:italic;
                 font-size:10px;
             }
@@ -142,5 +142,11 @@
     </table><br>
     <div class="nota">PG: Programado, AV: Avance</div><br>
     <div class="tableEspacios">Observaciones :</div>
+    {!! DNS2D::getBarcodeHTML(date('dmYHis')."1"."|Nombre del Proyecto|Monto", "QRCODE",4,4) !!}
+    <footer>
+        <div class='impresion'>
+            <p>{{ $fechaImpresion }}</p>
+        </div>
+    </footer>
 </body>
 </html>

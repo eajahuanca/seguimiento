@@ -42,18 +42,45 @@ class FormularioUnoController extends Controller
         //
     }
 
-    public function reporte(){
+    public function fecha()
+    {
+        $arrayMes = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        return $arrayMes[(int)(date('m')) - 1];
+    }
+
+    public function reportOne(){
         $fechaImpresion = 'La Paz, '.date('d').' de '.$this->fecha().' de '.date('Y');
         $view = \View::make('ejecutor.formulariouno.reporte', compact('fechaImpresion'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->setPaper('LETTER','portrait');
         $pdf->loadHTML($view);
-        return $pdf->download('FormularioUno'.date('d-m-Y').date('H-i-s').'.pdf');
+        return $pdf->download('FormOne'.date('dmY').date('His').'.pdf');
     }
 
-    public function fecha()
-    {
-        $arrayMes = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-        return $arrayMes[(int)(date('m')) - 1];
-    }   
+    public function reportTwo(){
+        $fechaImpresion = 'La Paz, '.date('d').' de '.$this->fecha().' de '.date('Y');
+        $view = \View::make('ejecutor.formulariodos.reporte', compact('fechaImpresion'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->setPaper('LETTER','portrait');
+        $pdf->loadHTML($view);
+        return $pdf->download('FormTwo'.date('dmY').date('His').'.pdf');
+    }
+
+    public function reportThree(){
+        $fechaImpresion = 'La Paz, '.date('d').' de '.$this->fecha().' de '.date('Y');
+        $view = \View::make('ejecutor.formulariotres.reporte', compact('fechaImpresion'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->setPaper('LETTER','portrait');
+        $pdf->loadHTML($view);
+        return $pdf->download('FormThree'.date('dmY').date('His').'.pdf');
+    }
+
+    public function reportFour(){
+        $fechaImpresion = 'La Paz, '.date('d').' de '.$this->fecha().' de '.date('Y');
+        $view = \View::make('ejecutor.formulariocuatro.reporte', compact('fechaImpresion'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->setPaper('LETTER','portrait');
+        $pdf->loadHTML($view);
+        return $pdf->download('FormFour'.date('dmY').date('His').'.pdf');
+    }
 }

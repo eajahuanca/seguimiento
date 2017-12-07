@@ -36,7 +36,10 @@
                                 <td class="text-center">{{ $cont++ }}</td>
                                 <td class="text-center">
                                     <span class="hint--top  hint--warning" aria-label="Mostrar Formulario"><a href="{{ route('formulario.show', encrypt($item->id)) }}" class="btn btn-warning"><i class="fa fa-sign-out"></i></a></span>
-                                    <span class="hint--top  hint--error" aria-label="descargar Formulario"><a href="{{ url('/reporte') }}" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></a></span>
+                                    <span class="hint--top  hint--error" aria-label="descargar Formulario 1ro."><a href="{{ url('/reportOne') }}" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></a></span>
+                                    <span class="hint--top  hint--error" aria-label="descargar Formulario 2do."><a href="{{ url('/reportTwo') }}" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></a></span>
+                                    <span class="hint--top  hint--error" aria-label="descargar Formulario 3ro."><a href="{{ url('/reportThree') }}" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></a></span>
+                                    <span class="hint--top  hint--error" aria-label="descargar Formulario 4to."><a href="{{ url('/reportFour') }}" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></a></span>
                                 </td>
                                 <td>{{ $item->sol_codigo }}</td>
                                 <td>{{ $item->sol_nombre }}</td>
