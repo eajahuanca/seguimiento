@@ -46,8 +46,6 @@ class FormularioUnoController extends Controller
         $fechaImpresion = 'La Paz, '.date('d').' de '.$this->fecha().' de '.date('Y');
         $view = \View::make('ejecutor.formulariouno.reporte', compact('fechaImpresion'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        //$pdf->setPaper('legal','portrait'); vertical
-        //$pdf->setPaper('LEGAL','landscape');
         $pdf->setPaper('LETTER','portrait');
         $pdf->loadHTML($view);
         return $pdf->download('FormularioUno'.date('d-m-Y').date('H-i-s').'.pdf');

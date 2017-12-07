@@ -18,19 +18,22 @@
             .tableizer-table th {
                 background-color: #104E8B;
                 color: #FFF;
-                font-weight: bold;
             }
-            .TableBorder{
+            .tableBorder{
                 border: 1px solid #000000;
                 border-collapse: collapse;
             }
-            .TableEspaciosTitulo{
+            .tableEspaciosTitulo{
                 margin-bottom:2em;
                 margin-top:-1em;
             }
-            .TableEspacios{
+            .tableEspacios{
                 margin-bottom:2em;
                 margin-top:-2em;
+            }
+            .nota{
+                font-style:italic;
+                font-size:10px;
             }
         </style>
     </head>
@@ -41,40 +44,40 @@
             <td align="right" width="50%"><img src="{{ asset('plugins/login/img/logo.jpg') }}" width="200px" height="50px"/></td>
         </tr>
     </table>
-    <div class="TableEspaciosTitulo">
+    <div class="tableEspaciosTitulo">
         <center><h3>Planilla de Reporte Mensual Componente 1</h3></center>
     </div>
-    <div class="TableEspacios">
+    <div class="tableEspacios">
     <b>Componente 1:</b> Infraestructura y equipamiento para la producción de plantines (vivero) construida
     </div>
-    <table class="tableizer-table TableBorder">
+    <table class="tableizer-table tableBorder">
         <thead>
-            <tr class="tableizer-firstrow">
-                <th colspan="2">No DE COMPONENTE:</th>
-                <th colspan="2">1 (xxx)</th>
-                <th>INDICADOR:</th>
-                <th colspan="3">Infraestructura y equipamiento para la producci&oacuten<br>de plantines (vivero construido)</th>
+            <tr>
+                <th colspan="2" style="padding:7px"><b>No DE COMPONENTE :</b></th>
+                <th colspan="2" style="padding:7px">1 (xxx)</th>
+                <th style="padding:7px"><b>INDICADOR :</b></th>
+                <th colspan="3" align="justify" style="padding:7px">Infraestructura y equipamiento para la producción de plantines (vivero construido)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td rowspan="3"><center>No</center></td>
-                <td rowspan="3"><center>Descripci&oacuten de la compra <br>o acci&oacuten <br>(unidad) </center></td>
-                <td rowspan="2" colspan="2"><center>PROGRAMADO</center></td>
-                <td colspan="4"><center>PROGRAMADO MENSUAL / AVANCE </center></td>
+                <td rowspan="3" align="center" height="75px"><b>Nro</b></td>
+                <td rowspan="3" align="center"><b>Descripción de la compra o acción (unidad)</b></td>
+                <td rowspan="2" colspan="2" align="center"><b>PROGRAMADO</b></td>
+                <td colspan="4" align="center"><b>PROGRAMADO MENSUAL / AVANCE</b></td>
             </tr>
             <tr>
-                <td colspan="2"><center>MES 1: </center></td>
-                <td>AVANCE ACUMULADO</td>
-                <td>AVANCE Plantines </td>
+                <td colspan="2" align="center"><b>MES 1: </b></td>
+                <td align="center"><b>AVANCE ACUMULADO</b></td>
+                <td align="center"><b>AVANCE Plantines</b></td>
             </tr>
             <tr>
-                <td>Cantidad</td>
-                <td>Unidad</td>
-                <td>PG</td>
-                <td>AV</td>
-                <td>(Cantidad) </td>
-                <td>(%)</td>
+                <td align="center"><b>Cantidad</b></td>
+                <td align="center"><b>Unidad</b></td>
+                <td align="center"><b>PG</b></td>
+                <td align="center"><b>AV</b></td>
+                <td align="center"><b>(Cantidad)</b></td>
+                <td align="center"><b>(%)</b></td>
             </tr>
             <tr>
                 <td>1</td>
@@ -127,7 +130,7 @@
                 <td>0%</td>
             </tr>
             <tr>
-                <td colspan="2">TOTALES</td>
+                <td colspan="2" align="center"><b>TOTALES</b></td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -136,9 +139,8 @@
                 <td>0%</td>
             </tr>
         </tbody>
-    </table><br><br>
-    <div class="TableEspacios">
-        Observaciones :
-    </div>
+    </table><br>
+    <div class="nota">PG: Programado, AV: Avance</div><br>
+    <div class="tableEspacios">Observaciones :</div>
 </body>
 </html>
