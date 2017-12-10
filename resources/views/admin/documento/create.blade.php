@@ -6,6 +6,8 @@
 @section('FormularioDetalle','Cargar Documentos')
 
 @section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('plugins/lte/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/lte/iCheck/all.css') }}">
 @endsection
 
 @section('ContenidoPagina')
@@ -26,7 +28,7 @@
         <div class="col-md-12">
             <div class="box box-success box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Cargar Documento correspondiente al ítem seleccionado</h3>
+                    <h3 class="box-title">Cargar Documento correspondiente al ítem seleccionado : {{ $tipo }}</h3>
                 </div>
                 <div class="box-body">
                     @include('admin.documento.form')
@@ -37,11 +39,42 @@
 @endsection
 
 @section('javascript')
+    <script src="{{ asset('plugins/lte/select2/select2.full.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.select2').select2();
+        })
+    </script>
+    <script src="{{ asset('plugins/editor/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('plugins/editor/ckeditor/config.js') }}"></script>
+    <script>
+        $(function () {
+            CKEDITOR.replace('doc_obs');
+        })
+    </script>
+    <script src="{{ asset('plugins/lte/iCheck/icheck.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             @if(count($errors)>0)
                 toastr["error"]("Validación de Campos", "Verifique los campos.");
             @endif
+
+            $('input[type="checkbox"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+
+            $('[name="doc_cumple"]').onChange(function() {
+                
+                if(this.checked) {
+                    alert('ac');
+                    //$(this).prop("checked", returnVal);
+                    $('[name="doc_cumple"]').attr('checked',true);
+
+                }else{
+                    alert('in');
+                    $('[name="doc_cumple"]').attr('checked',false);
+                }
+            });
         });
     </script>
 @endsection

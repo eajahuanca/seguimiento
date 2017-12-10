@@ -29,7 +29,7 @@ class SoliCiteListController extends Controller
             $updateCite = Cite::find($cite[0]['id']);
             $updateCite->cit_correlativo = $nuevoCite;
             $updateCite->update();
-            Session::put('cite',$cite[0]['cit_sigla'].''.$this->correlativo($nuevoCite));
+            Session::put('cite',$cite[0]['cit_sigla'].$this->correlativo($nuevoCite).'/'.$cite[0]['cit_gestion']);
             flash('Se ha Generado el Cite : <b>'.Session::get('cite').'</b> para la solicitud')->warning();
         }catch(\Exception $ex){
             flash('Ocurrió el siguiente error: '.$ex->getMessages())->error();

@@ -81,8 +81,7 @@
                                 <th width="20px">#</th>
                                 <th>Acción</th>
                                 <th>Objetivo Específico</th>
-                                <th>Metas</th>
-                                <th>Resultados</th>
+                                <th>Componente</th>
                                 <th>Registro
                                 </th>
                                 <th>Estado</th>
@@ -93,14 +92,11 @@
                             <tr id="{{ $item->id }}">
                                 <td>{{ $cont++ }}</td>
                                 <td>
-                                    <span class="hint--top  hint--warning" aria-label="Cargar Acciones"><a href="{{ route('accion.edit', encrypt($item->id)) }}" class="btn btn-warning btn-xs"><i class="fa fa-sign-in"></i></a></span>
-                                    <span class="hint--top  hint--success" aria-label="Cargar Coordenadas"><a href="{{ route('coordenada.edit', encrypt($item->id)) }}" class="btn btn-success btn-xs"><i class="fa fa-map-marker"></i></a></span>
-                                    <span class="hint--top  hint--info" aria-label="Ver Acciones"><a role="button" class="btn btn-primary btn-xs verAcciones" id="verAcciones"><i class="fa fa-eye"></i></a></span>
-                                    <span class="hint--top  hint--success" aria-label="Ver Mapa"><a href="{{ url('/getMapa',encrypt($item->id)) }}" target="popup" onClick="window.open(this.href, this.target, 'toolbar=0 , location=no , status=0 , menubar=0 , scrollbars=0 , resizable=1 ,left=150pt,top=150pt,width=600px,height=400px'); return false;" role="button" class="btn btn-success btn-xs verMapa" id="verMapa"><i class="fa fa-eye"></i></a></span>
+                                    <span class="hint--top  hint--warning" aria-label="Cargar Metas"><a href="{{ route('accion.edit', encrypt($item->id)) }}" class="btn btn-warning btn-xs"><i class="fa fa-sign-in"></i></a></span>
+                                    <span class="hint--top  hint--info" aria-label="Ver Metas y Actividades"><a role="button" class="btn btn-primary btn-xs verMetas" id="verMetas"><i class="fa fa-eye"></i></a></span>
                                 </td>
                                 <td>{!! $item->esp_objetivo !!}</td>
-                                <td>{!! $item->esp_meta !!}</td>
-                                <td>{!! $item->esp_resultado !!}</td>
+                                <td>{!! $item->esp_componente !!}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td valign="middle">
                                     @if($item->esp_estado)
@@ -125,8 +121,7 @@
     <script>
         $(function () {
             CKEDITOR.replace('esp_objetivo');
-            CKEDITOR.replace('esp_meta');
-            CKEDITOR.replace('esp_resultado');
+            CKEDITOR.replace('esp_componente');
         })
     </script>
     <script src="{{ asset('plugins/lte/datatables/responsive/jquery.dataTables.min.js') }}"></script>
@@ -158,13 +153,13 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            _modalAccion = $('#modalAcciones');
-            $('.verAcciones').unbind().bind('click',function(e){
+            _modalAccion = $('#modalMetas');
+            $('.verMetas').unbind().bind('click',function(e){
                 e.preventDefault();
                 _fila = $(this).closest('tr');
                 id = _fila.attr('id');
                 $.ajax({
-                    url:"{{ url('/getAccion') }}" + "/" + id,
+                    url:"{{ url('/getMeta') }}" + "/" + id,
                     success: function(response){
                         _modalAccion.find('.modal-body').html(response);
                         _modalAccion.modal('show');
@@ -174,12 +169,12 @@
         });
     </script>
     <!--Modal Para ver las ACCIONES de un Objetivo-->
-    <div class="modal fade" id="modalAcciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modalMetas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Acciones del Objetivo Específico</h4>
+                    <h4 class="modal-title" id="myModalLabel">Metas y Actividades del Componente</h4>
                 </div>
                 <div class="modal-body">
                 </div>

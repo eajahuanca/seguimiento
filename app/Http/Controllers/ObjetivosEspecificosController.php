@@ -40,11 +40,12 @@ class ObjetivosEspecificosController extends Controller
     public function store(ObjetivosEspecificosRequest $request){
         try{
             $objetivo = new OEspecifico($request->all());
+            $objetivo->idsolicitud = decrypt($request->idsolicitud);
             $objetivo->esp_seguimiento = 'SIN INICIAR';
             $objetivo->iduregistra = Auth::user()->id;
             $objetivo->iduactualiza = Auth::user()->id;
             $objetivo->save();
-            $solicitud = Solicitud::find($request->idsolicitud);
+            $solicitud = Solicitud::find($objetivo->idsolicitud);
             $this->estado = "1";
             $this->title = "Registro de Objetivo";
             $this->msg = "Los datos del Objetivo Escpecifico, se registraron de manera correcta";

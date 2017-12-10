@@ -69,7 +69,7 @@
 	</div>
 
     <div class="row">
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-4 col-xs-6">
 			<div class="form-group">
 				{!! Form::label('sol_objetivo', 'Objetivo del Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-4 col-xs-6">
 			<div class="form-group">
 				{!! Form::label('sol_justicacion', 'Justificación del Proyecto', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
@@ -101,6 +101,22 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-md-4 col-xs-6">
+			<div class="form-group">
+				{!! Form::label('sol_problema', 'Problema/Necesidad/Potenciabilidad/Oportunidad', ['class' => 'col-md-12 col-xs-12']) !!}
+				<div class="col-md-12 col-xs-12">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-bars"></i>
+						</div>
+						{!! Form::textarea('sol_problema', null, ['placeholder' => 'Problema/Necesidad/Potenciabilidad/Oportunidad', 'class' => 'form-control', 'rows' => '4']) !!} 
+					</div>
+					<span id="msg-error15" class="help-block" style="display:none; color:red" role="alert">
+						<strong id="error15"></strong>
+					</span>
+				</div>
+			</div>
+		</div>
     </div>
 	
 	<div class="row">
@@ -110,7 +126,8 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalEntidad"><i class="fa fa-plus"></i></a>
+							<!--<a data-toggle="modal" data-target="#modalEntidad"><i class="fa fa-plus"></i></a>-->
+							<i class="fa fa-bars"></i>
 						</div>
 						{!! Form::select('identidad', $entidad, null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -171,7 +188,8 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalProvincia"><i class="fa fa-plus"></i></a>
+							<!--<a data-toggle="modal" data-target="#modalProvincia"><i class="fa fa-plus"></i></a>-->
+							<i class="fa fa-bars"></i>
 						</div>
 						{!! Form::select('idprovincia', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -188,7 +206,8 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalMunicipio"><i class="fa fa-plus"></i></a>
+							<!--<a data-toggle="modal" data-target="#modalMunicipio"><i class="fa fa-plus"></i></a>-->
+							<i class="fa fa-bars"></i>
 						</div>
 						{!! Form::select('sol_municipio[]',[], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => '', 'id' => 'sol_municipio']) !!}
 					</div>
@@ -209,7 +228,7 @@
 						<div class="input-group-addon">
 							<i><b style="font-family:arial;">Bs</b></i>
 						</div>
-						{!! Form::text('sol_montofona', null, ['class' => 'form-control']) !!} 
+						{!! Form::text('sol_montofona', null, ['class' => 'form-control','onchange' => 'importeTotal();']) !!} 
 					</div>
 					<span id="msg-error9" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error9"></strong>
@@ -226,7 +245,7 @@
 						<div class="input-group-addon">
 							<i><b style="font-family:arial;">Bs</b></i>
 						</div>
-						{!! Form::text('sol_montosol', null, ['class' => 'form-control']) !!} 
+						{!! Form::text('sol_montosol', null, ['class' => 'form-control', 'onchange' => 'importeTotal();']) !!} 
 					</div>
 					<span id="msg-error10" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error10"></strong>
@@ -243,7 +262,7 @@
 						<div class="input-group-addon">
 							<i><b style="font-family:arial;">Bs</b></i>
 						</div>
-						{!! Form::text('sol_montootro', null, ['class' => 'form-control']) !!} 
+						{!! Form::text('sol_montootro', null, ['class' => 'form-control', 'onchange' => 'importeTotal();']) !!} 
 					</div>
 					<span id="msg-error11" class="help-block" style="display:none; color:red" role="alert">
 						<strong id="error11"></strong>
@@ -256,7 +275,7 @@
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group">
-				{!! Form::label('sol_tiempo', 'Tiempo estimado (Años)', ['class' => 'col-md-12 col-xs-12']) !!}
+				{!! Form::label('sol_tiempo', 'Tiempo estimado (Meses)', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
@@ -305,12 +324,15 @@
 	
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
+			<a class="btn btn-warning"><h3 id="btnTotal">(Bs.)Importe Total: 0</h3></a>
+			
+			<!--Componentes
 			<div class="form-group">
 				{!! Form::label('sol_componente', 'Componente(s)', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<a data-toggle="modal" data-target="#modalComponente"><i class="fa fa-plus"></i></a>
+							<i class="fa fa-plus"></i>
 						</div>
 						{!! Form::select('sol_componente[]', $componente, [], ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => '', 'id' => 'sol_componente']) !!}
 					</div>
@@ -319,6 +341,7 @@
 					</span>
 				</div>
 			</div>
+			-->
 		</div>
 
 		<div class="col-md-4 col-xs-12"></div>
