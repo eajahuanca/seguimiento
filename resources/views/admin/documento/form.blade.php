@@ -67,7 +67,10 @@
 				{!! Form::label('doc_cumple', 'Cumple con la documentación ?', ['class' => 'col-md-12 col-xs-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
-						{!! Form::checkbox('doc_cumple', null, true,['class' => 'flat-red']) !!} 
+						<div class="input-group-addon">
+							<i class="fa fa-lock"></i>
+						</div>
+						{!! Form::select('doc_cumple', [true => 'SI', false => 'NO'], null, ['class' => 'form-control select2']) !!}
 					</div>
                     @if($errors->has('doc_cumple'))
                         <span class="help-block">

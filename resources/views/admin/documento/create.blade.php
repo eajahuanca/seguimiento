@@ -62,19 +62,6 @@
             $('input[type="checkbox"].flat-red').iCheck({
                 checkboxClass: 'icheckbox_flat-green'
             });
-
-            $('[name="doc_cumple"]').onChange(function() {
-                
-                if(this.checked) {
-                    alert('ac');
-                    //$(this).prop("checked", returnVal);
-                    $('[name="doc_cumple"]').attr('checked',true);
-
-                }else{
-                    alert('in');
-                    $('[name="doc_cumple"]').attr('checked',false);
-                }
-            });
         });
     </script>
 @endsection

@@ -13,7 +13,6 @@ class OEspecifico extends Model
         'idcodigo',
         'esp_objetivo',
         'esp_meta',
-        'esp_resultado',
         'esp_seguimiento',
         'esp_observacion',
         'esp_estado',
@@ -26,4 +25,16 @@ class OEspecifico extends Model
     public function solicitudes(){
         return $this->belongsTo('App\Solicitud','idsolicitud','id');
     }
+
+    public function metas(){
+        return $this->hasMany('App\Meta');
+    }
+
+    public function userRegistra(){
+        return $this->belongsTo('App\User','iduregistra','id');
+    }
+
+    public function userActualiza(){
+        return $this->belongsTo('App\User','iduactualiza','id');
+    }    
 }

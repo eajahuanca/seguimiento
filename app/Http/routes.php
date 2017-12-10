@@ -51,13 +51,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/seguimiento','SeguimientoController');
     Route::get('/pcomite','EvaluacionController@comitePlanificacion');
     Route::resource('/objetivo','ObjetivosEspecificosController');
-    Route::resource('/accion','AccionesController');
-    Route::resource('/coordenada','CoordenadaController');
+    //Route::resource('/accion','AccionesController');
+    //Route::resource('/coordenada','CoordenadaController');
 
     Route::resource('/documento','DocumentoController');
     Route::get('formdoc/{id}/{position}','DocumentoController@formdoc');
     Route::resource('/cronograma','CronogramaController');
-    //Route::resource('/meta', 'MetaController');
+    Route::resource('/meta', 'MetaController');
+    Route::resource('/actividad', 'ActividadController');
     Route::resource('/desembolso1', 'Desembolso1Controller');
     Route::resource('/autorizacion', 'AutorizacionDesembolsoController');
     Route::resource('/presupuesto', 'PresupuestoController');
@@ -75,6 +76,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('getSigla/{entidadID}','EntidadController@getSiglas');
     Route::get('getAutoriza/{solicitudID}','SolicitudController@getUpdateEstado');
     Route::post('/postEstado', 'SolicitudController@postUpdateEstado');
-    Route::get('getAccion/{objetivoID}','AccionesController@getAccion');
+    Route::get('getMeta/{objetivoID}','MetaController@getMeta');
+    Route::get('getActividad/{metaID}','ActividadController@getActividad');
     Route::get('getMapa/{objetivoID}','MapaController@getMapa');
 });

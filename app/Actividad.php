@@ -4,22 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Meta extends Model
+class Actividad extends Model
 {
-    protected $table = 'metas';
+    protected $table = 'actividades';
     protected $fillable = [
         'id',
-        'idobjetivo',
-        'met_nombre',
-        'met_estado',
+        'idmeta',
+        'act_nombre',
+        'act_cantidad',
+        'act_unidad',
+        'act_otro',
+        'act_obs',
+        'act_estado',
         'iduregistra',
         'iduactualiza',
-        'created_at',
-        'updated_at'
     ];
-
-    public function objetivos() {
-        return $this->belongsTo('App\OEspecifico','idobjetivo','id');
+    public function metas() {
+        return $this->belongsTo('App\Meta','idmeta','id');
     }
 
     public function userRegistra(){
@@ -28,9 +29,5 @@ class Meta extends Model
 
     public function userActualiza(){
         return $this->belongsTo('App\User','iduactualiza','id');
-    }
-
-    public function actividades(){
-        return $this->hasMany('App\Actividad');
     }
 }
