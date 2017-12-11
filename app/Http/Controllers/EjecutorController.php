@@ -9,6 +9,7 @@ use App\Solicitud;
 use App\OEspecifico;
 use App\Meta;
 use App\Actividad;
+use App\Programacion;
 use Carbon\Carbon;
 use DB;
 use Session;
@@ -66,5 +67,44 @@ class EjecutorController extends Controller
             $this->msg = 'Ocurrio un error, no se puede cargar los componentes, metas y actividades';
             return redirect()->route('ejecutor.index');
         }
+    }
+
+    public function programacion($idactividad, $idsolicitud){
+        $idactividad = decrypt($idactividad);
+        $idsolicitud = decrypt($idsolicitud);
+        return view('ejecutor.programacionActividad')->with('idactividad', $idactividad)->with('idsolicitud', $idsolicitud);
+    }
+
+    public function avance($idactividad, $idsolicitud){
+        $idactividad = decrypt($idactividad);
+        $idsolicitud = decrypt($idsolicitud);
+        $programacion = Programacion::where('idactividad','=',$idactividad)->where('pro_estado','=',1)->orderBy('created_at','DESC')->first()->get();
+        return view('ejecutor.programacionActividad')->with('idactividad', $idactividad)->with('idsolicitud', $idsolicitud)->with('programacion', $programacion);
+    }
+    
+    public function store(Request $request){
+        try{
+            $programacion = new Programacion($request->all());
+            $programacion->idactividad = decrypt($request->idactividad);
+            $programacion->idsolicitud = decrypt($request->idsolicitud);
+            $programacion->iduregistra = Auth::user()->id;
+            $programacion->iduactualiza = Auth::user()->id;
+            $programacion->save();
+            $this->estado = "1";
+            $this->title = 'Registro de Programación';
+            $this->msg = 'La programación fue registrada de manera satisfactoria';
+        }catch(\Exception $ex){
+            $this->estado = "2";
+            $this->title = 'Error en Registro';
+            $this->msg = 'Ocurrio el siguiente error : '.$ex->getMessage();
+        }
+        Session::put('estado', $this->estado);
+        Session::put('title', $this->title);
+        Session::put('msg', $this->msg);
+        return redirect()->route('ejecutor.show',encrypt($programacion->idsolicitud));
+    }
+
+    public function update(Request $request, $id){
+        
     }
 }

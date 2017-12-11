@@ -65,6 +65,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     //Formularios - Seguimiento
     Route::resource('/ejecutor', 'EjecutorController');
+    Route::get('/programacion/{idactividad}/{idsolicitud}', 'EjecutorController@programacion');
+    Route::get('/avance/{idactividad}/{idsolicitud}', 'EjecutorController@avance');
+
     Route::resource('/formulario', 'FormularioUnoController');
     Route::resource('/reportOne', 'FormularioUnoController@reportOne');
     Route::resource('/reportTwo', 'FormularioUnoController@reportTwo');
