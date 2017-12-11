@@ -17,6 +17,7 @@
         <ul class="sidebar-menu">
             <li class="header">Menú de Navegación</li>
 
+            @if(Auth::user()->us_tipo != "EJECUTOR")
             <li>
                 <a href="{{ url('/home') }}">
                     <i class="fa fa-home"></i> <span>Dashbord</span>
@@ -105,13 +106,13 @@
                     </li>
                 </ul>
             </li>-->
-
+            @endif
             <li>
-                <a href="{{ url('/formulario') }}">
+                <a href="{{ url('/ejecutor') }}">
                     <i class="fa fa-bars"></i> <span>Seguimiento Ejecutor</span>
                 </a>
             </li>
-
+            @if(Auth::user()->us_tipo != "EJECUTOR")
             <li>
                 <a href="{{ url('/presupuesto') }}">
                     <i class="fa "><b>Bs</b></i> <span>Techo Presupuestario</span>
@@ -174,6 +175,7 @@
                     </li>
                 </ul>
             </li>
+            @endif
             @endif
         </ul>
     </section>
