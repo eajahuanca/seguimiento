@@ -23,6 +23,10 @@ class Actividad extends Model
         return $this->belongsTo('App\Meta','idmeta','id');
     }
 
+    public function programacions() {
+        return $this->hasMany('App\Programacion');
+    }
+
     public function userRegistra(){
         return $this->belongsTo('App\User','iduregistra','id');
     }

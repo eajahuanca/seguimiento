@@ -26,4 +26,12 @@ class Programacion extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function solicitudes(){
+        return $this->belongsTo('App\Solicitud','idsolicitud','id');
+    }
+
+    public function actividades(){
+        return $this->belongsTo('App\Actividad','idactividad','id');
+    }
 }

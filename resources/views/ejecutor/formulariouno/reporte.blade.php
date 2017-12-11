@@ -48,15 +48,16 @@
         <center><h3>Planilla de Reporte Mensual Componente 1</h3></center>
     </div>
     <div class="tableEspacios">
-    <b>Componente 1:</b> Infraestructura y equipamiento para la producción de plantines (vivero) construida
+    <b>Componente 1:</b> {!! $componente->esp_objetivo !!}
     </div>
+    <?php $contador = 1; $total1 = 0; ?>
     <table class="tableizer-table tableBorder">
         <thead>
             <tr>
                 <th colspan="2" style="padding:7px"><b>No DE COMPONENTE :</b></th>
                 <th colspan="2" style="padding:7px">1 (xxx)</th>
                 <th style="padding:7px"><b>INDICADOR :</b></th>
-                <th colspan="3" align="justify" style="padding:7px">Infraestructura y equipamiento para la producción de plantines (vivero construido)</th>
+                <th colspan="3" align="justify" style="padding:7px">{{ $componente->esp_componente}}</th>
             </tr>
         </thead>
         <tbody>
@@ -79,59 +80,23 @@
                 <td align="center"><b>(Cantidad)</b></td>
                 <td align="center"><b>(%)</b></td>
             </tr>
+            @foreach($actividad as $item)
             <tr>
-                <td>1</td>
-                <td>Estacas</td>
-                <td>20</td>
-                <td>pzas</td>
-                <td>&nbsp;</td>
+                <td>{{ $contador++ }}</td>
+                <td>{!! $item->actividades->act_nombre !!}</td>
+                <td>{{ $item['pro_cantidad'] }}</td>
+                <td>{{ $item['pro_unidad'] }}</td>
+                <td>{{ $item['pro_mes'] }}</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>0%</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>horcones</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>0%</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>0%</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>0%</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>0%</td>
-            </tr>
+            <?php $total1 = $total1 + (int)$item['pro_cantidad']; ?>
+            @endforeach
+            
             <tr>
                 <td colspan="2" align="center"><b>TOTALES</b></td>
-                <td>0</td>
+                <td>{{ $total1 }}</td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -141,8 +106,8 @@
         </tbody>
     </table><br>
     <div class="nota">PG: Programado, AV: Avance</div><br>
-    <div class="tableEspacios">Observaciones :</div>
-    {!! DNS2D::getBarcodeHTML(date('dmYHis')."1"."|Nombre del Proyecto|Monto", "QRCODE",4,4) !!}
+    <div class="tableEspacios">Observaciones : </div>
+    {!! DNS2D::getBarcodeHTML(date('dmYHis')."1"."| una Cosa | Otra Cosa| ", "QRCODE",4,4) !!}
     <footer>
         <div class='impresion'>
             <p>{{ $fechaImpresion }}</p>

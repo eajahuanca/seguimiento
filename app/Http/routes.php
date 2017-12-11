@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/avance/{idactividad}/{idsolicitud}', 'EjecutorController@avance');
 
     Route::resource('/formulario', 'FormularioUnoController');
-    Route::resource('/reportOne', 'FormularioUnoController@reportOne');
+    Route::get('/reportOne/{idsolicitud}', 'FormularioUnoController@reportOne');
     Route::resource('/reportTwo', 'FormularioUnoController@reportTwo');
     Route::resource('/reportThree', 'FormularioUnoController@reportThree');
     Route::resource('/reportFour', 'FormularioUnoController@reportFour');

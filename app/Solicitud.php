@@ -36,6 +36,11 @@ class Solicitud extends Model
                         'created_at',
                         'updated_at'
                     ];
+
+    public function programaciones() {
+        return $this->hasMany('App\Programacion');
+    }
+
     public function entidad(){
         return $this->belongsTo('App\Entidad','identidad','id');
     }

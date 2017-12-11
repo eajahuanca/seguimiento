@@ -8,7 +8,8 @@ use App\Http\Requests;
 use App\Solicitud;
 use App\OEspecifico;
 use App\Meta;
-use App\Acciones;
+use App\Actividad;
+use App\Programacion;
 use Carbon\Carbon;
 use Session;
 
@@ -48,9 +49,11 @@ class FormularioUnoController extends Controller
         return $arrayMes[(int)(date('m')) - 1];
     }
 
-    public function reportOne(){
+    public function reportOne(Request $request,$idsolicitud){
+        $actividad = Programacion::where('idsolicitud','=',$idsolicitud)->get();
+        $componente = OEspecifico::where('idsolicitud','=',$idsolicitud)->first();
         $fechaImpresion = 'La Paz, '.date('d').' de '.$this->fecha().' de '.date('Y');
-        $view = \View::make('ejecutor.formulariouno.reporte', compact('fechaImpresion'))->render();
+        $view = \View::make('ejecutor.formulariouno.reporte', compact('fechaImpresion','componente','actividad'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->setPaper('LETTER','portrait');
         $pdf->loadHTML($view);
