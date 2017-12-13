@@ -25,7 +25,7 @@ class EntidadRequest extends Request
     {
         $ent = $this->route('entidad');
         return [
-            'ent_nombre' => 'required|min:10|unique:entidades,ent_nombre,'.$ent.',id',
+            'ent_nombre' => 'required|min:1|unique:entidades,ent_nombre,'.$ent.',id',
             'ent_sigla' => 'required|min:3',
             'ent_estado' => 'required',
         ];

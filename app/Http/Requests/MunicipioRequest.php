@@ -25,7 +25,7 @@ class MunicipioRequest extends Request
     {
         return [
             'idprovincia' => 'required',
-            'mun_nombre' => 'required|min:5',
+            'mun_nombre' => 'required|min:1',
             'mun_estado' => 'required',
         ];
     }

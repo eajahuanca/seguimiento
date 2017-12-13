@@ -25,7 +25,7 @@ class ComponenteRequest extends Request
     {
         $com = $this->route('componente');
         return [
-            'com_nombre' => 'required|min:5|unique:componentes,com_nombre,'.$com.',id',
+            'com_nombre' => 'required|min:1|unique:componentes,com_nombre,'.$com.',id',
             'com_descripcion' => 'required',
             'com_estado' => 'required',
         ];

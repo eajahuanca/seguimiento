@@ -24,17 +24,18 @@ class ObjetivosEspecificosRequest extends Request
     public function rules()
     {
         return [
-            'esp_objetivo' => 'required|min:100',
-            'esp_meta' => 'required|min:100',
-            'esp_resultado' => 'required|min:100'
+            'esp_objetivo' => 'required|min:1',
+            //'esp_meta' => 'required|min:100',
+            //'esp_resultado' => 'required|min:100'
+            'esp_componente' => 'required|min:1'
         ];
     }
 
     public function attributes(){
         return [
             'esp_objetivo' => 'Objetivo Específico',
-            'esp_meta' => 'Meta',
-            'esp_resultado' => 'Resultados'
+            //'esp_meta' => 'Meta',
+            'esp_componete' => 'Componente'
         ];
     }
 }

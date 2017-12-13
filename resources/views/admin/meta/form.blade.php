@@ -27,4 +27,4 @@
         </div>
     </div>
 </div>
-{!! Form::hidden('idobjetivo',encrypt($objetivo->solicitudes->id)) !!}
+{!! Form::hidden('idobjetivo',encrypt($objetivo->id)) !!}

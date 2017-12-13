@@ -25,7 +25,7 @@ class ArchivoRequest extends Request
     {
         return [
             'ar_archivo' => 'required|mimes:pdf',
-            'ar_detalle' => 'required|min:20',
+            'ar_detalle' => 'required|min:2',
         ];
     }
 

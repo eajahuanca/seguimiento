@@ -25,7 +25,7 @@ class AreaRequest extends Request
     {
         $ar = $this->route('area');
         return [
-            'ar_nombre' => 'required|min:5|unique:areas,ar_nombre,'.$ar.',id',
+            'ar_nombre' => 'required|min:1|unique:areas,ar_nombre,'.$ar.',id',
             'ar_estado' => 'required',
         ];
     }

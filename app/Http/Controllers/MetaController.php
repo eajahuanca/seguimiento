@@ -33,21 +33,25 @@ class MetaController extends Controller
             return view('admin.meta.create')->with('objetivo',$objetivo)->with('meta',$meta);
         }catch(\Exception $ex){
             flash('error', "Ocurrió el siguiente error: ".$ex->getMessage());
-            return Redirect::back();
+            return Redirect::previous();
         }
     }
 
     public function store(Request $request){
+        $idobjetivo = decrypt($request->idobjetivo);
+        $objetivo = OEspecifico::find($idobjetivo);
+
         try{
             $meta = new Meta($request->all());
             $meta->idobjetivo = decrypt($request->idobjetivo);
             $meta->iduregistra = Auth::user()->id;
             $meta->iduactualiza = Auth::user()->id;
             $meta->save();
-            $objetivo = OEspecifico::find($meta->idobjetivo);
             $this->estado = "1";
             $this->title = "Registro de la Meta";
             $this->msg = "Los datos de la Meta, se registraron de manera correcta";
+            
+            return redirect()->route('meta.edit',encrypt($objetivo->id));
         }catch(\Exception $ex){
             $this->estado = "2";
             $this->title = "Error en registro";
@@ -56,7 +60,7 @@ class MetaController extends Controller
         Session::put('estado', $this->estado);
         Session::put('title', $this->title);
         Session::put('msg', $this->msg);
-        return redirect()->route('meta.edit',encrypt($objetivo->id));
+        return redirect()->route('meta.edit', encrypt($objetivo->id));
     }
 
     public function getMeta(Request $request, $idObjetivo){

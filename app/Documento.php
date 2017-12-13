@@ -27,7 +27,7 @@ class Documento extends Model
                             'created_at',
                             'updated_at'
                         ];
-    
+
     public function solicitudes(){
         return $this->belongsTo('App\Solicitud','idsolicitud','id');
     }

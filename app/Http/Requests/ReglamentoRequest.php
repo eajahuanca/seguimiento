@@ -25,8 +25,8 @@ class ReglamentoRequest extends Request
     {
         $reg = $this->route('reglamento');
         return [
-            'reg_nombre' => 'required|min:10|unique:reglamentos,reg_nombre,'.$reg.',reg_nombre',
-            'reg_descripcion' => 'required|min:20',
+            'reg_nombre' => 'required|min:1|unique:reglamentos,reg_nombre,'.$reg.',reg_nombre',
+            'reg_descripcion' => 'required|min:2',
             'reg_archivo' => 'required|mimes:pdf',
         ];
     }

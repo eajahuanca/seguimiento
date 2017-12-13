@@ -12,7 +12,7 @@ class OEspecifico extends Model
         'idsolicitud',
         'idcodigo',
         'esp_objetivo',
-        'esp_meta',
+        'esp_componente',
         'esp_seguimiento',
         'esp_observacion',
         'esp_estado',

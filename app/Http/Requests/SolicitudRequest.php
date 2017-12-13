@@ -29,8 +29,8 @@ class SolicitudRequest extends Request
             'sol_hrsigec' => 'required',
             'sol_tipo' => 'required',
             'sol_nombre' => 'required|unique:solicitudes,sol_nombre,'.$solicitud.',sol_nombre',
-            'sol_objetivo' => 'required|min:50',
-            'sol_justicacion' => 'required|min:50',
+            'sol_objetivo' => 'required|min:1',
+            'sol_justicacion' => 'required|min:1',
             'identidad' => 'required|exists:entidades,id',
             'sol_sigla' => 'required|min:3',
             'iddepto' => 'required|exists:departamentos,id',
@@ -44,7 +44,7 @@ class SolicitudRequest extends Request
             'sol_respaldo' => 'required|mimes:pdf',
             'sol_ftecnica' => 'required|mimes:pdf',
             'idreglamento' => 'required|exists:reglamentos,id',
-            'sol_componente' => 'required',
+            //'sol_componente' => 'required',
         ];
     }
 
@@ -67,7 +67,7 @@ class SolicitudRequest extends Request
             'sol_montootro' => 'Otro Monto',
             'sol_tiempo' => 'Tiempo',
             'idreglamento' => 'Reglamento',
-            'sol_componente' => 'Componente(s)',
+            //'sol_componente' => 'Componente(s)',
             'sol_respaldo' => 'Archivo de Respaldo',
             'sol_ftecnica' => 'Ficha Técnica'
         ];

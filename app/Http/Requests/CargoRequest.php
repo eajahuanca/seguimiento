@@ -25,7 +25,7 @@ class CargoRequest extends Request
     {
         $car = $this->route('cargo');
         return [
-            'car_nombre' => 'required|min:5|unique:cargos,car_nombre,'.$car.',id',
+            'car_nombre' => 'required|min:1|unique:cargos,car_nombre,'.$car.',id',
             'car_estado' => 'required',
         ];
     }
