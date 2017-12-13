@@ -32,4 +32,8 @@ class User extends Authenticatable
     public function municipio(){
         return $this->hasMany('App\Municipio');
     }
+
+    public function ejecutorcronogramas(){
+        return $this->hasMany('App\EjecutorCronograma');
+    }
 }

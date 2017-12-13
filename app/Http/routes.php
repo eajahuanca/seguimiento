@@ -63,10 +63,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/autorizacion', 'AutorizacionDesembolsoController');
     Route::resource('/presupuesto', 'PresupuestoController');
 
-    //Formularios - Seguimiento
+    //Formularios - Seguimiento - Ejecutor
     Route::resource('/ejecutor', 'EjecutorController');
     Route::get('/programacion/{idactividad}/{idsolicitud}', 'EjecutorController@programacion');
     Route::get('/avance/{idactividad}/{idsolicitud}', 'EjecutorController@avance');
+    Route::resource('/ecronograma', 'EjecutorCronogramaController');
+    Route::get('/reportCronograma', 'EjecutorCronogramaController@reporteCronograma');
 
     Route::resource('/formulario', 'FormularioUnoController');
     Route::get('/reportOne/{idsolicitud}', 'FormularioUnoController@reportOne');

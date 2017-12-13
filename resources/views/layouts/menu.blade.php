@@ -107,11 +107,20 @@
                 </ul>
             </li>-->
             @endif
+            
+            @if(Auth::user()->us_tipo == "EJECUTOR")
             <li>
                 <a href="{{ url('/ejecutor') }}">
                     <i class="fa fa-bars"></i> <span>Seguimiento Ejecutor</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ url('/ecronograma') }}">
+                    <i class="fa fa-bar-chart"></i> <span>Cronograma General</span>
+                </a>
+            </li>
+            @endif
+
             @if(Auth::user()->us_tipo != "EJECUTOR")
             <li>
                 <a href="{{ url('/presupuesto') }}">
