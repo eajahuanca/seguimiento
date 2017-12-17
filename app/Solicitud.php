@@ -38,6 +38,11 @@ class Solicitud extends Model
                         'created_at',
                         'updated_at'
                     ];
+
+    public function ejecutorprogramaciones(){
+        return $his->hasMany('App\EjecutorProgramacion');
+    }
+
     public function ejecutorcronogramas(){
         return $this->hasMany('App\EjecutorCronograma');
     }

@@ -65,10 +65,29 @@ Route::group(['middleware' => 'auth'], function(){
 
     //Formularios - Seguimiento - Ejecutor
     Route::resource('/ejecutor', 'EjecutorController');
-    Route::get('/programacion/{idactividad}/{idsolicitud}', 'EjecutorController@programacion');
-    Route::get('/avance/{idactividad}/{idsolicitud}', 'EjecutorController@avance');
     Route::resource('/ecronograma', 'EjecutorCronogramaController');
     Route::get('/reportCronograma', 'EjecutorCronogramaController@reporteCronograma');
+    //solo formularios
+    Route::get('/progra1/{idactividad}/{idsolicitud}', 'EjecutorProgramacionForm1Controller@programacion');
+    Route::post('/savePG1', 'EjecutorProgramacionForm1Controller@guardarProgramacion');
+    Route::put('/saveAV1', 'EjecutorProgramacionForm1Controller@guardarAvance');
+    Route::get('/avance1/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm1Controller@avance');
+
+    Route::get('/progra2/{idactividad}/{idsolicitud}', 'EjecutorProgramacionForm2Controller@programacion');
+    Route::post('/savePG2', 'EjecutorProgramacionForm2Controller@guardarProgramacion');
+    Route::put('/saveAV2', 'EjecutorProgramacionForm2Controller@guardarAvance');
+    Route::get('/avance2/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm2Controller@avance');
+
+    Route::get('/progra3/{idactividad}/{idsolicitud}', 'EjecutorProgramacionForm3Controller@programacion');
+    Route::post('/savePG3', 'EjecutorProgramacionForm3Controller@guardarProgramacion');
+    Route::put('/saveAV3', 'EjecutorProgramacionForm3Controller@guardarAvance');
+    Route::get('/avance3/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm3Controller@avance');
+
+    Route::get('/progra4/{idactividad}/{idsolicitud}', 'EjecutorProgramacionForm4Controller@programacion');
+    Route::post('/savePG4', 'EjecutorProgramacionForm4Controller@guardarProgramacion');
+    Route::put('/saveAV4', 'EjecutorProgramacionForm4Controller@guardarAvance');
+    Route::get('/avance4/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm4Controller@avance');
+
 
     Route::resource('/formulario', 'FormularioUnoController');
     Route::get('/reportOne/{idsolicitud}', 'FormularioUnoController@reportOne');

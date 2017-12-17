@@ -128,6 +128,29 @@
                 </a>
             </li>
 
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gear"></i> <span>Menu1</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="">
+                            <i class="fa fa-gg-circle"></i> <span>Sub Menu1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-gg-circle"></i> <span>Sub Menu2</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
             <li>
                 <a href=".">
                     <i class="fa fa-indent"></i> <span>Monitoreo de Proyectos</span>

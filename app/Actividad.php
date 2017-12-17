@@ -19,6 +19,11 @@ class Actividad extends Model
         'iduregistra',
         'iduactualiza',
     ];
+
+    public function ejecutorprogramaciones(){
+        return $this->hasMany('App\EjecutorProgramacion');
+    }
+
     public function metas() {
         return $this->belongsTo('App\Meta','idmeta','id');
     }

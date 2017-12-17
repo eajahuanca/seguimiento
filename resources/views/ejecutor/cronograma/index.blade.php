@@ -19,9 +19,9 @@
                 <li class="active"><a href="#tab_1-1" data-toggle="tab">Datos del Cronograma</a></li>
                 <li><a href="#tab_2-2" data-toggle="tab">Registro de Cronograma</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-print"></i> Reporte <span class="caret"></span>
-                    </a>
+                    </button>
                     <ul class="dropdown-menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('/reportCronograma') }}" style="color:red;"><i class="fa fa-file-pdf-o"></i> PDF</a></li>
                     </ul>
@@ -91,7 +91,7 @@
                                     </div>
                                 </div>
                                 <div class="box-body">
-                                    @include('ejecutor.cronograma.form')
+                                @include('ejecutor.cronograma.form')
                                 </div>
                             </div>
                         </div>

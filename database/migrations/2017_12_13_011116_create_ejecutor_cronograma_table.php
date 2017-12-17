@@ -16,8 +16,8 @@ class CreateEjecutorCronogramaTable extends Migration
             $table->increments('id');
             $table->integer('idsolicitud')->unsigned();
             $table->string('idcite');
-            $table->string('eje_mes');
-            $table->string('eje_corresponde');
+            $table->string('eje_mes');              //mes 1,2,3..n
+            $table->string('eje_corresponde');      //enero,febrero,...n
             $table->text('eje_descripcion');
             $table->date('eje_desde')->default('0000-00-00');
             $table->date('eje_hasta')->default('0000-00-00');

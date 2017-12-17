@@ -39,8 +39,30 @@
                                 <td>{!! $item->met_nombre !!}</td>
                                 <td>{!! $item->act_nombre !!}</td>
                                 <td class="text-center">
-                                    <span class="hint--top  hint--warning" aria-label="Registrar Programación"><a href="{{ url('/programacion', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id)]) }}" class="btn btn-warning"><i class="fa fa-sign-out"></i></a></span>
-                                    <span class="hint--top  hint--info" aria-label="Registrar Avances"><a href="{{ url('/avance', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id)]) }}" class="btn btn-primary"><i class="fa fa-sign-out"></i></a></span>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            <span class="hint--top  hint--warning" aria-label="Registrar Programación"><i class="fa fa-bar-chart"></i><span class="caret"></span></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li><a href="{{ url('/progra1', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id)]) }}"><i class="fa fa-chevron-circle-right"></i> Formulario #1</a></li>
+                                            <li><a href="{{ url('/progra2', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id)]) }}"><i class="fa fa-chevron-circle-right"></i> Formulario #2</a></li>
+                                            <li><a href="{{ url('/progra3', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id)]) }}"><i class="fa fa-chevron-circle-right"></i> Formulario #3</a></li>
+                                            <li><a href="{{ url('/progra4', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id)]) }}"><i class="fa fa-chevron-circle-right"></i> Formulario #4</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            <span class="hint--top  hint--info" aria-label="Registrar Avance"><i class="fa fa-edit"></i><span class="caret"></span></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li><a href="{{ url('/avance1', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id), 'form' => encrypt('FORMULARIO1')]) }}"><i class="fa fa-edit"></i> Formulario #1</a></li>
+                                            <li><a href="{{ url('/avance2', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id), 'form' => encrypt('FORMULARIO2')]) }}"><i class="fa fa-edit"></i> Formulario #2</a></li>
+                                            <li><a href="{{ url('/avance3', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id), 'form' => encrypt('FORMULARIO3')]) }}"><i class="fa fa-edit"></i> Formulario #3</a></li>
+                                            <li><a href="{{ url('/avance4', ['idactividad' => encrypt($item->id), 'idsolicitud' => encrypt($solicitud->id), 'form' => encrypt('FORMULARIO4')]) }}"><i class="fa fa-edit"></i> Formulario #4</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
