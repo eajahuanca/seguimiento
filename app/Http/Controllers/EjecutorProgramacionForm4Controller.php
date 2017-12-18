@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\EjecutorProgramacion;
 use App\Actividad;
 use App\Solicitud;
+use App\OEspecifico;
 use Carbon\Carbon;
 use DB;
 use Session;
@@ -37,6 +38,7 @@ class EjecutorProgramacionForm4Controller extends Controller
         $idsolicitud = decrypt($request->idsolicitud);
         $idactividad = decrypt($request->idactividad);
         try{
+            
             $ejecutor = new EjecutorProgramacion($request->all());
             $ejecutor->idsolicitud = $idsolicitud;
             $ejecutor->idactividad = $idactividad;
@@ -123,5 +125,32 @@ class EjecutorProgramacionForm4Controller extends Controller
         Session::put('title', $this->title);
         Session::put('msg', $this->msg);
         return redirect()->route('ejecutor.show',encrypt($idsolicitud));
+    }
+
+    public function reportFour(Request $request,$idsolicitud){
+        $mes = EjecutorProgramacion::select('form_mes')
+            ->where('form_formulario','=','FORMULARIO4')
+            ->where('idsolicitud','=',$idsolicitud)
+            ->orderBy('created_at','DESC')
+            ->distinct('form_mes')
+            ->first();
+        $actividad = EjecutorProgramacion::where('form_formulario','=','FORMULARIO4')
+            ->where('idsolicitud','=',$idsolicitud)
+            ->where('form_mes','=',$mes->form_mes)
+            ->orderBy('created_at','ASC')
+            ->get();
+        $componente = OEspecifico::where('idsolicitud','=',$idsolicitud)->first();
+        $fechaImpresion = 'La Paz, '.date('d').' de '.$this->fecha().' de '.date('Y');
+        $view = \View::make('ejecutor.programacion.formulario.formcuatro.reporte', compact('fechaImpresion','componente','actividad','mes'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->setPaper('LETTER','landscape');
+        $pdf->loadHTML($view);
+        return $pdf->download('FormFour'.date('dmY').date('His').'.pdf');
+    }
+
+    public function fecha()
+    {
+        $arrayMes = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        return $arrayMes[(int)(date('m')) - 1];
     }
 }

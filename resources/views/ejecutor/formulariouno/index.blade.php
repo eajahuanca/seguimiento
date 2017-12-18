@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="box box-warning box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Seguimiento al Proyecto</h3>
+                    <h3 class="box-title">Seguimiento al Proyecto v</h3>
                 </div>
                 <div class="box-body">
                     <table id="example" class="table table-striped table-bordered tblSigec" cellspacing="0" width="100%">

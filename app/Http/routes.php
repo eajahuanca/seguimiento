@@ -72,28 +72,32 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/savePG1', 'EjecutorProgramacionForm1Controller@guardarProgramacion');
     Route::put('/saveAV1', 'EjecutorProgramacionForm1Controller@guardarAvance');
     Route::get('/avance1/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm1Controller@avance');
+    Route::get('/reportOne/{idsolicitud}','EjecutorProgramacionForm1Controller@reportOne');
 
     Route::get('/progra2/{idactividad}/{idsolicitud}', 'EjecutorProgramacionForm2Controller@programacion');
     Route::post('/savePG2', 'EjecutorProgramacionForm2Controller@guardarProgramacion');
     Route::put('/saveAV2', 'EjecutorProgramacionForm2Controller@guardarAvance');
     Route::get('/avance2/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm2Controller@avance');
+    Route::get('/reportTwo/{idsolicitud}', 'EjecutorProgramacionForm2Controller@reportTwo');
 
     Route::get('/progra3/{idactividad}/{idsolicitud}', 'EjecutorProgramacionForm3Controller@programacion');
     Route::post('/savePG3', 'EjecutorProgramacionForm3Controller@guardarProgramacion');
     Route::put('/saveAV3', 'EjecutorProgramacionForm3Controller@guardarAvance');
     Route::get('/avance3/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm3Controller@avance');
+    Route::get('/reportThree/{idsolicitud}', 'EjecutorProgramacionForm3Controller@reportThree');
 
     Route::get('/progra4/{idactividad}/{idsolicitud}', 'EjecutorProgramacionForm4Controller@programacion');
     Route::post('/savePG4', 'EjecutorProgramacionForm4Controller@guardarProgramacion');
     Route::put('/saveAV4', 'EjecutorProgramacionForm4Controller@guardarAvance');
     Route::get('/avance4/{idactividad}/{idsolicitud}/{form}', 'EjecutorProgramacionForm4Controller@avance');
+    Route::get('/reportFour/{idsolicitud}', 'EjecutorProgramacionForm4Controller@reportFour');
 
 
-    Route::resource('/formulario', 'FormularioUnoController');
-    Route::get('/reportOne/{idsolicitud}', 'FormularioUnoController@reportOne');
-    Route::resource('/reportTwo', 'FormularioUnoController@reportTwo');
-    Route::resource('/reportThree', 'FormularioUnoController@reportThree');
-    Route::resource('/reportFour', 'FormularioUnoController@reportFour');
+    //Route::resource('/formulario', 'FormularioUnoController');
+    //Route::get('/reportOne/{idsolicitud}', 'FormularioUnoController@reportOne');
+    //Route::resource('/reportTwo', 'FormularioUnoController@reportTwo');
+    //Route::resource('/reportThree', 'FormularioUnoController@reportThree');
+    //Route::resource('/reportFour', 'FormularioUnoController@reportFour');
 
     //Rutas AJAX
     Route::get('getMunicipio/{provinciaID}','MunicipioController@getMunicipios');

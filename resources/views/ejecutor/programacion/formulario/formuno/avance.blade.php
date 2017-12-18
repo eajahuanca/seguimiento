@@ -38,37 +38,79 @@
                 {!! Form::hidden('idactividad',encrypt($actividad->id)) !!}
                 {!! Form::hidden('idsolicitud',encrypt($solicitud->id)) !!}
                 {!! Form::hidden('form_formulario',encrypt($formulario)) !!}
-
+                <?php $position = 1; ?>
+                @foreach($programado as $item)
+                {!! Form::hidden('form_mes',$item->form_mes) !!}
                 <div class="row">
+                    {!! Form::hidden('id'.$position, $item->id) !!}
                     <div class="col-md-4 col-xs-12">
                         <div class="form-group">
-                            {!! Form::label('form_mes', 'Mes de Avance', ['class' => 'col-md-12 col-xs-12']) !!}
+                            {!! Form::label('form_descripcion', 'Descripción de la Compra o acción', ['class' => 'col-md-12 col-xs-12']) !!}
                             <div class="col-md-12 col-xs-12">
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+                                        <i class="fa fa-bars"></i>
                                     </div>
-                                    {!! Form::select('form_mes', ['MES1' => 'MES 1', 'MES2' => 'MES 2', 'MES3' => 'MES 3', 'MES4' => 'MES 4', 'MES5' => 'MES 5', 'MES6' => 'MES 6', 'MES7' => 'MES 7', 'MES8' => 'MES 8', 'MES9' => 'MES 9', 'MES10' => 'MES 10', 'MES11' => 'MES 11', 'MES12' => 'MES 12', 'MES13' => 'MES 13', 'MES14' => 'MES 14', 'MES15' => 'MES 15'], null, ['class' => 'form-control select2']) !!}
+                                    {!! Form::text('form_descripcion', $item->form_descripcion, ['class' => 'form-control', 'readonly' => true]) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-xs-12">
+                    <div class="col-md-3 col-xs-12">
                         <div class="form-group">
-                            {!! Form::label('form_avance', 'Avance de la Actividad', ['class' => 'col-md-12 col-xs-12']) !!}
+                            {!! Form::label('form_cantidad', 'Cantidad', ['class' => 'col-md-12 col-xs-12']) !!}
                             <div class="col-md-12 col-xs-12">
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-send"></i>
+                                        <i class="fa fa-bars"></i>
                                     </div>
-                                    {!! Form::text('form_avance', null, ['class' => 'form-control']) !!}
+                                    {!! Form::text('form_cantidad', $item->form_cantidad, ['class' => 'form-control', 'readonly' => true]) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('form_unidad', 'Unidad', ['class' => 'col-md-12 col-xs-12']) !!}
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-bars"></i>
+                                    </div>
+                                    {!! Form::text('form_unidad', $item->form_unidad, ['class' => 'form-control', 'readonly' => true]) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('form_programado', 'Programado (BS)', ['class' => 'col-md-12 col-xs-12']) !!}
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa " style="font-style:italic;"><b>PG</b></i>
+                                    </div>
+                                    {!! Form::text('form_programdo'.$position, $item->form_programado, ['class' => 'form-control', 'readonly' => true]) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 col-xs-12">
+                    <div class="col-md-3 col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('form_avance', 'Avance (BS)', ['class' => 'col-md-12 col-xs-12']) !!}
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa " style="font-style:italic;"><b>AV</b></i>
+                                    </div>
+                                    {!! Form::text('form_avance'.$position, null, ['class' => 'form-control', 'required' => true]) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-xs-12">
                         <div class="form-group">
                             {!! Form::label('form_obs', 'Algunas observaciones', ['class' => 'col-md-12 col-xs-12']) !!}
                             <div class="col-md-12 col-xs-12">
@@ -76,12 +118,16 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-bars"></i>
                                     </div>
-                                    {!! Form::textarea('form_obs', null, ['class' => 'form-control', 'rows' => 3]) !!}
+                                    {!! Form::textarea('form_obs'.$position, null, ['class' => 'form-control', 'rows' => 2, 'required' => true]) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr style="border-color:green;"/>
+                <?php $position += 1; ?>
+                @endforeach
+                {!! Form::hidden('position', $position) !!} 
                 <div class="form-group">
                     <center>
                         <span class="hint--top  hint--success" aria-label="Guardar los datos"><button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button></span>

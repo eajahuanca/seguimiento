@@ -75,7 +75,7 @@
     <center>
         <span class="hint--top  hint--success" aria-label="Guardar los datos"><button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button></span>
         <span class="hint--top  hint--error" aria-label="Cancelar el registro"><button type="reset" class="btn btn-danger"><i class="fa fa-reply-all"></i> Limpiar</button></span>
-        <span class="hint--top  hint--error" aria-label="Regresar a la Anterior Vista"><a href="{{ URL::previous() }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Regresar</a></span>
+        <span class="hint--top  hint--error" aria-label="Regresar a la Anterior Vista"><a href="{{ route('ejecutor.show',encrypt($solicitud->id)) }}" class="btn btn-danger"><i class="fa fa-reply-all"></i> Regresar</a></span>
     </center>
 </div>
 {!! Form::close() !!}
